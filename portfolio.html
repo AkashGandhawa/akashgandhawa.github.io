@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Akash Gandhawa — Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0D0D0D;
+    --surface: #141414;
+    --indigo: #5B4FE8;
+    --indigo-dim: #3D3499;
+    --coral: #FF4D6D;
+    --text: #F0EEF9;
+    --muted: #888;
+    --border: #222;
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 4vw;
+    backdrop-filter: blur(16px);
+    background: rgba(13,13,13,0.7);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: -0.03em;
+  }
+  .nav-logo span { color: var(--indigo); }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+  }
+  nav a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 0.875rem;
+    font-family: var(--font-body);
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--text); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 4vw 6rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 60px 60px;
+    opacity: 0.4;
+  }
+
+  .hero-bg-glow {
+    position: absolute;
+    top: -20%;
+    left: 30%;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(ellipse at center, rgba(91,79,232,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--indigo);
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.2s forwards;
+  }
+
+  .hero-name {
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 10vw, 9rem);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-name .line {
+    display: block;
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  .hero-name .line:nth-child(1) { animation: slideUp 0.7s 0.4s cubic-bezier(0.16,1,0.3,1) forwards; }
+  .hero-name .line:nth-child(2) { animation: slideUp 0.7s 0.55s cubic-bezier(0.16,1,0.3,1) forwards; }
+
+  .hero-name .accent { color: var(--indigo); }
+
+  .hero-sub {
+    margin-top: 2rem;
+    max-width: 480px;
+    color: var(--muted);
+    font-size: 1.05rem;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.9s forwards;
+  }
+
+  .hero-cta {
+    margin-top: 2.5rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.6s 1.1s forwards;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    border-radius: 4px;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: none;
+  }
+  .btn-primary {
+    background: var(--indigo);
+    color: #fff;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(91,79,232,0.4);
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-ghost:hover {
+    border-color: var(--indigo);
+    color: var(--indigo);
+  }
+
+  .hero-scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    right: 4vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--muted);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeUp 0.6s 1.4s forwards;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, var(--muted), transparent);
+    animation: scrollPulse 1.8s ease-in-out infinite;
+  }
+
+  /* ABOUT */
+  .about {
+    padding: 6rem 4vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    border-top: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--indigo);
+    margin-bottom: 1.5rem;
+  }
+
+  .about-heading {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+  .about-heading em {
+    font-style: normal;
+    color: var(--coral);
+  }
+
+  .about-body {
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+  .about-body p + p { margin-top: 1rem; }
+
+  .skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+  .skill-tag {
+    padding: 0.35rem 0.85rem;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-family: var(--font-body);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .skill-tag:hover {
+    border-color: var(--indigo);
+    color: var(--indigo);
+  }
+
+  /* PROJECTS */
+  .projects {
+    padding: 6rem 4vw;
+    border-top: 1px solid var(--border);
+  }
+
+  .projects-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+  }
+
+  .projects-heading {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .project-card {
+    background: var(--bg);
+    padding: 2rem;
+    position: relative;
+    transition: background 0.2s;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    overflow: hidden;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(91,79,232,0.08), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .project-card:hover::before { opacity: 1; }
+  .project-card:hover .project-arrow { transform: translate(4px, -4px); color: var(--indigo); }
+
+  .project-lang {
+    display: inline-block;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--indigo);
+    margin-bottom: 1rem;
+    font-family: var(--font-body);
+  }
+
+  .project-name {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .project-arrow {
+    font-size: 1.1rem;
+    color: var(--muted);
+    transition: transform 0.2s, color 0.2s;
+    flex-shrink: 0;
+    margin-left: 0.5rem;
+  }
+
+  .project-desc {
+    font-size: 0.875rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .project-meta {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+  .project-meta span { display: flex; align-items: center; gap: 0.3rem; }
+
+  /* CONTACT */
+  .contact {
+    padding: 6rem 4vw;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .contact-heading {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 1.5rem;
+  }
+  .contact-heading .accent { color: var(--indigo); }
+
+  .contact-sub {
+    color: var(--muted);
+    max-width: 420px;
+    margin: 0 auto 2.5rem;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 4vw;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+
+  /* ANIMATIONS */
+  @keyframes slideUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  /* REVEAL ON SCROLL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav ul { display: none; }
+    .about { grid-template-columns: 1fr; gap: 2rem; }
+    .projects-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">AG<span>.</span></div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="https://github.com/AkashGandhawa" target="_blank" rel="noopener">GitHub ↗</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-bg-glow"></div>
+
+  <div class="hero-eyebrow">Undergraduate · AI · Sri Lanka</div>
+
+  <h1 class="hero-name">
+    <span class="line">Akash</span>
+    <span class="line"><span class="accent">Gandhawa</span></span>
+  </h1>
+
+  <p class="hero-sub">
+    Building well-thought systems that make a positive difference. Undergraduate in AI, passionate about programming, robotics, and the web.
+  </p>
+
+  <div class="hero-cta">
+    <a href="#projects" class="btn btn-primary">View my work</a>
+    <a href="#contact" class="btn btn-ghost">Get in touch</a>
+  </div>
+
+  <div class="hero-scroll-hint">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="reveal">
+    <div class="section-label">About me</div>
+    <h2 class="about-heading">
+      Programming systems<br />that <em>actually matter</em>
+    </h2>
+  </div>
+  <div class="reveal">
+    <div class="about-body">
+      <p>
+        I'm W. A. G. Rodrigo — Akash — an undergraduate student in Artificial Intelligence from Sri Lanka. I'm drawn to projects that sit at the intersection of software, hardware, and real-world impact.
+      </p>
+      <p>
+        From stair-climbing document-delivery robots to textile ERP systems and full-stack web applications, I enjoy tackling problems that require both algorithmic thinking and creative engineering.
+      </p>
+    </div>
+    <div class="skills-grid">
+      <span class="skill-tag">C / C++</span>
+      <span class="skill-tag">TypeScript</span>
+      <span class="skill-tag">Node.js</span>
+      <span class="skill-tag">Next.js</span>
+      <span class="skill-tag">Prisma</span>
+      <span class="skill-tag">HTML / CSS</span>
+      <span class="skill-tag">Data Structures</span>
+      <span class="skill-tag">Algorithms</span>
+      <span class="skill-tag">AI / ML</span>
+      <span class="skill-tag">Robotics</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects" id="projects">
+  <div class="projects-header reveal">
+    <div>
+      <div class="section-label">Selected work</div>
+      <h2 class="projects-heading">What I've built</h2>
+    </div>
+    <a href="https://github.com/AkashGandhawa?tab=repositories" target="_blank" rel="noopener" class="btn btn-ghost">All repos ↗</a>
+  </div>
+
+  <div class="projects-grid reveal">
+
+    <a href="https://github.com/AkashGandhawa/stairdoc" target="_blank" rel="noopener" class="project-card">
+      <span class="project-lang">C++ · Robotics</span>
+      <div class="project-name">
+        StairDoc
+        <span class="project-arrow">↗</span>
+      </div>
+      <p class="project-desc">An autonomous document-delivery robot with the ability to climb stairs — combining embedded systems, motor control, and navigation logic.</p>
+      <div class="project-meta">
+        <span>🤖 Hardware + Software</span>
+      </div>
+    </a>
+
+    <a href="https://github.com/AkashGandhawa/ticket-system" target="_blank" rel="noopener" class="project-card">
+      <span class="project-lang">TypeScript · Full-Stack</span>
+      <div class="project-name">
+        University IT Ticketing
+        <span class="project-arrow">↗</span>
+      </div>
+      <p class="project-desc">A full-stack ticketing system for university IT support, built with a Node.js/Prisma backend and a Next.js frontend. Role-based workflows, real-time status tracking.</p>
+      <div class="project-meta">
+        <span>🎫 Next.js · Prisma</span>
+      </div>
+    </a>
+
+    <a href="https://github.com/AkashGandhawa/textile-erp" target="_blank" rel="noopener" class="project-card">
+      <span class="project-lang">C · DSA</span>
+      <div class="project-name">
+        Textile ERP
+        <span class="project-arrow">↗</span>
+      </div>
+      <p class="project-desc">A system modelling a textile manufacturing company to explore practical applications of data structures and algorithms — inventory, orders, and production pipelines.</p>
+      <div class="project-meta">
+        <span>🧵 3 forks</span>
+      </div>
+    </a>
+
+    <a href="https://github.com/AkashGandhawa/thorana" target="_blank" rel="noopener" class="project-card">
+      <span class="project-lang">HTML · CSS</span>
+      <div class="project-name">
+        Thorana
+        <span class="project-arrow">↗</span>
+      </div>
+      <p class="project-desc">A digital Pandal celebrating Vesak Festival — a creative front-end project blending cultural heritage with web design. ⭐ 1 star.</p>
+      <div class="project-meta">
+        <span>🕯️ Creative Web</span>
+      </div>
+    </a>
+
+    <a href="https://github.com/AkashGandhawa/TextileERP" target="_blank" rel="noopener" class="project-card">
+      <span class="project-lang">Enterprise</span>
+      <div class="project-name">
+        TextileERP v2
+        <span class="project-arrow">↗</span>
+      </div>
+      <p class="project-desc">A comprehensive ERP solution tailored for the textile manufacturing industry — an evolution of the DSA project into a complete business system.</p>
+      <div class="project-meta">
+        <span>🏭 ERP · Manufacturing</span>
+      </div>
+    </a>
+
+    <a href="https://github.com/AkashGandhawa" target="_blank" rel="noopener" class="project-card" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;min-height:200px;">
+      <div style="font-size:2rem;margin-bottom:0.75rem;">→</div>
+      <div class="project-name" style="justify-content:center;">15 repositories</div>
+      <p class="project-desc">More experiments, coursework, and open-source contributions on GitHub.</p>
+    </a>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-label reveal" style="display:inline-block;margin-bottom:1rem;">Let's connect</div>
+  <h2 class="contact-heading reveal">
+    Got something<br /><span class="accent">worth building?</span>
+  </h2>
+  <p class="contact-sub reveal">
+    I'm open to collaborations, internships, and interesting problems. Drop me a message.
+  </p>
+  <div class="contact-links reveal">
+    <a href="mailto:akash@example.com" class="btn btn-primary">Send an email</a>
+    <a href="https://www.linkedin.com/in/akash-gandhawa/" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn ↗</a>
+    <a href="https://github.com/AkashGandhawa" target="_blank" rel="noopener" class="btn btn-ghost">GitHub ↗</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Akash Gandhawa</span>
+  <span>Built with intention.</span>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
