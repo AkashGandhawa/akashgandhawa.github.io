@@ -9,12 +9,35 @@
 </head>
 <body>
 
+  <!-- BACK TO TOP -->
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview">
+    <button class="lightbox__close" id="lightbox-close" aria-label="Close">✕</button>
+    <img class="lightbox__img" id="lightbox-img" src="" alt="" />
+  </div>
+
+  <!-- BLOG MODAL -->
+  <div class="blog-modal" id="blog-modal" role="dialog" aria-modal="true">
+    <div class="blog-modal__inner">
+      <button class="blog-modal__close" id="blog-modal-close" aria-label="Close">✕</button>
+      <div class="blog-modal__kicker" id="bm-category"></div>
+      <div class="blog-modal__title"  id="bm-title"></div>
+      <div class="blog-modal__meta"   id="bm-meta"></div>
+      <div class="blog-modal__body"   id="bm-body"></div>
+    </div>
+  </div>
+
   <!-- NAV -->
   <nav class="nav">
-    <div class="nav__logo">~/akash-gandhawa</div>
+    <div class="nav__logo">~/akash</div>
     <ul class="nav__links">
       <li><a href="#about">About</a></li>
       <li><a href="#projects">Projects</a></li>
+      <li><a href="#blog">Notes</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><a href="https://github.com/AkashGandhawa" target="_blank" rel="noopener">GitHub ↗</a></li>
     </ul>
@@ -22,8 +45,6 @@
 
   <!-- HERO -->
   <section class="hero" id="home">
-
-    <!-- LEFT: terminal -->
     <div class="hero__terminal-panel">
       <div class="terminal">
         <div class="terminal__bar">
@@ -32,28 +53,25 @@
           <div class="terminal__dot terminal__dot--green"></div>
           <span class="terminal__title">akash@portfolio ~ </span>
         </div>
-        <div class="terminal__body" id="terminal-body">
-          <!-- lines injected by JS -->
-          <span class="cursor" id="cursor"></span>
+        <div class="terminal__body" id="terminal-body"></div>
+        <div class="terminal__input-row">
+          <span class="terminal__prompt">❯</span>
+          <input class="terminal__input" id="terminal-input" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="type a command…" aria-label="Terminal input" />
         </div>
       </div>
+      <div class="terminal__hint">Try: <code>help</code> · <code>projects</code> · <code>contact</code> · <code>skills</code></div>
     </div>
-
-    <!-- RIGHT: editorial -->
     <div class="hero__editorial">
       <p class="hero__kicker">Undergraduate · AI Engineer · Sri Lanka</p>
-      <h1 class="hero__name">
-        Akash<br /><mark>Gandhawa</mark>
-      </h1>
+      <h1 class="hero__name">Akash<br /><mark>Gandhawa</mark></h1>
       <p class="hero__tagline">
         I build systems that sit at the intersection of software, hardware, and real-world impact — from autonomous robots to full-stack web platforms.
       </p>
       <div class="hero__cta">
-        <a href="#projects" class="btn btn--amber">See my work</a>
+        <a href="#projects" class="btn btn--teal">See my work</a>
         <a href="#contact" class="btn btn--outline">Get in touch</a>
       </div>
     </div>
-
   </section>
 
   <!-- MARQUEE -->
@@ -69,7 +87,6 @@
       <span class="marquee-item"><span>✦</span> Data Structures</span>
       <span class="marquee-item"><span>✦</span> Algorithms</span>
       <span class="marquee-item"><span>✦</span> Embedded Systems</span>
-      <!-- duplicate for seamless loop -->
       <span class="marquee-item"><span>✦</span> C / C++</span>
       <span class="marquee-item"><span>✦</span> TypeScript</span>
       <span class="marquee-item"><span>✦</span> Next.js</span>
@@ -88,8 +105,8 @@
     <aside class="about__sidebar">
       <div class="reveal">
         <div class="about__sidebar-label">Repositories</div>
-        <div class="about__stat-val">15+</div>
-        <div class="about__stat-desc">projects on GitHub</div>
+        <div class="about__stat-val" id="gh-repos">—</div>
+        <div class="about__stat-desc">public on GitHub</div>
       </div>
       <div class="reveal reveal-delay-1">
         <div class="about__sidebar-label">Focus</div>
@@ -101,36 +118,49 @@
         <div class="about__stat-val">LK</div>
         <div class="about__stat-desc">Sri Lanka 🇱🇰</div>
       </div>
+      <div class="reveal reveal-delay-3">
+        <div class="about__sidebar-label">Last active</div>
+        <div class="about__stat-val" id="gh-updated" style="font-size:1.1rem">—</div>
+        <div class="about__stat-desc" id="gh-updated-repo">on GitHub</div>
+      </div>
     </aside>
-
     <div class="about__content">
       <div class="reveal">
         <div class="section-kicker">About me</div>
-        <h2 class="about__heading">
-          Engineering systems<br />that <em>actually work</em>
-        </h2>
+        <h2 class="about__heading">Engineering systems<br />that <em>actually work</em></h2>
       </div>
       <div class="about__body reveal reveal-delay-1">
-        <p>
-          I'm W. A. G. Rodrigo — Akash — an undergraduate in Artificial Intelligence from Sri Lanka. I'm drawn to problems that require both algorithmic rigour and hands-on engineering.
-        </p>
-        <p>
-          From stair-climbing robots to ERP platforms and full-stack web systems, I enjoy building things that bridge the gap between an idea and something you can actually use.
-        </p>
+        <p>I'm Akash, an undergraduate in Artificial Intelligence from Sri Lanka. I'm drawn to problems that require both algorithmic rigour and hands-on engineering.</p>
+        <p>From stair-climbing robots to ERP platforms and full-stack web systems, I enjoy building things that bridge the gap between an idea and something you can actually use.</p>
       </div>
       <div class="skills reveal reveal-delay-2">
-        <span class="skill">C</span>
-        <span class="skill">C++</span>
-        <span class="skill">TypeScript</span>
-        <span class="skill">Node.js</span>
-        <span class="skill">Next.js</span>
-        <span class="skill">Prisma ORM</span>
-        <span class="skill">HTML/CSS</span>
-        <span class="skill">Git</span>
-        <span class="skill">Algorithms</span>
-        <span class="skill">Data Structures</span>
-        <span class="skill">Robotics</span>
-        <span class="skill">AI / ML</span>
+        <span class="skill">C</span><span class="skill">C++</span><span class="skill">TypeScript</span>
+        <span class="skill">Node.js</span><span class="skill">Next.js</span><span class="skill">Prisma ORM</span>
+        <span class="skill">HTML/CSS</span><span class="skill">Git</span><span class="skill">Algorithms</span>
+        <span class="skill">Data Structures</span><span class="skill">Robotics</span><span class="skill">AI / ML</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- GITHUB STATS -->
+  <section class="gh-stats reveal" id="gh-stats-section">
+    <div class="gh-stats__header">
+      <svg class="gh-stats__gh-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2Z"/></svg>
+      <span class="gh-stats__title">github.com/AkashGandhawa</span>
+      <span class="gh-stats__live-dot" title="Live data"></span>
+    </div>
+    <div class="gh-stats__grid">
+      <div class="gh-stats__card"><div class="gh-stats__card-label">Public repos</div><div class="gh-stats__card-val" id="gs-repos">…</div></div>
+      <div class="gh-stats__card"><div class="gh-stats__card-label">Followers</div><div class="gh-stats__card-val" id="gs-followers">…</div></div>
+      <div class="gh-stats__card"><div class="gh-stats__card-label">Top language</div><div class="gh-stats__card-val" id="gs-lang">…</div></div>
+      <div class="gh-stats__card"><div class="gh-stats__card-label">Member since</div><div class="gh-stats__card-val" id="gs-since">…</div></div>
+    </div>
+    <div class="gh-stats__recent">
+      <div class="gh-stats__recent-label">Recent repositories</div>
+      <div class="gh-stats__recent-list" id="gs-recent-repos">
+        <div class="gh-stats__skeleton"></div>
+        <div class="gh-stats__skeleton"></div>
+        <div class="gh-stats__skeleton"></div>
       </div>
     </div>
   </section>
@@ -148,74 +178,63 @@
     <div class="projects-grid reveal">
 
       <!-- StairDoc -->
-      <a href="https://github.com/AkashGandhawa" target="_blank" rel="noopener" class="project-card">
-        <div class="project-card__visual">
+      <div class="project-card">
+        <div class="project-card__visual" data-lightbox-type="svg">
           <svg viewBox="0 0 400 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- grid -->
             <line x1="0" y1="220" x2="400" y2="220" stroke="#1A3535" stroke-width="1"/>
             <line x1="0" y1="180" x2="400" y2="180" stroke="#1A3535" stroke-width="0.5" stroke-dasharray="4 4"/>
             <line x1="0" y1="140" x2="400" y2="140" stroke="#1A3535" stroke-width="0.5" stroke-dasharray="4 4"/>
             <line x1="0" y1="100" x2="400" y2="100" stroke="#1A3535" stroke-width="0.5" stroke-dasharray="4 4"/>
-            <!-- staircase -->
             <rect x="40" y="190" width="60" height="30" fill="#0D2020" stroke="#0D9488" stroke-width="1.5"/>
             <rect x="100" y="160" width="60" height="60" fill="#0D2020" stroke="#0D9488" stroke-width="1.5"/>
             <rect x="160" y="130" width="60" height="90" fill="#0D2020" stroke="#0D9488" stroke-width="1.5"/>
             <rect x="220" y="100" width="60" height="120" fill="#0D2020" stroke="#0D9488" stroke-width="1.5"/>
-            <!-- robot body -->
             <rect x="215" y="68" width="36" height="28" rx="4" fill="#122828" stroke="#0D9488" stroke-width="1.5"/>
             <rect x="221" y="74" width="8" height="6" rx="1" fill="#0D9488" opacity="0.8"/>
             <rect x="233" y="74" width="8" height="6" rx="1" fill="#0D9488" opacity="0.8"/>
-            <!-- wheels -->
             <circle cx="223" cy="98" r="5" fill="#0D9488" opacity="0.6"/>
             <circle cx="243" cy="98" r="5" fill="#0D9488" opacity="0.6"/>
-            <!-- motion lines -->
             <line x1="195" y1="80" x2="210" y2="80" stroke="#0D9488" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.5"/>
-            <line x1="190" y1="86" x2="210" y2="86" stroke="#0D9488" stroke-width="1" stroke-dasharray="3 3" opacity="0.3"/>
-            <!-- label -->
-            <text x="320" y="30" font-family="Fira Code, monospace" font-size="10" fill="#0D9488" opacity="0.7">STAIRDOC</text>
-            <text x="320" y="44" font-family="Fira Code, monospace" font-size="8" fill="#9ECECE" opacity="0.5">v1.0 · C++</text>
-            <!-- circuit dots -->
-            <circle cx="340" cy="180" r="2" fill="#0D9488" opacity="0.4"/>
-            <circle cx="360" cy="160" r="2" fill="#0D9488" opacity="0.3"/>
-            <circle cx="350" cy="140" r="1.5" fill="#0D9488" opacity="0.2"/>
+            <text x="300" y="30" font-family="Fira Code, monospace" font-size="10" fill="#0D9488" opacity="0.7">STAIRDOC</text>
+            <text x="300" y="44" font-family="Fira Code, monospace" font-size="8" fill="#9ECECE" opacity="0.5">v1.0 · C++</text>
           </svg>
         </div>
         <div class="project-card__body">
           <div class="project-card__meta">
             <span class="project-card__type">Hardware + SW</span>
-            <span class="project-card__arrow">↗</span>
+            <a href="https://github.com/AkashGandhawa" target="_blank" rel="noopener" class="project-card__arrow">↗</a>
           </div>
           <div class="project-card__name">StairDoc</div>
           <div class="project-card__desc">An autonomous document-delivery robot capable of climbing stairs — embedded systems, motor control, and real-world navigation logic.</div>
+          <div class="project-card__stats">
+            <span class="project-card__stat"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.873 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg>0 stars</span>
+            <span class="project-card__stat"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"/></svg>0 forks</span>
+          </div>
           <div class="project-card__tags">
-            <span class="project-row__tag">C++</span>
+            <span class="lang-tag"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16 3L3 9.6v12.8L16 29l13-6.6V9.6z" fill="#00599C"/><path d="M16 7.5L6.4 12.6v6.8L16 24.5l9.6-5.1v-6.8z" fill="#004482"/><text x="9" y="21" font-size="9" fill="white" font-family="sans-serif" font-weight="bold">C++</text></svg>C++</span>
             <span class="project-row__tag">Robotics</span>
             <span class="project-row__tag">Embedded</span>
+            <span class="tag--group">Group project</span>
           </div>
         </div>
-      </a>
+      </div>
 
       <!-- IT Ticketing -->
-      <a href="https://github.com/AkashGandhawa" target="_blank" rel="noopener" class="project-card">
-        <div class="project-card__visual">
+      <div class="project-card">
+        <div class="project-card__visual" data-lightbox-type="svg">
           <svg viewBox="0 0 400 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- browser chrome -->
             <rect x="30" y="20" width="340" height="190" rx="6" fill="#0D2020" stroke="#1A3535" stroke-width="1.5"/>
             <rect x="30" y="20" width="340" height="32" rx="6" fill="#122828"/>
             <rect x="30" y="38" width="340" height="14" fill="#122828"/>
             <circle cx="50" cy="36" r="5" fill="#FF5F57" opacity="0.7"/>
             <circle cx="66" cy="36" r="5" fill="#FEBC2E" opacity="0.7"/>
             <circle cx="82" cy="36" r="5" fill="#28C840" opacity="0.7"/>
-            <!-- url bar -->
             <rect x="100" y="29" width="200" height="14" rx="3" fill="#071515" stroke="#1A3535" stroke-width="1"/>
             <text x="113" y="40" font-family="Fira Code, monospace" font-size="7" fill="#9ECECE" opacity="0.6">localhost:3000/tickets</text>
-            <!-- sidebar -->
             <rect x="30" y="52" width="70" height="158" fill="#0A1A1A"/>
             <rect x="38" y="66" width="54" height="8" rx="2" fill="#0D9488" opacity="0.8"/>
             <rect x="38" y="82" width="42" height="6" rx="2" fill="#1A3535"/>
             <rect x="38" y="94" width="48" height="6" rx="2" fill="#1A3535"/>
-            <rect x="38" y="106" width="38" height="6" rx="2" fill="#1A3535"/>
-            <!-- ticket rows -->
             <rect x="112" y="62" width="248" height="28" rx="3" fill="#122828" stroke="#1A3535" stroke-width="1"/>
             <rect x="120" y="70" width="6" height="6" rx="1" fill="#0D9488"/>
             <rect x="132" y="70" width="80" height="6" rx="2" fill="#9ECECE" opacity="0.6"/>
@@ -223,11 +242,9 @@
             <rect x="112" y="96" width="248" height="28" rx="3" fill="#122828" stroke="#1A3535" stroke-width="1"/>
             <rect x="120" y="104" width="6" height="6" rx="1" fill="#FEBC2E" opacity="0.7"/>
             <rect x="132" y="104" width="100" height="6" rx="2" fill="#9ECECE" opacity="0.6"/>
-            <rect x="280" y="104" width="50" height="6" rx="3" fill="#FEBC2E" opacity="0.3"/>
             <rect x="112" y="130" width="248" height="28" rx="3" fill="#122828" stroke="#1A3535" stroke-width="1"/>
             <rect x="120" y="138" width="6" height="6" rx="1" fill="#9ECECE" opacity="0.4"/>
             <rect x="132" y="138" width="70" height="6" rx="2" fill="#9ECECE" opacity="0.4"/>
-            <rect x="280" y="138" width="44" height="6" rx="3" fill="#1A3535"/>
             <rect x="112" y="164" width="248" height="28" rx="3" fill="#122828" stroke="#1A3535" stroke-width="1"/>
             <rect x="120" y="172" width="6" height="6" rx="1" fill="#0D9488" opacity="0.5"/>
             <rect x="132" y="172" width="90" height="6" rx="2" fill="#9ECECE" opacity="0.4"/>
@@ -236,30 +253,31 @@
         <div class="project-card__body">
           <div class="project-card__meta">
             <span class="project-card__type">Full-Stack Web</span>
-            <span class="project-card__arrow">↗</span>
+            <a href="https://github.com/AkashGandhawa" target="_blank" rel="noopener" class="project-card__arrow">↗</a>
           </div>
           <div class="project-card__name">University IT Ticketing</div>
           <div class="project-card__desc">Full-stack internal ticketing platform — role-based auth, real-time status tracking, Prisma-backed REST API, and a Next.js frontend.</div>
+          <div class="project-card__stats">
+            <span class="project-card__stat"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.873 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg>0 stars</span>
+            <span class="project-card__stat"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"/></svg>0 forks</span>
+          </div>
           <div class="project-card__tags">
-            <span class="project-row__tag">TypeScript</span>
-            <span class="project-row__tag">Next.js</span>
+            <span class="lang-tag"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="4" fill="#3178C6"/><path d="M18.3 22.1v2.5c.4.2.9.4 1.5.5s1.2.2 1.8.2c.6 0 1.2-.1 1.7-.2.6-.2 1-.4 1.4-.8.4-.3.7-.7.9-1.2.2-.5.3-1 .3-1.6 0-.5-.1-.9-.2-1.3-.1-.4-.4-.7-.6-1-.3-.3-.6-.5-1-.8-.4-.2-.8-.4-1.3-.6-.4-.1-.7-.3-1-.4-.3-.1-.5-.2-.7-.4-.2-.1-.3-.3-.4-.4-.1-.2-.1-.3-.1-.5 0-.2 0-.3.1-.5.1-.1.2-.3.3-.4.2-.1.3-.2.6-.2.2-.1.5-.1.7-.1.2 0 .4 0 .7.1.2 0 .5.1.7.2.2.1.5.2.7.4.2.1.4.3.6.5V16c-.4-.2-.8-.3-1.3-.4-.5-.1-1-.1-1.5-.1-.6 0-1.1.1-1.7.2-.5.2-1 .4-1.4.7-.4.3-.7.7-.9 1.2-.2.5-.3 1-.3 1.6 0 .8.2 1.4.6 2 .4.5 1 1 1.9 1.3.4.1.7.3 1.1.4.3.1.6.3.8.4.2.2.4.3.5.5.1.2.2.4.2.6 0 .2 0 .4-.1.5-.1.2-.2.3-.4.4-.2.1-.4.2-.6.2-.3.1-.5.1-.8.1-.6 0-1.1-.1-1.7-.4-.4-.2-.9-.5-1.3-.9zm-4.1-7.6H17V12h-9v2.5h2.8V25h2.4V14.5z" fill="white"/></svg>TypeScript</span>
+            <span class="lang-tag"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="4" fill="#000"/><path d="M17.2 22.9c0 1.7-1 2.5-2.5 2.5-1.3 0-2.1-.7-2.5-1.5l-2.1 1.3c.7 1.4 2.1 2.5 4.6 2.5 2.8 0 4.7-1.5 4.7-4.4v-9.5h-2.2v9.1zm5.7-2.3c0 2 1.6 3.1 3.4 3.1 1.5 0 2.4-.7 2.9-1.5l-.1 1.3H31V13h-2.2v5.9c0 1.2-.7 2-1.9 2-1.1 0-1.8-.8-1.8-2V13h-2.2v7.6z" fill="white"/></svg>Next.js</span>
             <span class="project-row__tag">Prisma</span>
+            <span class="tag--solo">Solo project</span>
           </div>
         </div>
-      </a>
+      </div>
 
       <!-- TextileERP -->
-      <a href="https://github.com/AkashGandhawa/TextileERP" target="_blank" rel="noopener" class="project-card">
-        <div class="project-card__visual">
+      <div class="project-card">
+        <div class="project-card__visual" data-lightbox-type="svg">
           <svg viewBox="0 0 400 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- bg grid -->
-            <line x1="0" y1="0" x2="0" y2="220" stroke="#1A3535" stroke-width="0.5"/>
             <line x1="80" y1="0" x2="80" y2="220" stroke="#1A3535" stroke-width="0.5"/>
             <line x1="160" y1="0" x2="160" y2="220" stroke="#1A3535" stroke-width="0.5"/>
             <line x1="240" y1="0" x2="240" y2="220" stroke="#1A3535" stroke-width="0.5"/>
             <line x1="320" y1="0" x2="320" y2="220" stroke="#1A3535" stroke-width="0.5"/>
-            <line x1="400" y1="0" x2="400" y2="220" stroke="#1A3535" stroke-width="0.5"/>
-            <!-- bar chart -->
             <rect x="20" y="120" width="40" height="80" fill="#0D9488" opacity="0.3"/>
             <rect x="20" y="80" width="40" height="40" fill="#0D9488" opacity="0.7"/>
             <rect x="100" y="90" width="40" height="110" fill="#0D9488" opacity="0.3"/>
@@ -270,79 +288,80 @@
             <rect x="260" y="70" width="40" height="40" fill="#0D9488" opacity="0.7"/>
             <rect x="340" y="85" width="40" height="115" fill="#0D9488" opacity="0.3"/>
             <rect x="340" y="40" width="40" height="45" fill="#0D9488" opacity="0.9"/>
-            <!-- baseline -->
             <line x1="10" y1="200" x2="390" y2="200" stroke="#1A3535" stroke-width="1.5"/>
-            <!-- labels -->
             <text x="14" y="215" font-family="Fira Code, monospace" font-size="8" fill="#9ECECE" opacity="0.5">INV</text>
             <text x="94" y="215" font-family="Fira Code, monospace" font-size="8" fill="#9ECECE" opacity="0.5">ORD</text>
             <text x="174" y="215" font-family="Fira Code, monospace" font-size="8" fill="#9ECECE" opacity="0.5">MFG</text>
             <text x="254" y="215" font-family="Fira Code, monospace" font-size="8" fill="#9ECECE" opacity="0.5">SHP</text>
             <text x="334" y="215" font-family="Fira Code, monospace" font-size="8" fill="#9ECECE" opacity="0.5">FIN</text>
-            <text x="290" y="20" font-family="Fira Code, monospace" font-size="9" fill="#0D9488" opacity="0.7">TextileERP · C</text>
-            <text x="290" y="34" font-family="Fira Code, monospace" font-size="8" fill="#9ECECE" opacity="0.4">3 forks</text>
+            <text x="270" y="20" font-family="Fira Code, monospace" font-size="9" fill="#0D9488" opacity="0.7">TextileERP · C</text>
           </svg>
         </div>
         <div class="project-card__body">
           <div class="project-card__meta">
             <span class="project-card__type">Systems / DSA</span>
-            <span class="project-card__arrow">↗</span>
+            <a href="https://github.com/AkashGandhawa/TextileERP" target="_blank" rel="noopener" class="project-card__arrow">↗</a>
           </div>
           <div class="project-card__name">TextileERP</div>
-          <div class="project-card__desc">A manufacturing ERP system modelling inventory, orders, and production pipelines — built to explore practical DSA applications. 3 forks.</div>
+          <div class="project-card__desc">A manufacturing ERP system modelling inventory, orders, and production pipelines — built to explore practical DSA applications.</div>
+          <div class="project-card__stats">
+            <span class="project-card__stat"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.873 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg>0 stars</span>
+            <span class="project-card__stat"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"/></svg>3 forks</span>
+          </div>
           <div class="project-card__tags">
-            <span class="project-row__tag">C</span>
+            <span class="lang-tag"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16 3L3 9.6v12.8L16 29l13-6.6V9.6z" fill="#555"/><path d="M16 7.5L6.4 12.6v6.8L16 24.5l9.6-5.1v-6.8z" fill="#333"/><text x="11" y="21" font-size="10" fill="white" font-family="sans-serif" font-weight="bold">C</text></svg>C</span>
             <span class="project-row__tag">DSA</span>
             <span class="project-row__tag">Algorithms</span>
+            <span class="tag--solo">Solo project</span>
           </div>
         </div>
-      </a>
+      </div>
 
-      <!-- Thorana -->
-      <a href="https://github.com/AkashGandhawa/thorana" target="_blank" rel="noopener" class="project-card">
-        <div class="project-card__visual">
-          <svg viewBox="0 0 400 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- night sky -->
-            <rect width="400" height="220" fill="#071515"/>
-            <circle cx="60" cy="30" r="1.5" fill="white" opacity="0.5"/>
-            <circle cx="140" cy="15" r="1" fill="white" opacity="0.4"/>
-            <circle cx="240" cy="25" r="1.5" fill="white" opacity="0.6"/>
-            <circle cx="330" cy="10" r="1" fill="white" opacity="0.3"/>
-            <circle cx="380" cy="35" r="1.5" fill="white" opacity="0.5"/>
-            <circle cx="20" cy="50" r="1" fill="white" opacity="0.3"/>
-            <circle cx="190" cy="8" r="1" fill="white" opacity="0.4"/>
-            <!-- pandal arch -->
-            <path d="M100 200 L100 80 Q200 20 300 80 L300 200" stroke="#0D9488" stroke-width="2" fill="none"/>
-            <path d="M120 200 L120 95 Q200 45 280 95 L280 200" stroke="#0D9488" stroke-width="1" fill="none" opacity="0.4"/>
-            <!-- lanterns -->
-            <ellipse cx="160" cy="110" rx="8" ry="12" fill="#FEBC2E" opacity="0.7"/>
-            <line x1="160" y1="98" x2="160" y2="90" stroke="#9ECECE" stroke-width="1" opacity="0.5"/>
-            <ellipse cx="200" cy="90" rx="8" ry="12" fill="#FEBC2E" opacity="0.9"/>
-            <line x1="200" y1="78" x2="200" y2="70" stroke="#9ECECE" stroke-width="1" opacity="0.5"/>
-            <ellipse cx="240" cy="110" rx="8" ry="12" fill="#FEBC2E" opacity="0.7"/>
-            <line x1="240" y1="98" x2="240" y2="90" stroke="#9ECECE" stroke-width="1" opacity="0.5"/>
-            <!-- glow under lanterns -->
-            <ellipse cx="200" cy="105" rx="40" ry="10" fill="#FEBC2E" opacity="0.06"/>
-            <!-- base platform -->
-            <rect x="80" y="198" width="240" height="8" rx="2" fill="#0D9488" opacity="0.5"/>
-            <!-- label -->
-            <text x="148" y="170" font-family="Plus Jakarta Sans, sans-serif" font-size="11" fill="#9ECECE" opacity="0.6" text-anchor="middle">Thorana</text>
-            <text x="148" y="184" font-family="Fira Code, monospace" font-size="8" fill="#0D9488" opacity="0.5" text-anchor="middle">Vesak 2024</text>
-          </svg>
+      <!-- Seasonal card slot -->
+      <div id="seasonal-card"></div>
+
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <section class="blog" id="blog">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-kicker">Writing</div>
+        <h2 class="section-heading">Notes & reflections</h2>
+      </div>
+    </div>
+    <div class="blog__grid reveal">
+
+      <div class="blog-card" onclick="openBlogModal('how-stairdoc-works')">
+        <div class="blog-card__kicker">Robotics</div>
+        <div class="blog-card__title">How StairDoc Climbs Stairs</div>
+        <div class="blog-card__excerpt">The mechanical and software challenges behind building a robot that navigates staircases autonomously.</div>
+        <div class="blog-card__footer">
+          <span class="blog-card__date">June 2026</span>
+          <span class="blog-card__read">5 min read →</span>
         </div>
-        <div class="project-card__body">
-          <div class="project-card__meta">
-            <span class="project-card__type">Creative Web</span>
-            <span class="project-card__arrow">↗</span>
-          </div>
-          <div class="project-card__name">Thorana</div>
-          <div class="project-card__desc">A digital Pandal celebrating the Vesak Festival — a creative front-end piece merging cultural heritage with modern web design. ⭐ 1 star.</div>
-          <div class="project-card__tags">
-            <span class="project-row__tag">HTML</span>
-            <span class="project-row__tag">CSS</span>
-            <span class="project-row__tag">Creative</span>
-          </div>
+      </div>
+
+      <div class="blog-card" onclick="openBlogModal('dsa-in-the-real-world')">
+        <div class="blog-card__kicker">Engineering</div>
+        <div class="blog-card__title">DSA in the Real World: Lessons from TextileERP</div>
+        <div class="blog-card__excerpt">What building a manufacturing ERP in C taught me about data structures beyond the classroom.</div>
+        <div class="blog-card__footer">
+          <span class="blog-card__date">May 2026</span>
+          <span class="blog-card__read">4 min read →</span>
         </div>
-      </a>
+      </div>
+
+      <div class="blog-card" onclick="openBlogModal('building-with-nextjs-prisma')">
+        <div class="blog-card__kicker">Web Dev</div>
+        <div class="blog-card__title">What I Learned Building a Full-Stack App Solo</div>
+        <div class="blog-card__excerpt">Reflections on shipping the university IT ticketing system — from schema design to deployment.</div>
+        <div class="blog-card__footer">
+          <span class="blog-card__date">April 2026</span>
+          <span class="blog-card__read">6 min read →</span>
+        </div>
+      </div>
 
     </div>
   </section>
@@ -351,45 +370,37 @@
   <section class="contact" id="contact">
     <div class="contact__left">
       <div class="section-kicker reveal">Let's connect</div>
-      <h2 class="contact__heading reveal">
-        Got something<br /><mark>worth</mark><br />building?
-      </h2>
-      <p class="contact__sub reveal">
-        I'm open to collaborations, internships, and interesting problems. Reach out through any of these.
-      </p>
+      <h2 class="contact__heading reveal">Got something<br /><mark>worth</mark><br />building?</h2>
+      <p class="contact__sub reveal">I'm open to collaborations, internships, and interesting problems. Reach out through any of these.</p>
       <div class="contact__links reveal">
-        <a href="mailto:akash@example.com" class="contact__link">
-          <span class="contact__link-label">akash@example.com</span>
+        <a href="mailto:wagandhawarodrigo@gmail.com" class="contact__link">
+          <span class="contact__link-left">
+            <svg class="contact__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            <span class="contact__link-label">wagandhawarodrigo@gmail.com</span>
+          </span>
           <span class="contact__link-arrow">→</span>
         </a>
         <a href="https://github.com/AkashGandhawa" target="_blank" rel="noopener" class="contact__link">
-          <span class="contact__link-label">github.com/AkashGandhawa</span>
+          <span class="contact__link-left">
+            <svg class="contact__link-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2Z"/></svg>
+            <span class="contact__link-label">github.com/AkashGandhawa</span>
+          </span>
           <span class="contact__link-arrow">→</span>
         </a>
         <a href="https://www.linkedin.com/in/akash-gandhawa/" target="_blank" rel="noopener" class="contact__link">
-          <span class="contact__link-label">LinkedIn</span>
+          <span class="contact__link-left">
+            <svg class="contact__link-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            <span class="contact__link-label">LinkedIn</span>
+          </span>
           <span class="contact__link-arrow">→</span>
         </a>
       </div>
     </div>
-
     <div class="contact__right reveal">
-      <div class="contact__meta-item">
-        <div class="contact__meta-label">Status</div>
-        <div class="contact__meta-value">Open to opportunities</div>
-      </div>
-      <div class="contact__meta-item">
-        <div class="contact__meta-label">Location</div>
-        <div class="contact__meta-value">Sri Lanka 🇱🇰</div>
-      </div>
-      <div class="contact__meta-item">
-        <div class="contact__meta-label">Degree</div>
-        <div class="contact__meta-value">BSc Artificial Intelligence</div>
-      </div>
-      <div class="contact__meta-item">
-        <div class="contact__meta-label">Interests</div>
-        <div class="contact__meta-value">Robotics · Web · AI Systems</div>
-      </div>
+      <div class="contact__meta-item"><div class="contact__meta-label">Status</div><div class="contact__meta-value">Open to opportunities</div></div>
+      <div class="contact__meta-item"><div class="contact__meta-label">Location</div><div class="contact__meta-value">Sri Lanka 🇱🇰</div></div>
+      <div class="contact__meta-item"><div class="contact__meta-label">Degree</div><div class="contact__meta-value">BSc (Hons) Artificial Intelligence (Undergraduate)</div></div>
+      <div class="contact__meta-item"><div class="contact__meta-label">Interests</div><div class="contact__meta-value">Robotics · Web · AI Systems</div></div>
     </div>
   </section>
 
@@ -399,52 +410,6 @@
     <span>Built with intention &amp; <a href="https://github.com/AkashGandhawa" target="_blank" rel="noopener">open source ↗</a></span>
   </footer>
 
-  <script>
-    // ── TERMINAL TYPEWRITER ──
-    const lines = [
-      { type: 'cmd',    text: 'whoami' },
-      { type: 'output', text: '<span class="hi">Akash Gandhawa</span> — AI undergraduate, builder' },
-      { type: 'cmd',    text: 'cat interests.txt' },
-      { type: 'output', text: '<span class="tag">→</span> Robotics, Full-Stack Web, Systems Programming' },
-      { type: 'cmd',    text: 'ls projects/' },
-      { type: 'output', text: 'StairDoc&nbsp;&nbsp; TextileERP&nbsp;&nbsp; IT-Ticketing&nbsp;&nbsp; Thorana' },
-      { type: 'cmd',    text: 'echo $STATUS' },
-      { type: 'output', text: '<span class="tag">Open to opportunities</span> 🟢' },
-    ];
-
-    const body   = document.getElementById('terminal-body');
-    const cursor = document.getElementById('cursor');
-    let i = 0;
-
-    function addLine(line) {
-      const el = document.createElement('div');
-      el.classList.add('terminal__line', 'visible');
-      if (line.type === 'cmd') {
-        el.innerHTML = `<span class="terminal__prompt">❯</span><span class="terminal__cmd">&nbsp;${line.text}</span>`;
-      } else {
-        el.innerHTML = `<span class="terminal__output">${line.text}</span>`;
-      }
-      body.insertBefore(el, cursor);
-    }
-
-    function tick() {
-      if (i < lines.length) {
-        addLine(lines[i]);
-        i++;
-        setTimeout(tick, i % 2 === 0 ? 320 : 700);
-      }
-    }
-    setTimeout(tick, 800);
-
-    // ── SCROLL REVEAL ──
-    const reveals = document.querySelectorAll('.reveal');
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
-      });
-    }, { threshold: 0.1 });
-    reveals.forEach(el => obs.observe(el));
-  </script>
-
+  <script src="main.js"></script>
 </body>
 </html>
