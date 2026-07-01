@@ -24,7 +24,7 @@
     ],
     whoami: () => [
       { t:'output', c:'<span class="hi">Akash Gandhawa</span> (W. A. G. Rodrigo)' },
-      { t:'output', c:'BSc (Hons) Artificial Intelligence — Undergraduate' },
+      { t:'output', c:'BSc (Hons) Artificial Intelligence — University of Moratuwa, Sri Lanka' },
       { t:'output', c:'Based in Sri Lanka 🇱🇰 · Builder of useful things' },
     ],
     skills: () => [
@@ -38,7 +38,7 @@
       { t:'output', c:'<span class="tag">IT Ticketing</span>     — university help-desk platform [TS]' },
       { t:'output', c:'<span class="tag">TextileERP</span>       — manufacturing ERP system [C]' },
       { t:'output', c:'<span class="tag">Thorana</span>          — digital Vesak pandal [HTML/CSS]' },
-      { t:'output', c:'→ scroll down to see cards with previews' },
+      { t:'output', c:'→ <a href="#projects" style="color:var(--teal-text);text-decoration:underline;text-underline-offset:3px;">scroll down to see cards with previews</a>' },
     ],
     contact: () => [
       { t:'output', c:'<span class="tag">Email:</span>    wagandhawarodrigo@gmail.com' },
@@ -181,87 +181,84 @@
   const month = new Date().getMonth(); // 0=Jan…11=Dec
   const isVesakSeason = month >= 3 && month <= 5;
 
+  // Seasonal nav link
+  const navSlot = document.getElementById('nav-vesak-slot');
+  if (navSlot && isVesakSeason) {
+    navSlot.innerHTML = '<a href="https://akashgandhawa.github.io/thorana" target="_blank" rel="noopener" class="nav__link--seasonal">🪷 Vesak Thorana</a>';
+  }
+
   const thoranaStatsRow = `
     <div class="project-card__stats">
       <span class="project-card__stat">
         <svg viewBox="0 0 16 16" fill="currentColor" style="width:13px;height:13px"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.873 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg>
-        1 star
+        <span class="js-star-count">1</span> star
       </span>
       <span class="project-card__stat">
-        <svg viewBox="0 0 16 16" fill="currentColor" style="width:13px;height:13px"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Z"/></svg>
-        HTML/CSS
+        <svg viewBox="0 0 16 16" fill="currentColor" style="width:13px;height:13px"><path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"/></svg>
+        <span class="js-fork-count">0</span> forks
       </span>
     </div>`;
 
   const thoranaCard = `
-    <div class="project-card">
+    <div class="project-card" data-repo="thorana">
       <div class="project-card__visual" data-lightbox-src="assets/vesak-thorana-screenshot.jpeg" data-lightbox-type="img">
         <img src="assets/vesak-thorana-screenshot.jpeg" alt="Thorana — Digital Vesak Pandal" style="width:100%;height:140px;object-fit:cover;display:block;" />
       </div>
       <div class="project-card__body">
         <div class="project-card__meta">
-          <span class="project-card__type">Creative Web</span>
+          <span class="project-card__meta-left">
+            <span class="project-card__type">Creative Web</span>
+            <span class="status-badge status-badge--released">Released</span>
+          </span>
           <a href="https://github.com/AkashGandhawa/thorana" target="_blank" rel="noopener" class="project-card__arrow">↗</a>
         </div>
         <div class="project-card__name">Thorana</div>
         <div class="project-card__desc">A digital Pandal celebrating the Vesak Festival — a creative front-end piece merging cultural heritage with modern web design.</div>
+        <a href="https://akashgandhawa.github.io/thorana" target="_blank" rel="noopener" class="project-card__live">Live site</a>
         ${thoranaStatsRow}
         <div class="project-card__tags">
-          <span class="lang-tag"><svg viewBox="0 0 32 32" fill="#E34F26"><path d="M5.9 27.2 3 0h26l-2.9 27.2L16 30z"/><path d="M16 27.6V4.7h10.8L24.3 24.8z" fill="#EF652A"/><path d="M9.5 13.4h6.5V10H6.2l.9 9.7H16v-3.3H9.9zm.7 5.4H6.9l.4 4.7 8.7 2.4v-3.4l-4.8-1.3z" fill="#fff"/><path d="M16 13.4v3.3h5.8l-.5 5.5-5.3 1.5v3.4l8.7-2.4 1.1-11.3z" fill="#EBEBEB"/></svg>HTML</span>
-          <span class="lang-tag"><svg viewBox="0 0 32 32" fill="#1572B6"><path d="M5.9 27.2 3 0h26l-2.9 27.2L16 30z"/><path d="M16 27.6V4.7h10.8L24.3 24.8z" fill="#33A9DC"/><path d="M10.5 10H16V6.6H6.6l1 11.1H16v-3.3h-5zm-1.2 8.5H6l.5 5.2L16 26.3v-3.5l-6.3-1.8z" fill="#fff"/><path d="M16 10v3.4h5.4l-.5 6.3-4.9 1.4v3.5l7.2-2 1.3-12.6z" fill="#EBEBEB"/></svg>CSS</span>
+          <span class="lang-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>HTML</span>
+          <span class="lang-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>CSS</span>
           <span class="tag--solo">Solo project</span>
         </div>
       </div>
     </div>`;
 
-  const stairdocV2Card = `
-    <div class="project-card">
-      <div class="project-card__visual" data-lightbox-type="svg">
-        <svg viewBox="0 0 400 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="400" height="140" fill="#0D2020"/>
-          <line x1="0" y1="60" x2="400" y2="60" stroke="#1A3535" stroke-width="0.5" stroke-dasharray="4 4"/>
-          <line x1="0" y1="100" x2="400" y2="100" stroke="#1A3535" stroke-width="0.5" stroke-dasharray="4 4"/>
-          <rect x="30" y="110" width="50" height="30" fill="#0D2020" stroke="#0D9488" stroke-width="1.5"/>
-          <rect x="80" y="85" width="50" height="55" fill="#0D2020" stroke="#0D9488" stroke-width="1.5"/>
-          <rect x="130" y="60" width="50" height="80" fill="#0D2020" stroke="#0D9488" stroke-width="1.5"/>
-          <rect x="180" y="35" width="50" height="105" fill="#0D2020" stroke="#0D9488" stroke-width="1.5"/>
-          <rect x="174" y="14" width="32" height="20" rx="3" fill="#122828" stroke="#0D9488" stroke-width="1.5"/>
-          <rect x="179" y="19" width="7" height="5" rx="1" fill="#0D9488" opacity="0.8"/>
-          <rect x="190" y="19" width="7" height="5" rx="1" fill="#0D9488" opacity="0.8"/>
-          <circle cx="181" cy="36" r="4" fill="#0D9488" opacity="0.6"/>
-          <circle cx="197" cy="36" r="4" fill="#0D9488" opacity="0.6"/>
-          <text x="250" y="30" font-family="Fira Code, monospace" font-size="9" fill="#0D9488" opacity="0.7">STAIRDOC</text>
-          <text x="250" y="44" font-family="Fira Code, monospace" font-size="8" fill="#9ECECE" opacity="0.4">C++ · Robotics</text>
-        </svg>
-      </div>
-      <div class="project-card__body">
-        <div class="project-card__meta">
-          <span class="project-card__type">Hardware + SW</span>
-          <a href="https://github.com/AkashGandhawa" target="_blank" rel="noopener" class="project-card__arrow">↗</a>
-        </div>
-        <div class="project-card__name">StairDoc — Behind the Build</div>
-        <div class="project-card__desc">A deeper look at the engineering behind the stair-climbing robot — motor control logic, chassis design decisions, and lessons learned.</div>
-        <div class="project-card__stats">
-          <span class="project-card__stat">
-            <svg viewBox="0 0 16 16" fill="currentColor" style="width:13px;height:13px"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Z"/></svg>
-            C++
-          </span>
-        </div>
-        <div class="project-card__tags">
-          <span class="lang-tag"><svg viewBox="0 0 32 32" fill="#00599C"><path d="M16 3L3 9.6v12.8L16 29l13-6.6V9.6z"/><path d="M16 7.5L6.4 12.6v6.8L16 24.5l9.6-5.1v-6.8z" fill="#004482"/><text x="10" y="21" font-size="10" fill="white" font-family="sans-serif">C++</text></svg>C++</span>
-          <span class="project-row__tag">Robotics</span>
-          <span class="project-row__tag">Embedded</span>
-          <span class="tag--group">Group project</span>
-        </div>
-      </div>
-    </div>`;
-
+  // Always show Thorana — seasonal card slot is now permanent
   const placeholder = document.getElementById('seasonal-card');
-  if (placeholder) placeholder.outerHTML = isVesakSeason ? thoranaCard : stairdocV2Card;
+  if (placeholder) placeholder.outerHTML = thoranaCard;
 
   // Re-init lightbox for the injected card
   initLightbox();
+
+  // Fetch live stars/forks for any card with a known public repo
+  loadLiveProjectStats();
 })();
+
+
+// ── LIVE PROJECT CARD STATS (stars/forks only) ──
+// If live data can't be fetched, hide the stats row entirely rather than show stale numbers.
+function loadLiveProjectStats() {
+  document.querySelectorAll('.project-card[data-repo]').forEach(async card => {
+    const repo = card.dataset.repo;
+    const statsRow = card.querySelector('.project-card__stats');
+    const starEl   = card.querySelector('.js-star-count');
+    const forkEl   = card.querySelector('.js-fork-count');
+    if (!statsRow) return;
+
+    try {
+      const res = await fetch(`https://api.github.com/repos/AkashGandhawa/${repo}`);
+      if (!res.ok) throw new Error('repo not found or private');
+      const data = await res.json();
+      if (starEl) starEl.textContent = data.stargazers_count;
+      if (forkEl) forkEl.textContent = data.forks_count;
+    } catch (e) {
+      // Hide the stats row rather than show numbers that may be stale or wrong
+      statsRow.style.display = 'none';
+      console.warn(`Live stats unavailable for ${repo} — stats row hidden.`, e);
+    }
+  });
+}
 
 
 // ── LIGHTBOX ──
@@ -302,7 +299,7 @@ function initLightbox() {
     lbImg.src = '';
   }
   lbClose.addEventListener('click', closeLightbox);
-  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+  lightbox.addEventListener('click', e => { if (e.target === lightbox || e.target === lbImg) closeLightbox(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeLightbox(); closeBlogModal(); } });
 }
 initLightbox();
@@ -443,6 +440,28 @@ function closeBlogModal() {
 document.getElementById('blog-modal-close')?.addEventListener('click', closeBlogModal);
 document.getElementById('blog-modal')?.addEventListener('click', e => { if (e.target.id === 'blog-modal') closeBlogModal(); });
 
+
+// ── MOBILE NAV HAMBURGER ──
+(function () {
+  const btn   = document.getElementById('nav-hamburger');
+  const links = document.getElementById('nav-links');
+  if (!btn || !links) return;
+
+  btn.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+
+  // Close on link click
+  links.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      links.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+})();
 
 // ── BACK TO TOP ──
 (function () {
