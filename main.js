@@ -463,6 +463,37 @@ document.getElementById('blog-modal')?.addEventListener('click', e => { if (e.ta
   });
 })();
 
+// ── SCROLLSPY + PROGRESS BAR ──
+(function () {
+  const progressBar = document.getElementById('scroll-progress');
+  const sections    = ['about', 'projects', 'blog', 'contact']
+    .map(id => document.getElementById(id))
+    .filter(Boolean);
+  const navLinks    = document.querySelectorAll('.nav__links a[data-section]');
+
+  function onScroll() {
+    // Progress bar
+    if (progressBar) {
+      const scrolled = window.scrollY;
+      const total    = document.body.scrollHeight - window.innerHeight;
+      progressBar.style.width = total > 0 ? (scrolled / total * 100) + '%' : '0%';
+    }
+
+    // Active section highlight
+    const scrollMid = window.scrollY + window.innerHeight * 0.35;
+    let active = null;
+    sections.forEach(sec => {
+      if (sec.offsetTop <= scrollMid) active = sec.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.dataset.section === active);
+    });
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll(); // run once on load
+})();
+
 // ── BACK TO TOP ──
 (function () {
   const btt = document.getElementById('back-to-top');

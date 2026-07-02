@@ -24,6 +24,9 @@
 </head>
 <body>
 
+  <!-- SCROLL PROGRESS -->
+  <div class="scroll-progress" id="scroll-progress"></div>
+
   <!-- BACK TO TOP -->
   <button class="back-to-top" id="back-to-top" aria-label="Back to top">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
@@ -50,11 +53,11 @@
   <nav class="nav">
     <div class="nav__logo">~/akash</div>
     <ul class="nav__links" id="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#projects">Projects</a></li>
+      <li><a href="#about"    data-section="about">About</a></li>
+      <li><a href="#projects" data-section="projects">Projects</a></li>
       <li id="nav-vesak-slot"></li>
-      <li><a href="#blog">Notes</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#blog"     data-section="blog">Notes</a></li>
+      <li><a href="#contact"  data-section="contact">Contact</a></li>
       <li><a href="https://github.com/AkashGandhawa" target="_blank" rel="noopener">GitHub ↗</a></li>
     </ul>
     <button class="nav__hamburger" id="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">
@@ -151,7 +154,7 @@
       </div>
       <div class="about__content-inner reveal reveal-delay-1">
         <div class="about__photo">
-          <img src="assets/photo.jpg" alt="Akash Gandhawa" class="about__photo-img" onerror="this.parentElement.style.display='none'" />
+          <img src="assets/profile-photo.jpg" alt="Akash Gandhawa" class="about__photo-img" onerror="this.parentElement.style.display='none'" />
         </div>
         <div>
           <div class="about__body">
@@ -239,9 +242,6 @@
           <div class="project-card__tags">
             <span class="lang-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>C++</span>
             <span class="project-row__tag">Robotics</span>
-            <span class="project-row__tag">Embedded</span>
-            <span class="tag--group">Group project</span>
-          </div>
             <span class="project-row__tag">Embedded</span>
             <span class="tag--group">Group project</span>
           </div>
