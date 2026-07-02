@@ -14,46 +14,48 @@
   const COMMANDS = {
     help: () => [
       { t:'output', c:'Available commands:' },
-      { t:'output', c:'  <span class="tag">whoami</span>     — who is Akash?' },
-      { t:'output', c:'  <span class="tag">skills</span>     — languages &amp; tools' },
-      { t:'output', c:'  <span class="tag">projects</span>   — selected work' },
-      { t:'output', c:'  <span class="tag">contact</span>    — get in touch' },
-      { t:'output', c:'  <span class="tag">status</span>     — availability' },
-      { t:'output', c:'  <span class="tag">version</span>    — portfolio version' },
-      { t:'output', c:'  <span class="tag">clear</span>      — clear terminal' },
+      { t:'output', c:'  <span class="tag">whoami</span>    — who is Akash?' },
+      { t:'output', c:'  <span class="tag">skills</span>    — languages &amp; tools' },
+      { t:'output', c:'  <span class="tag">projects</span>  — selected work' },
+      { t:'output', c:'  <span class="tag">contact</span>   — get in touch' },
+      { t:'output', c:'  <span class="tag">status</span>    — availability' },
+      { t:'output', c:'  <span class="tag">version</span>   — portfolio version' },
+      { t:'output', c:'  <span class="tag">clear</span>     — clear terminal' },
     ],
     whoami: () => [
-      { t:'output', c:'<span class="hi">Akash Gandhawa</span> (W. A. G. Rodrigo)' },
-      { t:'output', c:'BSc (Hons) Artificial Intelligence — University of Moratuwa, Sri Lanka' },
-      { t:'output', c:'Based in Sri Lanka 🇱🇰 · Builder of useful things' },
+      { t:'output', c:'<span class="tag">name</span>      <span class="hi">Akash Gandhawa</span> (W. A. G. Rodrigo)' },
+      { t:'output', c:'<span class="tag">degree</span>    BSc (Hons) Artificial Intelligence' },
+      { t:'output', c:'<span class="tag">university</span> University of Moratuwa, Sri Lanka' },
+      { t:'output', c:'<span class="tag">location</span>  Sri Lanka 🇱🇰' },
     ],
     skills: () => [
-      { t:'output', c:'<span class="tag">Languages:</span>  C · C++ · TypeScript · HTML/CSS' },
-      { t:'output', c:'<span class="tag">Frameworks:</span> Next.js · Node.js · Prisma ORM' },
-      { t:'output', c:'<span class="tag">Domains:</span>    AI/ML · Robotics · Embedded Systems' },
-      { t:'output', c:'<span class="tag">Tools:</span>      Git · Data Structures · Algorithms' },
+      { t:'output', c:'<span class="tag">languages</span>  C · C++ · TypeScript · HTML/CSS' },
+      { t:'output', c:'<span class="tag">frameworks</span> Next.js · Node.js · Prisma ORM' },
+      { t:'output', c:'<span class="tag">domains</span>    AI/ML · Robotics · Embedded Systems' },
+      { t:'output', c:'<span class="tag">tools</span>      Git · Data Structures · Algorithms' },
     ],
     projects: () => [
-      { t:'output', c:'<span class="tag">StairDoc</span>         — stair-climbing delivery robot [C++]' },
-      { t:'output', c:'<span class="tag">IT Ticketing</span>     — university help-desk platform [TS]' },
-      { t:'output', c:'<span class="tag">TextileERP</span>       — manufacturing ERP system [C]' },
-      { t:'output', c:'<span class="tag">Thorana</span>          — digital Vesak pandal [HTML/CSS]' },
-      { t:'output', c:'→ <a href="#projects" style="color:var(--teal-text);text-decoration:underline;text-underline-offset:3px;">scroll down to see cards with previews</a>' },
+      { t:'output', c:'<span class="tag">StairDoc</span>      stair-climbing delivery robot [C++]' },
+      { t:'output', c:'<span class="tag">IT Ticketing</span>  university help-desk platform [TS]' },
+      { t:'output', c:'<span class="tag">TextileERP</span>    manufacturing ERP system [C]' },
+      { t:'output', c:'<span class="tag">Thorana</span>       digital Vesak pandal [HTML/CSS]' },
+      { t:'output', c:'→ <a href="#projects">scroll down to see cards with previews</a>' },
     ],
     contact: () => [
-      { t:'output', c:'<span class="tag">Email:</span>    wagandhawarodrigo@gmail.com' },
-      { t:'output', c:'<span class="tag">GitHub:</span>   github.com/AkashGandhawa' },
-      { t:'output', c:'<span class="tag">LinkedIn:</span> linkedin.com/in/akash-gandhawa' },
-      { t:'output', c:'→ <a href="#contact" style="color:var(--teal)">jump to contact section</a>' },
+      { t:'output', c:'<span class="tag">email</span>     <a href="mailto:wagandhawarodrigo@gmail.com">wagandhawarodrigo@gmail.com</a>' },
+      { t:'output', c:'<span class="tag">github</span>    <a href="https://github.com/AkashGandhawa" target="_blank" rel="noopener">github.com/AkashGandhawa</a>' },
+      { t:'output', c:'<span class="tag">linkedin</span>  <a href="https://linkedin.com/in/akash-gandhawa" target="_blank" rel="noopener">linkedin.com/in/akash-gandhawa</a>' },
+      { t:'output', c:'→ <a href="#contact">jump to contact section</a>' },
     ],
     status: () => [
-      { t:'output', c:'<span class="tag">$STATUS</span> = <span class="hi">Open to opportunities</span> 🟢' },
-      { t:'output', c:'Seeking internships, collaborations, interesting problems.' },
+      { t:'output', c:'<span class="tag">status</span>    <span class="hi">Open to opportunities</span> 🟢' },
+      { t:'output', c:'<span class="tag">seeking</span>   internships · collaborations · interesting problems' },
     ],
     version: () => [
-      { t:'output', c:'<span class="tag">portfolio</span> v1.0.0' },
-      { t:'output', c:'First edition · Built with HTML, CSS &amp; vanilla JS' },
-      { t:'output', c:'Hosted on GitHub Pages · © 2026 Akash Gandhawa' },
+      { t:'output', c:'<span class="tag">portfolio</span>  v1.0.0' },
+      { t:'output', c:'<span class="tag">stack</span>      HTML · CSS · vanilla JS' },
+      { t:'output', c:'<span class="tag">host</span>       GitHub Pages' },
+      { t:'output', c:'<span class="tag">author</span>    © 2026 Akash Gandhawa' },
     ],
     clear: () => '__clear__',
   };
@@ -466,32 +468,48 @@ document.getElementById('blog-modal')?.addEventListener('click', e => { if (e.ta
 // ── SCROLLSPY + PROGRESS BAR ──
 (function () {
   const progressBar = document.getElementById('scroll-progress');
-  const sections    = ['about', 'projects', 'blog', 'contact']
-    .map(id => document.getElementById(id))
-    .filter(Boolean);
-  const navLinks    = document.querySelectorAll('.nav__links a[data-section]');
 
-  function onScroll() {
-    // Progress bar
-    if (progressBar) {
-      const scrolled = window.scrollY;
-      const total    = document.body.scrollHeight - window.innerHeight;
-      progressBar.style.width = total > 0 ? (scrolled / total * 100) + '%' : '0%';
-    }
-
-    // Active section highlight
-    const scrollMid = window.scrollY + window.innerHeight * 0.35;
-    let active = null;
-    sections.forEach(sec => {
-      if (sec.offsetTop <= scrollMid) active = sec.id;
-    });
-    navLinks.forEach(a => {
-      a.classList.toggle('active', a.dataset.section === active);
-    });
+  // Progress bar tracks full page
+  function updateProgress() {
+    if (!progressBar) return;
+    const scrolled = window.scrollY;
+    const total    = document.body.scrollHeight - window.innerHeight;
+    progressBar.style.width = total > 0 ? (scrolled / total * 100) + '%' : '0%';
   }
 
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll(); // run once on load
+  // Scrollspy only tracks Notes (blog) section headings
+  const blogSection  = document.getElementById('blog');
+  const blogCards    = blogSection ? Array.from(blogSection.querySelectorAll('.blog-card')) : [];
+  const blogNavLink  = document.querySelector('.nav__links a[data-section="blog"]');
+
+  // Highlight the Notes nav link when inside the blog section
+  const allSections  = ['about', 'projects', 'blog', 'contact']
+    .map(id => document.getElementById(id))
+    .filter(Boolean);
+  const navLinks = document.querySelectorAll('.nav__links a[data-section]');
+
+  function updateSpy() {
+    const scrollMid = window.scrollY + window.innerHeight * 0.35;
+    let active = null;
+    allSections.forEach(sec => {
+      if (sec.offsetTop <= scrollMid) active = sec.id;
+    });
+    navLinks.forEach(a => a.classList.toggle('active', a.dataset.section === active));
+
+    // Within the Notes section, highlight the visible blog card title
+    if (blogSection && active === 'blog') {
+      const sectionTop = blogSection.offsetTop;
+      const sectionBot = sectionTop + blogSection.offsetHeight;
+      const inSection  = window.scrollY + window.innerHeight * 0.5;
+      if (inSection >= sectionTop && inSection <= sectionBot) {
+        // Could drive a sidebar index here in future — for now just the nav highlight is sufficient
+      }
+    }
+  }
+
+  window.addEventListener('scroll', () => { updateProgress(); updateSpy(); }, { passive: true });
+  updateProgress();
+  updateSpy();
 })();
 
 // ── BACK TO TOP ──

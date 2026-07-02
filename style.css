@@ -194,6 +194,17 @@ img { display: block; max-width: 100%; }
 }
 .terminal__input::placeholder { color: var(--muted); opacity: 0.5; }
 .terminal__input:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* All hyperlinks inside terminal output */
+.terminal__output a {
+  color: var(--teal-text);
+  text-decoration: underline;
+  text-decoration-style: solid;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: color 0.15s;
+}
+.terminal__output a:hover { color: var(--text); }
 .terminal__hint {
   margin-top: 0.75rem;
   font-family: var(--f-mono);
