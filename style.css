@@ -94,8 +94,9 @@ img { display: block; max-width: 100%; }
   width: 0%;
   background: linear-gradient(90deg, var(--teal), var(--teal-text));
   z-index: 9999;
-  transition: width 0.1s linear;
+  transition: width 0.1s linear, opacity 0.3s ease;
   pointer-events: none;
+  opacity: 0;
 }
 #nav-vesak-slot:empty { display: none; }
 .nav__link--seasonal {
@@ -195,16 +196,30 @@ img { display: block; max-width: 100%; }
 .terminal__input::placeholder { color: var(--muted); opacity: 0.5; }
 .terminal__input:disabled { opacity: 0.4; cursor: not-allowed; }
 
-/* All hyperlinks inside terminal output */
+.tag--past {
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 2px;
+  border: 1px solid #4A5568;
+  color: #718096;
+  background: rgba(74,85,104,0.12);
+  letter-spacing: 0.03em;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Terminal links — slightly muted so they don't compete with teal UI elements */
 .terminal__output a {
-  color: var(--teal-text);
+  color: #4DB6A8;
   text-decoration: underline;
   text-decoration-style: solid;
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;
   transition: color 0.15s;
 }
-.terminal__output a:hover { color: var(--text); }
+.terminal__output a:hover { color: var(--teal-text); }
 .terminal__hint {
   margin-top: 0.75rem;
   font-family: var(--f-mono);
@@ -627,6 +642,7 @@ img { display: block; max-width: 100%; }
 /* ── UNIFIED TAG BASE ── All tags share identical height/padding/font */
 .tag--solo,
 .tag--group,
+.tag--past,
 .project-row__tag,
 .lang-tag {
   display: inline-flex;
@@ -651,6 +667,11 @@ img { display: block; max-width: 100%; }
   border: 1px solid #A07F30;
   color: #E8C84A;
   background: rgba(232,200,74,0.08);
+}
+.tag--past {
+  border: 1px solid #4A5568;
+  color: #9AABB8;
+  background: rgba(154,171,184,0.07);
 }
 .project-row__tag {
   background: var(--surface2);

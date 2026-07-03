@@ -42,9 +42,9 @@
       { t:'output', c:'→ <a href="#projects">scroll down to see cards with previews</a>' },
     ],
     contact: () => [
-      { t:'output', c:'<span class="tag">email</span>     <a href="mailto:wagandhawarodrigo@gmail.com">wagandhawarodrigo@gmail.com</a>' },
-      { t:'output', c:'<span class="tag">github</span>    <a href="https://github.com/AkashGandhawa" target="_blank" rel="noopener">github.com/AkashGandhawa</a>' },
-      { t:'output', c:'<span class="tag">linkedin</span>  <a href="https://linkedin.com/in/akash-gandhawa" target="_blank" rel="noopener">linkedin.com/in/akash-gandhawa</a>' },
+      { t:'output', c:'<span class="tag">email</span>     wagandhawarodrigo@gmail.com' },
+      { t:'output', c:'<span class="tag">github</span>    github.com/AkashGandhawa' },
+      { t:'output', c:'<span class="tag">linkedin</span>  linkedin.com/in/akash-gandhawa' },
       { t:'output', c:'→ <a href="#contact">jump to contact section</a>' },
     ],
     status: () => [
@@ -465,51 +465,44 @@ document.getElementById('blog-modal')?.addEventListener('click', e => { if (e.ta
   });
 })();
 
-// ── SCROLLSPY + PROGRESS BAR ──
+// ── SCROLLSPY + PROGRESS BAR (Notes section only) ──
 (function () {
   const progressBar = document.getElementById('scroll-progress');
-
-  // Progress bar tracks full page
-  function updateProgress() {
-    if (!progressBar) return;
-    const scrolled = window.scrollY;
-    const total    = document.body.scrollHeight - window.innerHeight;
-    progressBar.style.width = total > 0 ? (scrolled / total * 100) + '%' : '0%';
-  }
-
-  // Scrollspy only tracks Notes (blog) section headings
-  const blogSection  = document.getElementById('blog');
-  const blogCards    = blogSection ? Array.from(blogSection.querySelectorAll('.blog-card')) : [];
-  const blogNavLink  = document.querySelector('.nav__links a[data-section="blog"]');
-
-  // Highlight the Notes nav link when inside the blog section
-  const allSections  = ['about', 'projects', 'blog', 'contact']
+  const blogSection = document.getElementById('blog');
+  const allSections = ['about', 'projects', 'blog', 'contact']
     .map(id => document.getElementById(id))
     .filter(Boolean);
   const navLinks = document.querySelectorAll('.nav__links a[data-section]');
 
-  function updateSpy() {
+  function update() {
     const scrollMid = window.scrollY + window.innerHeight * 0.35;
+
+    // Active nav link
     let active = null;
     allSections.forEach(sec => {
       if (sec.offsetTop <= scrollMid) active = sec.id;
     });
     navLinks.forEach(a => a.classList.toggle('active', a.dataset.section === active));
 
-    // Within the Notes section, highlight the visible blog card title
-    if (blogSection && active === 'blog') {
-      const sectionTop = blogSection.offsetTop;
-      const sectionBot = sectionTop + blogSection.offsetHeight;
-      const inSection  = window.scrollY + window.innerHeight * 0.5;
-      if (inSection >= sectionTop && inSection <= sectionBot) {
-        // Could drive a sidebar index here in future — for now just the nav highlight is sufficient
+    // Progress bar — only visible while inside the Notes section
+    if (progressBar && blogSection) {
+      const top = blogSection.offsetTop;
+      const bot = top + blogSection.offsetHeight;
+      const pos = window.scrollY + window.innerHeight * 0.5;
+
+      if (pos >= top && pos <= bot) {
+        const progress = (pos - top) / (blogSection.offsetHeight) * 100;
+        progressBar.style.width   = Math.min(progress, 100) + '%';
+        progressBar.style.opacity = '1';
+      } else {
+        progressBar.style.width   = '0%';
+        progressBar.style.opacity = '0';
       }
     }
   }
 
-  window.addEventListener('scroll', () => { updateProgress(); updateSpy(); }, { passive: true });
-  updateProgress();
-  updateSpy();
+  window.addEventListener('scroll', update, { passive: true });
+  update();
 })();
 
 // ── BACK TO TOP ──
