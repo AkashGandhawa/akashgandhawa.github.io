@@ -11,54 +11,8 @@
 
   let cmdHistory = [], histIdx = -1;
 
-  const COMMANDS = {
-    help: () => [
-      { t:'output', c:'Available commands:' },
-      { t:'output', c:'  <span class="tag">whoami</span>    — who is Akash?' },
-      { t:'output', c:'  <span class="tag">skills</span>    — languages &amp; tools' },
-      { t:'output', c:'  <span class="tag">projects</span>  — selected work' },
-      { t:'output', c:'  <span class="tag">contact</span>   — get in touch' },
-      { t:'output', c:'  <span class="tag">status</span>    — availability' },
-      { t:'output', c:'  <span class="tag">version</span>   — portfolio version' },
-      { t:'output', c:'  <span class="tag">clear</span>     — clear terminal' },
-    ],
-    whoami: () => [
-      { t:'output', c:'<span class="tag">name</span>       <span class="hi">Akash Gandhawa</span> (W. A. G. Rodrigo)' },
-      { t:'output', c:'<span class="tag">degree</span>     BSc (Hons) Artificial Intelligence (Undergraduate)' },
-      { t:'output', c:'<span class="tag">university</span> University of Moratuwa, Sri Lanka' },
-      { t:'output', c:'<span class="tag">location</span>   Sri Lanka 🇱🇰' },
-    ],
-    skills: () => [
-      { t:'output', c:'<span class="tag">languages</span>  C · C++ · TypeScript · HTML/CSS' },
-      { t:'output', c:'<span class="tag">frameworks</span> Next.js · Node.js · Prisma ORM' },
-      { t:'output', c:'<span class="tag">domains</span>    AI/ML · Robotics · Embedded Systems' },
-      { t:'output', c:'<span class="tag">tools</span>      Git · Data Structures · Algorithms' },
-    ],
-    projects: () => [
-      { t:'output', c:'<span class="tag">StairDoc</span>      stair-climbing delivery robot [C++]' },
-      { t:'output', c:'<span class="tag">IT Ticketing</span>  university help-desk platform [TS]' },
-      { t:'output', c:'<span class="tag">TextileERP</span>    manufacturing ERP system [C]' },
-      { t:'output', c:'<span class="tag">Thorana</span>       digital Vesak pandal [HTML/CSS]' },
-      { t:'output', c:'→ <a href="#projects">scroll down to see cards with previews</a>' },
-    ],
-    contact: () => [
-      { t:'output', c:'<span class="tag">email</span>     wagandhawarodrigo@gmail.com' },
-      { t:'output', c:'<span class="tag">github</span>    github.com/AkashGandhawa' },
-      { t:'output', c:'<span class="tag">linkedin</span>  linkedin.com/in/akash-gandhawa' },
-      { t:'output', c:'→ <a href="#contact">jump to contact section</a>' },
-    ],
-    status: () => [
-      { t:'output', c:'<span class="tag">status</span>    <span class="hi">Open to opportunities</span> 🟢' },
-      { t:'output', c:'<span class="tag">seeking</span>   internships · collaborations · interesting problems' },
-    ],
-    version: () => [
-      { t:'output', c:'<span class="tag">portfolio</span>  v1.0.0' },
-      { t:'output', c:'<span class="tag">stack</span>      HTML · CSS · vanilla JS' },
-      { t:'output', c:'<span class="tag">host</span>       GitHub Pages' },
-      { t:'output', c:'<span class="tag">author</span>    © 2026 Akash Gandhawa' },
-    ],
-    clear: () => '__clear__',
-  };
+  // Commands are defined in terminal-commands.js
+  const COMMANDS = TERMINAL_COMMANDS;
 
   function stripHtml(html) {
     const tmp = document.createElement('div');
