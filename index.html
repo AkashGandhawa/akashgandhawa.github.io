@@ -181,9 +181,7 @@
     </div>
     <div class="gh-stats__grid">
       <div class="gh-stats__card"><div class="gh-stats__card-label">Public repos</div><div class="gh-stats__card-val" id="gs-repos">…</div></div>
-      <div class="gh-stats__card"><div class="gh-stats__card-label">Followers</div><div class="gh-stats__card-val" id="gs-followers">…</div></div>
-      <div class="gh-stats__card"><div class="gh-stats__card-label">Top language</div><div class="gh-stats__card-val" id="gs-lang">…</div></div>
-      <div class="gh-stats__card"><div class="gh-stats__card-label">Member since</div><div class="gh-stats__card-val" id="gs-since">…</div></div>
+      <div class="gh-stats__card"><div class="gh-stats__card-label">Top languages</div><div class="gh-stats__card-val gh-stats__card-val--langs" id="gs-lang">…</div></div>
     </div>
     <div class="gh-stats__recent">
       <div class="gh-stats__recent-label">Recent repositories</div>
@@ -235,7 +233,9 @@
               <span class="project-card__type">Hardware + SW</span>
               <span class="status-badge status-badge--in-progress">In Progress</span>
             </span>
-            <a href="https://github.com/AkashGandhawa/StairDoc" target="_blank" rel="noopener" class="project-card__arrow">↗</a>
+            <a href="https://github.com/AkashGandhawa/stairdoc" target="_blank" rel="noopener" class="project-card__arrow" title="Open repo in new tab">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
           </div>
           <div class="project-card__name">StairDoc</div>
           <div class="project-card__desc">An autonomous document-delivery robot capable of climbing stairs — embedded systems, motor control, and real-world navigation logic.</div>
@@ -285,7 +285,9 @@
               <span class="project-card__type">Full-Stack Web</span>
               <span class="status-badge status-badge--archived">Archived</span>
             </span>
-            <a href="https://github.com/AkashGandhawa/IT-Ticketing" target="_blank" rel="noopener" class="project-card__arrow">↗</a>
+            <a href="https://github.com/AkashGandhawa/ticket-system" target="_blank" rel="noopener" class="project-card__arrow" title="Open repo in new tab">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
           </div>
           <div class="project-card__name">University IT Ticketing</div>
           <div class="project-card__desc">Full-stack internal ticketing platform — role-based auth, real-time status tracking, Prisma-backed REST API, and a Next.js frontend.</div>
@@ -293,7 +295,9 @@
             <span class="lang-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>TypeScript</span>
             <span class="lang-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Next.js</span>
             <span class="project-row__tag">Prisma</span>
+            <span class="tag--group">Group project</span>
             <span class="tag--past">Past project</span>
+            <span class="tag--assignment">Assignment</span>
           </div>
         </div>
       </div>
@@ -331,7 +335,9 @@
               <span class="project-card__type">Systems / DSA</span>
               <span class="status-badge status-badge--released">Released</span>
             </span>
-            <a href="https://github.com/AkashGandhawa/textile-erp" target="_blank" rel="noopener" class="project-card__arrow">↗</a>
+            <a href="https://github.com/AkashGandhawa/textile-erp" target="_blank" rel="noopener" class="project-card__arrow" title="Open repo in new tab">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
           </div>
           <div class="project-card__name">TextileERP</div>
           <div class="project-card__desc">A manufacturing ERP system modelling inventory, orders, and production pipelines — built to explore practical DSA applications.</div>
@@ -345,12 +351,13 @@
             <span class="project-row__tag">Algorithms</span>
             <span class="tag--solo">Solo project</span>
             <span class="tag--past">Past project</span>
+            <span class="tag--assignment">Assignment</span>
           </div>
         </div>
       </div>
 
       <!-- Seasonal card slot -->
-      <div id="seasonal-card"></div>
+      <div id="seasonal-card" style="background:var(--bg)"></div>
 
     </div>
   </section>
@@ -457,6 +464,7 @@
     </div>
   </footer>
 
+  <script src="blog.js"></script>
   <script src="main.js"></script>
 </body>
 </html>
