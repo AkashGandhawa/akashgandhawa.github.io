@@ -61,7 +61,7 @@ const TERMINAL_COMMANDS = {
     { t:'output', c:'<span class="tag">portfolio</span>  v1.0.0' },
     { t:'output', c:'<span class="tag">stack</span>      HTML · CSS · vanilla JS' },
     { t:'output', c:'<span class="tag">host</span>       GitHub Pages' },
-    { t:'output', c:'<span class="tag">author</span>    © 2026 Akash Gandhawa' },
+    { t:'output', c:'<span class="tag">author</span>    © ${new Date().getFullYear()} Akash Gandhawa' },
   ],
 
   clear: () => '__clear__',
