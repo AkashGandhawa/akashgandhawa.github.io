@@ -38,8 +38,8 @@ const TERMINAL_COMMANDS = {
   ],
 
   projects: () => [
+    { t:'output', c:'<span class="tag">Maze-Cypher</span>   autonomous micromouse robot [C/C++]' },
     { t:'output', c:'<span class="tag">StairDoc</span>      stair-climbing delivery robot [C++]' },
-    { t:'output', c:'<span class="tag">IT Ticketing</span>  university help-desk platform [TS]' },
     { t:'output', c:'<span class="tag">TextileERP</span>    manufacturing ERP system [C]' },
     { t:'output', c:'<span class="tag">Thorana</span>       digital Vesak pandal [HTML/CSS]' },
     { t:'output', c:'→ <a href="#projects">scroll down to see cards with previews</a>' },
@@ -61,7 +61,7 @@ const TERMINAL_COMMANDS = {
     { t:'output', c:'<span class="tag">portfolio</span>  v1.0.0' },
     { t:'output', c:'<span class="tag">stack</span>      HTML · CSS · vanilla JS' },
     { t:'output', c:'<span class="tag">host</span>       GitHub Pages' },
-    { t:'output', c:'<span class="tag">author</span>    © ${new Date().getFullYear()} Akash Gandhawa' },
+    { t:'output', c:'<span class="tag">author</span>    © 2026 Akash Gandhawa' },
   ],
 
   clear: () => '__clear__',

@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CV — Akash Gandhawa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23071515'/><text x='4' y='24' font-size='20' font-family='monospace' fill='%230D9488'>A</text></svg>" />
+  <style>
+    :root {
+      --bg:       #0D0D0D;
+      --surface:  #141414;
+      --border:   #222;
+      --teal:     #0D9488;
+      --teal-t:   #5EEAD4;
+      --text:     #E8F5F5;
+      --muted:    #9ECECE;
+      --f-body:   'Plus Jakarta Sans', sans-serif;
+      --f-mono:   'Fira Code', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--f-body);
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+
+    /* ── NAV ── */
+    .cv-nav {
+      position: sticky;
+      top: 0;
+      background: rgba(13,13,13,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 5vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+    }
+    .cv-nav__back {
+      font-family: var(--f-mono);
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.2s;
+    }
+    .cv-nav__back:hover { color: var(--teal-t); }
+    .cv-nav__actions { display: flex; gap: 0.75rem; }
+    .cv-btn {
+      font-family: var(--f-mono);
+      font-size: 0.75rem;
+      padding: 0.45rem 1rem;
+      border-radius: 3px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .cv-btn--teal {
+      background: var(--teal);
+      color: #fff;
+    }
+    .cv-btn--teal:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(13,148,136,0.3);
+    }
+    .cv-btn--outline {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+    .cv-btn--outline:hover { border-color: var(--teal-t); color: var(--teal-t); }
+
+    /* ── LAYOUT ── */
+    .cv-wrap {
+      max-width: 860px;
+      margin: 3rem auto;
+      padding: 0 5vw 6rem;
+    }
+
+    /* ── HEADER ── */
+    .cv-header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2rem;
+      margin-bottom: 2.5rem;
+    }
+    .cv-header__name {
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+    .cv-header__name span { color: var(--teal-t); }
+    .cv-header__role {
+      font-family: var(--f-mono);
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .cv-header__contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.5rem;
+      font-family: var(--f-mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    .cv-header__contact a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .cv-header__contact a:hover { color: var(--teal-t); }
+    .cv-header__contact span {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* ── SECTION ── */
+    .cv-section { margin-bottom: 2.25rem; }
+    .cv-section__label {
+      font-family: var(--f-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal-t);
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── ENTRY ── */
+    .cv-entry { margin-bottom: 1.5rem; }
+    .cv-entry__head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.2rem;
+    }
+    .cv-entry__title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+    .cv-entry__period {
+      font-family: var(--f-mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .cv-entry__sub {
+      font-size: 0.82rem;
+      color: var(--teal-t);
+      margin-bottom: 0.4rem;
+      font-weight: 500;
+    }
+    .cv-entry__body {
+      color: var(--muted);
+      font-size: 0.85rem;
+      line-height: 1.75;
+    }
+    .cv-entry__body ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 0.35rem;
+    }
+    .cv-entry__body ul li {
+      padding-left: 1.25rem;
+      position: relative;
+      margin-bottom: 0.2rem;
+    }
+    .cv-entry__body ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--teal);
+      font-family: var(--f-mono);
+      font-size: 0.75rem;
+    }
+
+    /* ── SKILLS GRID ── */
+    .cv-skills {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 0.5rem;
+    }
+    .cv-skill-group__label {
+      font-family: var(--f-mono);
+      font-size: 0.68rem;
+      color: var(--teal-t);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+    .cv-skill-group__items {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ── PRINT ── */
+    @media print {
+      body { background: #fff; color: #111; font-size: 0.8rem; }
+      .cv-nav { display: none; }
+      .cv-wrap { margin: 0; padding: 1.5cm 2cm; max-width: 100%; }
+      .cv-header__name { color: #111; }
+      .cv-header__name span { color: #0D9488; }
+      .cv-section__label { color: #0D9488; border-color: #ccc; }
+      .cv-entry__title { color: #111; }
+      .cv-entry__sub { color: #0D9488; }
+      .cv-header__contact a,
+      .cv-header__contact,
+      .cv-entry__body,
+      .cv-entry__period,
+      .cv-skill-group__items { color: #444; }
+      .cv-entry__body ul li::before { color: #0D9488; }
+      .cv-skill-group__label { color: #0D9488; }
+      a { text-decoration: none; color: inherit; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="cv-nav">
+    <a href="index.html" class="cv-nav__back">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
+      Back to portfolio
+    </a>
+    <div class="cv-nav__actions">
+      <button class="cv-btn cv-btn--outline" onclick="window.print()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Print / Save PDF
+      </button>
+      <a id="cv-pdf-download" href="assets/cv-akash-gandhawa.pdf" download class="cv-btn cv-btn--teal" style="display:none">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download PDF
+      </a>
+    </div>
+  </nav>
+
+  <div class="cv-wrap">
+
+    <!-- HEADER -->
+    <header class="cv-header">
+      <div class="cv-header__name">W. A. G. <span>Rodrigo</span></div>
+      <div class="cv-header__role">Akash Gandhawa · AI Undergraduate · University of Moratuwa</div>
+      <div class="cv-header__contact">
+        <span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <a href="mailto:wagandhawarodrigo@gmail.com">wagandhawarodrigo@gmail.com</a>
+        </span>
+        <span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2Z"/></svg>
+          <a href="https://github.com/AkashGandhawa" target="_blank" rel="noopener">github.com/AkashGandhawa</a>
+        </span>
+        <span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          <a href="https://www.linkedin.com/in/akash-gandhawa/" target="_blank" rel="noopener">linkedin.com/in/akash-gandhawa</a>
+        </span>
+        <span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          Colombo, Sri Lanka
+        </span>
+        <span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          <a href="https://akashgandhawa.github.io" target="_blank" rel="noopener">akashgandhawa.github.io</a>
+        </span>
+      </div>
+    </header>
+
+    <!-- EDUCATION -->
+    <section class="cv-section">
+      <div class="cv-section__label">Education</div>
+      <div class="cv-entry">
+        <div class="cv-entry__head">
+          <div class="cv-entry__title">University of Moratuwa</div>
+          <div class="cv-entry__period">2023 — Present</div>
+        </div>
+        <div class="cv-entry__sub">BSc (Hons) Artificial Intelligence — Undergraduate</div>
+        <div class="cv-entry__body">
+          One of Asia's leading engineering universities. Coursework covers machine learning, data structures &amp; algorithms, embedded systems, computer vision, and software engineering.
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="cv-section">
+      <div class="cv-section__label">Projects</div>
+
+      <div class="cv-entry">
+        <div class="cv-entry__head">
+          <div class="cv-entry__title">Maze-Cypher — Micromouse Robot</div>
+          <div class="cv-entry__period">2025 — Present</div>
+        </div>
+        <div class="cv-entry__sub">Core Member · Team-EdgeRunners · STM32 Blue Pill · C/C++</div>
+        <div class="cv-entry__body">
+          <ul>
+            <li>Developing an autonomous maze-solving micromouse robot under Team-EdgeRunners organisation</li>
+            <li>Responsible for embedded firmware on STM32 Blue Pill microcontroller</li>
+            <li>Implementing maze-solving algorithms and real-time motor control</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cv-entry">
+        <div class="cv-entry__head">
+          <div class="cv-entry__title">StairDoc — Autonomous Delivery Robot</div>
+          <div class="cv-entry__period">2024 — Present</div>
+        </div>
+        <div class="cv-entry__sub">Group Project · C++ · Embedded Systems · Robotics</div>
+        <div class="cv-entry__body">
+          <ul>
+            <li>Autonomous document-delivery robot capable of climbing stairs between floors</li>
+            <li>Designed rocker-bogie-inspired chassis for continuous ground contact on stair edges</li>
+            <li>Implemented motor control firmware with ultrasonic-sensor-triggered stair detection</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cv-entry">
+        <div class="cv-entry__head">
+          <div class="cv-entry__title">TextileERP — Manufacturing ERP System</div>
+          <div class="cv-entry__period">2024</div>
+        </div>
+        <div class="cv-entry__sub">Solo · C · Data Structures &amp; Algorithms · Assignment</div>
+        <div class="cv-entry__body">
+          <ul>
+            <li>Modelled a full textile manufacturing company — inventory, orders, production, shipping, finance</li>
+            <li>Applied linked lists, hash maps, and priority queues to real business access patterns</li>
+            <li>Forked 3 times on GitHub</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cv-entry">
+        <div class="cv-entry__head">
+          <div class="cv-entry__title">University IT Ticketing System</div>
+          <div class="cv-entry__period">2024</div>
+        </div>
+        <div class="cv-entry__sub">Group Project · TypeScript · Next.js · Prisma ORM · Assignment</div>
+        <div class="cv-entry__body">
+          <ul>
+            <li>Full-stack help-desk platform for university IT support with role-based access control</li>
+            <li>Built REST API with Prisma ORM and PostgreSQL; Next.js App Router frontend</li>
+            <li>Implemented real-time ticket status tracking and department-based routing</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cv-entry">
+        <div class="cv-entry__head">
+          <div class="cv-entry__title">Thorana — Digital Vesak Pandal</div>
+          <div class="cv-entry__period">2024</div>
+        </div>
+        <div class="cv-entry__sub">Solo · HTML · CSS · Creative Web</div>
+        <div class="cv-entry__body">
+          <ul>
+            <li>Interactive digital pandal celebrating the Vesak Festival, deployed on GitHub Pages</li>
+            <li>Live at <a href="https://akashgandhawa.github.io/thorana" target="_blank" rel="noopener">akashgandhawa.github.io/thorana</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="cv-section">
+      <div class="cv-section__label">Technical Skills</div>
+      <div class="cv-skills">
+        <div>
+          <div class="cv-skill-group__label">Languages</div>
+          <div class="cv-skill-group__items">C · C++ · TypeScript · JavaScript · HTML · CSS</div>
+        </div>
+        <div>
+          <div class="cv-skill-group__label">Frameworks</div>
+          <div class="cv-skill-group__items">Next.js · Node.js · Prisma ORM · React</div>
+        </div>
+        <div>
+          <div class="cv-skill-group__label">Embedded</div>
+          <div class="cv-skill-group__items">STM32 · C/C++ firmware · Motor control · Sensor integration</div>
+        </div>
+        <div>
+          <div class="cv-skill-group__label">CS Fundamentals</div>
+          <div class="cv-skill-group__items">Data Structures · Algorithms · OOP · Computer Vision</div>
+        </div>
+        <div>
+          <div class="cv-skill-group__label">Tools</div>
+          <div class="cv-skill-group__items">Git · GitHub · VS Code · Linux</div>
+        </div>
+        <div>
+          <div class="cv-skill-group__label">Domains</div>
+          <div class="cv-skill-group__items">Robotics · AI/ML · Full-Stack Web · Embedded Systems</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERESTS -->
+    <section class="cv-section">
+      <div class="cv-section__label">Interests</div>
+      <div class="cv-entry__body">
+        Autonomous systems &amp; robotics · Competitive programming · Open-source development · Hardware prototyping · AI/ML research
+      </div>
+    </section>
+
+    <!-- REFERENCES -->
+    <section class="cv-section">
+      <div class="cv-section__label">References</div>
+      <div class="cv-entry__body" style="color:var(--muted);font-style:italic">
+        Available on request.
+      </div>
+    </section>
+
+  </div>
+  <script>
+    // Show download button only if PDF exists
+    fetch('assets/cv-akash-gandhawa.pdf', { method: 'HEAD' })
+      .then(r => { if (r.ok) document.getElementById('cv-pdf-download').style.display = 'inline-flex'; })
+      .catch(() => {});
+  </script>
+</body>
+</html>

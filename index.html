@@ -92,6 +92,7 @@
       </p>
       <div class="hero__cta">
         <a href="#projects" class="btn btn--teal">See my work</a>
+        <a href="cv.html" class="btn btn--outline">View CV</a>
         <a href="#contact" class="btn btn--outline">Get in touch</a>
       </div>
     </div>
@@ -248,56 +249,65 @@
         </div>
       </div>
 
-      <!-- IT Ticketing -->
+      <!-- Maze-Cypher -->
       <div class="project-card">
         <div class="project-card__visual" data-lightbox-type="svg">
           <svg viewBox="0 0 400 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="30" y="20" width="340" height="190" rx="6" fill="#0D2020" stroke="#1A3535" stroke-width="1.5"/>
-            <rect x="30" y="20" width="340" height="32" rx="6" fill="#122828"/>
-            <rect x="30" y="38" width="340" height="14" fill="#122828"/>
-            <circle cx="50" cy="36" r="5" fill="#FF5F57" opacity="0.7"/>
-            <circle cx="66" cy="36" r="5" fill="#FEBC2E" opacity="0.7"/>
-            <circle cx="82" cy="36" r="5" fill="#28C840" opacity="0.7"/>
-            <rect x="100" y="29" width="200" height="14" rx="3" fill="#071515" stroke="#1A3535" stroke-width="1"/>
-            <text x="113" y="40" font-family="Fira Code, monospace" font-size="7" fill="#9ECECE" opacity="0.6">localhost:3000/tickets</text>
-            <rect x="30" y="52" width="70" height="158" fill="#0A1A1A"/>
-            <rect x="38" y="66" width="54" height="8" rx="2" fill="#0D9488" opacity="0.8"/>
-            <rect x="38" y="82" width="42" height="6" rx="2" fill="#1A3535"/>
-            <rect x="38" y="94" width="48" height="6" rx="2" fill="#1A3535"/>
-            <rect x="112" y="62" width="248" height="28" rx="3" fill="#122828" stroke="#1A3535" stroke-width="1"/>
-            <rect x="120" y="70" width="6" height="6" rx="1" fill="#0D9488"/>
-            <rect x="132" y="70" width="80" height="6" rx="2" fill="#9ECECE" opacity="0.6"/>
-            <rect x="280" y="70" width="40" height="6" rx="3" fill="#0D9488" opacity="0.4"/>
-            <rect x="112" y="96" width="248" height="28" rx="3" fill="#122828" stroke="#1A3535" stroke-width="1"/>
-            <rect x="120" y="104" width="6" height="6" rx="1" fill="#FEBC2E" opacity="0.7"/>
-            <rect x="132" y="104" width="100" height="6" rx="2" fill="#9ECECE" opacity="0.6"/>
-            <rect x="112" y="130" width="248" height="28" rx="3" fill="#122828" stroke="#1A3535" stroke-width="1"/>
-            <rect x="120" y="138" width="6" height="6" rx="1" fill="#9ECECE" opacity="0.4"/>
-            <rect x="132" y="138" width="70" height="6" rx="2" fill="#9ECECE" opacity="0.4"/>
-            <rect x="112" y="164" width="248" height="28" rx="3" fill="#122828" stroke="#1A3535" stroke-width="1"/>
-            <rect x="120" y="172" width="6" height="6" rx="1" fill="#0D9488" opacity="0.5"/>
-            <rect x="132" y="172" width="90" height="6" rx="2" fill="#9ECECE" opacity="0.4"/>
+            <!-- maze grid -->
+            <rect width="400" height="220" fill="#071515"/>
+            <!-- outer walls -->
+            <rect x="30" y="20" width="220" height="180" fill="none" stroke="#0D9488" stroke-width="1.5" opacity="0.4"/>
+            <!-- inner maze walls -->
+            <line x1="70"  y1="20"  x2="70"  y2="100" stroke="#0D9488" stroke-width="1.5" opacity="0.4"/>
+            <line x1="110" y1="60"  x2="110" y2="200" stroke="#0D9488" stroke-width="1.5" opacity="0.4"/>
+            <line x1="150" y1="20"  x2="150" y2="140" stroke="#0D9488" stroke-width="1.5" opacity="0.4"/>
+            <line x1="190" y1="60"  x2="190" y2="200" stroke="#0D9488" stroke-width="1.5" opacity="0.4"/>
+            <line x1="30"  y1="60"  x2="150" y2="60"  stroke="#0D9488" stroke-width="1.5" opacity="0.4"/>
+            <line x1="70"  y1="100" x2="250" y2="100" stroke="#0D9488" stroke-width="1.5" opacity="0.4"/>
+            <line x1="110" y1="140" x2="230" y2="140" stroke="#0D9488" stroke-width="1.5" opacity="0.4"/>
+            <line x1="150" y1="160" x2="250" y2="160" stroke="#0D9488" stroke-width="1.5" opacity="0.4"/>
+            <!-- solution path -->
+            <polyline points="50,185 50,140 90,140 90,80 130,80 130,120 170,120 170,80 210,80 210,185"
+              stroke="#5EEAD4" stroke-width="2" fill="none" stroke-dasharray="4 3" opacity="0.8"/>
+            <!-- mouse robot -->
+            <rect x="198" y="173" width="24" height="18" rx="3" fill="#122828" stroke="#5EEAD4" stroke-width="1.5"/>
+            <circle cx="204" cy="179" r="2.5" fill="#5EEAD4" opacity="0.9"/>
+            <circle cx="216" cy="179" r="2.5" fill="#5EEAD4" opacity="0.9"/>
+            <!-- wheels -->
+            <rect x="196" y="177" width="4" height="8" rx="1" fill="#0D9488" opacity="0.7"/>
+            <rect x="220" y="177" width="4" height="8" rx="1" fill="#0D9488" opacity="0.7"/>
+            <!-- finish marker -->
+            <rect x="198" y="28" width="24" height="16" rx="2" fill="#0D9488" opacity="0.2" stroke="#0D9488" stroke-width="1"/>
+            <text x="205" y="40" font-family="Fira Code, monospace" font-size="7" fill="#5EEAD4" opacity="0.9">END</text>
+            <!-- labels -->
+            <text x="285" y="35"  font-family="Fira Code, monospace" font-size="10" fill="#0D9488" opacity="0.8">MAZE-CYPHER</text>
+            <text x="285" y="50"  font-family="Fira Code, monospace" font-size="8"  fill="#9ECECE" opacity="0.5">STM32 · C/C++</text>
+            <text x="285" y="65"  font-family="Fira Code, monospace" font-size="7"  fill="#5EEAD4" opacity="0.4">Team-EdgeRunners</text>
+            <!-- signal dots -->
+            <circle cx="300" cy="120" r="2" fill="#5EEAD4" opacity="0.5"/>
+            <circle cx="320" cy="100" r="2" fill="#5EEAD4" opacity="0.3"/>
+            <circle cx="340" cy="140" r="2" fill="#5EEAD4" opacity="0.4"/>
+            <circle cx="360" cy="110" r="2" fill="#5EEAD4" opacity="0.2"/>
           </svg>
         </div>
         <div class="project-card__body">
           <div class="project-card__meta">
             <span class="project-card__meta-left">
-              <span class="project-card__type">Full-Stack Web</span>
-              <span class="status-badge status-badge--archived">Archived</span>
+              <span class="project-card__type">Embedded / Robotics</span>
+              <span class="status-badge status-badge--in-progress">In Progress</span>
             </span>
-            <a href="https://github.com/AkashGandhawa/ticket-system" target="_blank" rel="noopener" class="project-card__arrow" title="Open repo in new tab">
+            <a href="https://github.com/Team-EdgeRunners/maze-cypher" target="_blank" rel="noopener" class="project-card__arrow" title="Open repo in new tab">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             </a>
           </div>
-          <div class="project-card__name">University IT Ticketing</div>
-          <div class="project-card__desc">Full-stack internal ticketing platform — role-based auth, real-time status tracking, Prisma-backed REST API, and a Next.js frontend.</div>
+          <div class="project-card__name">Maze-Cypher</div>
+          <div class="project-card__desc">An autonomous micromouse robot that navigates and solves mazes — developed under Team-EdgeRunners with STM32-based embedded firmware.</div>
           <div class="project-card__tags">
-            <span class="lang-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>TypeScript</span>
-            <span class="lang-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Next.js</span>
-            <span class="project-row__tag">Prisma</span>
-            <span class="tag--group">Group project</span>
-            <span class="tag--past">Past project</span>
-            <span class="tag--assignment">Assignment</span>
+            <span class="lang-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>C/C++</span>
+            <span class="project-row__tag">STM32</span>
+            <span class="project-row__tag">Embedded</span>
+            <span class="project-row__tag">Robotics</span>
+            <span class="tag--group">Team project</span>
           </div>
         </div>
       </div>
@@ -372,7 +382,7 @@
     </div>
     <div class="blog__grid reveal">
 
-      <div class="blog-card" onclick="openBlogModal('how-stairdoc-works')">
+      <div class="blog-card" onclick="openBlogModal('stairdoc')">
         <div class="blog-card__kicker">Robotics</div>
         <div class="blog-card__title">How StairDoc Climbs Stairs</div>
         <div class="blog-card__excerpt">The mechanical and software challenges behind building a robot that navigates staircases autonomously.</div>
@@ -382,7 +392,7 @@
         </div>
       </div>
 
-      <div class="blog-card" onclick="openBlogModal('dsa-in-the-real-world')">
+      <div class="blog-card" onclick="openBlogModal('dsa-assignment-textile-erp')">
         <div class="blog-card__kicker">Engineering</div>
         <div class="blog-card__title">DSA in the Real World: Lessons from TextileERP</div>
         <div class="blog-card__excerpt">What building a manufacturing ERP in C taught me about data structures beyond the classroom.</div>
@@ -392,7 +402,7 @@
         </div>
       </div>
 
-      <div class="blog-card" onclick="openBlogModal('building-with-nextjs-prisma')">
+      <div class="blog-card" onclick="openBlogModal('unitech-assist')">
         <div class="blog-card__kicker">Web Dev</div>
         <div class="blog-card__title">What I Learned Building a Full-Stack App Solo</div>
         <div class="blog-card__excerpt">Reflections on shipping the university IT ticketing system — from schema design to deployment.</div>
@@ -459,11 +469,12 @@
       </nav>
     </div>
     <div class="footer__bottom">
-      <span>© <span id="footer-year"></span> Akash Gandhawa</span>
+      <span>© 2026 Akash Gandhawa</span>
       <span>Built with intention &amp; <a href="https://github.com/AkashGandhawa/AkashGandhawa.github.io" target="_blank" rel="noopener">open source ↗</a></span>
     </div>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
   <script src="scripts/blog.js"></script>
   <script src="scripts/terminal-commands.js"></script>
   <script src="scripts/main.js"></script>
