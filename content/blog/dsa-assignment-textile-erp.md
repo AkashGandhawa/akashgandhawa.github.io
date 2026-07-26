@@ -1,8 +1,8 @@
 ---
 title: DSA in the Real World: Lessons from TextileERP
 category: Engineering
-date: May 2026
-read: 4 min read
+date: March 2026
+read: 3 min read
 excerpt: What building a manufacturing ERP in C taught me about data structures beyond the classroom.
 ---
 

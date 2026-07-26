@@ -1047,6 +1047,42 @@ img { display: block; max-width: 100%; }
   border-radius: 2px;
   border: 1px solid var(--border);
 }
+/* ── BLOG CARD LOADING STATE ── */
+.blog-card--loading .blog-card__kicker,
+.blog-card--loading .blog-card__title,
+.blog-card--loading .blog-card__excerpt,
+.blog-card--loading .blog-card__date,
+.blog-card--loading .blog-card__read {
+  background: linear-gradient(90deg, var(--surface2) 25%, var(--border) 50%, var(--surface2) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: 3px;
+  color: transparent;
+  user-select: none;
+}
+
+/* ── BLOG MODAL SPINNER ── */
+.blog-modal__loading {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--muted);
+  font-family: var(--f-mono);
+  font-size: 0.82rem;
+  padding: 1rem 0;
+}
+.blog-modal__spinner {
+  width: 16px; height: 16px;
+  border: 2px solid var(--border);
+  border-top-color: var(--teal-text);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 /* ── BLOG ── */
 .blog { padding: 5rem 5vw; border-top: 1px solid var(--border); }
 .blog__grid {

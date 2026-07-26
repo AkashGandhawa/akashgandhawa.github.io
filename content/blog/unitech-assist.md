@@ -2,7 +2,7 @@
 title: What I Learned Building a Full-Stack App Solo
 category: Web Dev
 date: April 2026
-read: 6 min read
+read: 7 min read
 excerpt: Reflections on shipping the university IT ticketing system — from schema design to deployment.
 ---
 
