@@ -1,0 +1,769 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UML Analysis and Design: Complete Guide (All Exercises)</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 1200px; margin: 0 auto; padding: 20px; background: #f9f9f9; }
+        h1, h2, h3, h4 { color: #2c3e50; }
+        h1 { border-bottom: 3px solid #2980b9; padding-bottom: 10px; }
+        h2 { border-left: 5px solid #2980b9; padding-left: 10px; margin-top: 40px; background: #eaf2f8; padding: 10px 10px 10px 15px; border-radius: 0 5px 5px 0;}
+        h3 { margin-top: 30px; border-bottom: 2px solid #bdc3c7; padding-bottom: 5px;}
+        .question-box { background: #fdfefe; border: 1px solid #d5dbdb; padding: 15px; border-radius: 5px; margin-bottom: 15px; font-size: 0.95em; }
+        .theory, .explanation, .assumption { background: #fff; padding: 15px; border-radius: 5px; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .theory { border-left: 4px solid #8e44ad; }
+        .explanation { border-left: 4px solid #27ae60; }
+        .assumption { border-left: 4px solid #e67e22; }
+        .diagram-container { background: #fff; padding: 20px; border-radius: 5px; margin-bottom: 20px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); overflow-x: auto; }
+        .mermaid { display: flex; justify-content: center; }
+        code { background: #eee; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        ul.theory-list { list-style-type: none; padding-left: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 15px; }
+        ul.theory-list li { display: flex; align-items: flex-start; }
+        .symbol-logo { display: inline-flex; justify-content: center; align-items: center; width: 50px; height: 40px; margin-right: 15px; background: #f4f6f7; border: 1px solid #ddd; border-radius: 4px; padding: 4px; flex-shrink: 0; }
+        .symbol-desc { font-size: 0.9em; }
+        .alert-note { display: block; margin-top: 10px; padding: 10px; background-color: #fcf3cf; border-left: 4px solid #f1c40f; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+
+    <h1>UML Analysis and Design: Comprehensive Guide</h1>
+    <p>This document contains all full-text questions, comprehensive theoretical conventions (with complete symbol sets), assumptions, explanations for every question, and corrected diagrams.</p>
+
+    <!-- ================= LAB 02 ================= -->
+    <h2>1. Lab 02: Use Case Diagrams</h2>
+    <div class="theory">
+        <strong>Complete UML Conventions & Symbols (Use Case Diagrams):</strong>
+        <ul class="theory-list">
+            <li>
+                <span class="symbol-logo">
+                    <svg width="20" height="30" viewBox="0 0 24 30"><circle cx="12" cy="6" r="4" stroke="black" fill="none" stroke-width="2"/><line x1="12" y1="10" x2="12" y2="20" stroke="black" stroke-width="2"/><line x1="12" y1="12" x2="4" y2="16" stroke="black" stroke-width="2"/><line x1="12" y1="12" x2="20" y2="16" stroke="black" stroke-width="2"/><line x1="12" y1="20" x2="6" y2="28" stroke="black" stroke-width="2"/><line x1="12" y1="20" x2="18" y2="28" stroke="black" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Actor:</strong> External entity (human or system) interacting with the system.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg width="40" height="30" viewBox="0 0 40 30"><rect x="2" y="2" width="36" height="26" stroke="black" fill="none" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>System Boundary:</strong> Box defining the scope of the system. Actors remain outside.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg width="40" height="20" viewBox="0 0 40 20"><ellipse cx="20" cy="10" rx="18" ry="8" stroke="black" fill="none" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Use Case:</strong> Represents a functional requirement. Drawn as an ellipse.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg width="40" height="10" viewBox="0 0 40 10"><line x1="0" y1="5" x2="40" y2="5" stroke="black" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Association:</strong> Solid line connecting an Actor to a Use Case they participate in.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg width="40" height="15" viewBox="0 0 40 15"><line x1="0" y1="7" x2="36" y2="7" stroke="black" stroke-dasharray="4" stroke-width="2"/><polyline points="30,2 38,7 30,12" stroke="black" fill="none" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Dependency (&lt;&lt;include&gt;&gt; / &lt;&lt;extend&gt;&gt;):</strong> Dashed arrow showing relationship between use cases.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg width="40" height="15" viewBox="0 0 40 15"><line x1="0" y1="7" x2="30" y2="7" stroke="black" stroke-width="2"/><polygon points="30,2 38,7 30,12" stroke="black" fill="none" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Generalization:</strong> Solid line with hollow triangle. Inheritance between actors or use cases.</div>
+            </li>
+        </ul>
+    </div>
+
+    <h3>Exercise 1: Ticket Vending System</h3>
+    <div class="question-box">
+        <strong>Question:</strong> The goal of this project is to provide a system for commuters to buy tickets. When a user arrives at the vending machine he or she can view the available bus routes with the destinations. The user can select one of the destinations. Then the vending machine calculates the price of the ticket based on the current location and shows it to the user. The user can input coins and currency bills into the machine. The machine can count the inserted amount and dispense the tickets and balance amount if there is any. The administrators of the system can view the available bus routes in order to add new destinations or delete or modify the existing destinations. If a new destination is added, the administrator should test the system by buying a mock ticket to the newly added destination. Buying a mock ticket is similar to the normal buying process but can skip the payment process if the administrator decides not to test the payment module.
+    </div>
+    <div class="explanation">
+        <strong>Identified Users (Actors):</strong> Commuter, Administrator.<br>
+        <strong>Explanation:</strong> The system boundary separates the Ticket Vending System from the users. The Commuter triggers the main buying process. "Buy Ticket" mandates payment processing and ticket dispensing, so we use <code>&lt;&lt;include&gt;&gt;</code>. "Test System" is an optional variant of buying a ticket for administrators, modeled with <code>&lt;&lt;extend&gt;&gt;</code>.
+    </div>
+    <div class="diagram-container">
+        <pre class="mermaid">
+        flowchart LR
+            Admin(["Administrator"])
+            
+            subgraph Ticket Vending System
+                direction TB
+                UC1(["View Bus Routes"])
+                UC2(["Select Destination"])
+                UC3(["Buy Ticket"])
+                UC4(["Input Money"])
+                UC5(["Dispense Ticket & Balance"])
+                UC6(["Add Destination"])
+                UC7(["Modify/Delete Destination"])
+                UC8(["Test System (Mock Ticket)"])
+            end
+            
+            Commuter(["Commuter"])
+            
+            Admin --- UC1
+            Admin --- UC6
+            Admin --- UC7
+            Admin --- UC8
+            
+            UC1 --- Commuter
+            UC2 --- Commuter
+            UC3 --- Commuter
+            
+            UC3 -. "&lt;&lt;include&gt;&gt;" .-> UC4
+            UC3 -. "&lt;&lt;include&gt;&gt;" .-> UC5
+            
+            UC8 -. "&lt;&lt;extend&gt;&gt;" .-> UC3
+        </pre>
+    </div>
+
+    <h3>Exercise 2: Automated Vehicle Care System</h3>
+    <div class="question-box">
+        <strong>Question:</strong> The goal of this project is to provide a system for vehicle owners to get vehicle cleaning and checkup services. The registration unit at the entrance automatically checks the number plate of the vehicle in order to check whether the owner is an existing customer to issue a care plan according to the type and the history of service turns of the vehicle. If the owner's details are absent then the machine will automatically recognize the type of the vehicle and ask the customer to enter the details. Once the customer submits the form, the care plan will be issued. A customer is always willing to do an exterior cleaning with wax polishing. However, the owners of public transport vehicles always do an interior cleaning and engine checkup additionally. The owners of off-road vehicles also can do an engine checkup if they want. After every successful completion of a caring step (ex. the exterior cleaning, interior cleaning or engine checkup, etc.) a technician marks the completed caring processes on the care plan issued to each customer at the entrance. At the exit point, a payment processing machine checks the care plan of the customer and issues an invoice. The customer can then pay with a prepaid card issued by the caring center. Then the machine will process the payment. If the vehicle is owned by a newly registered customer, then a 20% discount will be given in the process of payments. Further, a 10% discount will be given to the existing customers after every three service turns.
+    </div>
+    <div class="explanation">
+        <strong>Identified Users (Actors):</strong> Vehicle Owner (General), New Customer, Existing Customer, Public Transport Owner, Off-road Owner, Technician, System.<br>
+        <strong>Explanation:</strong> Generalization is used here to reduce clutter. New, Existing, Public Transport, and Off-road owners are specialized versions of the general "Vehicle Owner". This means any use case connected to "Vehicle Owner" (like Exterior Cleaning or Process Payment) is inherited by all of them.
+    </div>
+    <div class="assumption">
+        <strong>Assumptions:</strong> The "System" acts as a secondary actor automating the registration and payment processes. Discounts are considered internal business logic handled within the "Process Payment" use case and do not need a separate use case bubble.
+    </div>
+    <div class="diagram-container">
+        <pre class="mermaid">
+        flowchart LR
+            Owner(["Vehicle Owner"])
+            NewCust(["New Customer"])
+            ExCust(["Existing Customer"])
+            PubOwner(["Public Transport Owner"])
+            OffOwner(["Off-road Owner"])
+            Tech(["Technician"])
+            Sys(["Automated Care System"])
+            
+            NewCust --> Owner
+            ExCust --> Owner
+            PubOwner --> Owner
+            OffOwner --> Owner
+            
+            subgraph Vehicle Care System
+                UC1(["Register/Identify Customer"])
+                UC2(["Issue Care Plan"])
+                UC3(["Exterior Cleaning & Wax"])
+                UC4(["Interior Cleaning"])
+                UC5(["Engine Checkup"])
+                UC6(["Mark Completed Process"])
+                UC7(["Process Payment"])
+            end
+            
+            Sys --- UC1
+            Sys --- UC2
+            Owner --- UC3
+            PubOwner --- UC4
+            PubOwner --- UC5
+            OffOwner --- UC5
+            Tech --- UC6
+            Owner --- UC7
+            Sys --- UC7
+        </pre>
+    </div>
+
+    <!-- ================= LAB 03 ================= -->
+    <h2>2. Lab 03: Activity Diagrams</h2>
+    <div class="theory">
+        <strong>Complete UML Conventions & Symbols (Activity Diagrams):</strong>
+        <ul class="theory-list">
+            <li>
+                <span class="symbol-logo">
+                    <svg width="20" height="20" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="black"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Initial Node:</strong> Filled circle. Start of the workflow.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg width="40" height="20" viewBox="0 0 40 20"><rect x="2" y="2" width="36" height="16" rx="6" ry="6" stroke="black" fill="none" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Action/Activity:</strong> Rounded rectangle. Represents a single step.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg width="24" height="24" viewBox="0 0 24 24"><polygon points="12,2 22,12 12,22 2,12" stroke="black" fill="none" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Decision Node:</strong> Diamond. One input, multiple outputs (guarded).</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg width="24" height="24" viewBox="0 0 24 24"><polygon points="12,2 22,12 12,22 2,12" stroke="black" fill="none" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Merge Node:</strong> Diamond. Multiple inputs, one output (rejoining flows).</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg width="40" height="15" viewBox="0 0 40 15"><rect x="18" y="2" width="4" height="12" fill="black"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Fork/Join Node:</strong> Thick bar. Splits (Fork) or syncs (Join) concurrent threads.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg width="40" height="30" viewBox="0 0 40 30"><rect x="2" y="2" width="36" height="26" stroke="black" fill="none" stroke-width="2"/><line x1="20" y1="2" x2="20" y2="28" stroke="black" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Swimlanes (Partitions):</strong> Divides diagram to show who is responsible for actions.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" stroke="black" fill="none" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="black"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Final Node:</strong> Bullseye. End of the entire process.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" stroke="black" fill="none" stroke-width="2"/><line x1="4" y1="4" x2="20" y2="20" stroke="black" stroke-width="2"/><line x1="20" y1="4" x2="4" y2="20" stroke="black" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Flow Final Node:</strong> Circle with an X. Ends a single path without ending the whole process.</div>
+            </li>
+        </ul>
+    </div>
+
+    <h3>Exercise 1: University Library System</h3>
+    <div class="question-box">
+        <strong>Question:</strong> A university library provides a system that allows students to borrow books. A student can search for a book by title, author, or ISBN and select a book to borrow. Before issuing the book, the system checks the availability of the selected book. If the book is unavailable, the borrowing request is rejected. Otherwise, the system checks whether the student has any overdue books or unpaid fines. If the student has unpaid fines, the student must pay the fine before the borrowing process can continue. Once all conditions are satisfied, the system records the borrowing transaction and issues the book. A librarian can add new books, update book information, or remove books from the library catalogue.
+    </div>
+    <div class="explanation">
+        <strong>Explanation:</strong> The flow handles two sequential conditional checks using decision nodes: Availability and Fines. If a fine is paid, it flows into processing the payment, and then merges back to the main issuing flow (Record Borrowing). The Librarian's separate tasks (adding/removing books) are omitted from this specific student-borrowing workflow as they are separate, distinct processes.
+    </div>
+    <div class="diagram-container">
+        <pre class="mermaid">
+        stateDiagram-v2
+            [*] --> SearchBook
+            
+            state Student {
+                SearchBook : Search for book
+                SelectBook : Select book to borrow
+                PayFine : Pay outstanding fine
+                ReceiveBook : Receive book
+            }
+            
+            state LibrarySystem {
+                CheckAvailability : Check book availability
+                CheckFines : Check overdues and unpaid fines
+                ProcessPayment : Process fine payment
+                RecordBorrowing : Record transaction
+                IssueBook : Issue the book
+                RejectRequest : Reject borrowing request
+                NotifyUnavailable : Notify Book Unavailable
+            }
+            
+            SearchBook --> SelectBook
+            SelectBook --> CheckAvailability
+            
+            state if_avail &lt;&lt;choice&gt;&gt;
+            CheckAvailability --> if_avail
+            
+            if_avail --> CheckFines : [Book Available]
+            if_avail --> NotifyUnavailable : [Book Unavailable]
+            NotifyUnavailable --> RejectRequest
+            RejectRequest --> [*]
+            
+            state if_fines &lt;&lt;choice&gt;&gt;
+            CheckFines --> if_fines
+            
+            if_fines --> PayFine : [Has Fines]
+            if_fines --> RecordBorrowing : [No Fines]
+            
+            PayFine --> ProcessPayment
+            ProcessPayment --> RecordBorrowing
+            
+            RecordBorrowing --> IssueBook
+            IssueBook --> ReceiveBook
+            ReceiveBook --> [*]
+        </pre>
+    </div>
+
+    <h3>Exercise 2: Hospital Appointment Management System</h3>
+    <div class="question-box">
+        <strong>Question:</strong> StarLab Hospital has implemented an online appointment management system that allows patients to book appointments with doctors. A patient logs into the system and searches for a doctor by specialty. After selecting a doctor, the patient requests an appointment. The system verifies whether the patient has a valid medical record. If the patient is new, the system creates a new medical record before continuing. Next, the system checks the doctor's availability. If no appointment slots are available, the patient may select another doctor or cancel the booking request. This process continues until an available doctor is selected or the patient cancels the request. Once an appointment slot is assigned, the system requests payment. If the payment is unsuccessful, the patient may retry the payment or cancel the appointment. After successful payment, the system confirms the booking, updates the doctor's appointment schedule and records the appointment in the patient's medical history. At the same time, the billing department generates a payment receipt while the notification service sends an appointment confirmation to the patient. The appointment booking process is completed once all these activities have finished.
+    </div>
+    <div class="explanation">
+        <strong>Explanation:</strong> This diagram utilizes multiple swimlanes to clearly separate responsibilities. The critical UML convention applied here is the use of a <strong>Fork node</strong> (parallel processing) after successful payment and recording the appointment. The system must simultaneously trigger actions in three separate swimlanes: confirming booking, generating a receipt (Billing Dept), and sending a notification (Notification Service). These concurrent actions are brought back together using a <strong>Join node</strong> before terminating.
+    </div>
+    <div class="diagram-container">
+        <pre class="mermaid">
+        stateDiagram-v2
+            [*] --> LogIn
+            
+            state Patient {
+                LogIn : Log into system
+                SearchDoc : Search for doctor
+                SelectDoc : Select doctor
+                ReqAppt : Request appointment
+                SelectAnother : Select another doctor?
+                MakePayment : Make payment
+                RetryPayment : Retry payment?
+            }
+            
+            state System {
+                CheckRecord : Check valid medical record
+                CreateRecord : Create new record
+                CheckAvail : Check slot availability
+                AssignSlot : Assign appointment slot
+                ReqPaymentSys : Request payment
+                ProcessPay : Process payment
+                ConfirmBook : Confirm booking
+                UpdateSched : Update doctor schedule
+                RecordAppt : Record in medical history
+            }
+            
+            state BillingDept {
+                GenReceipt : Generate payment receipt
+            }
+            
+            state NotificationService {
+                SendConf : Send appointment confirmation
+            }
+            
+            LogIn --> SearchDoc
+            SearchDoc --> SelectDoc
+            SelectDoc --> ReqAppt
+            ReqAppt --> CheckRecord
+            
+            state if_rec &lt;&lt;choice&gt;&gt;
+            CheckRecord --> if_rec
+            if_rec --> CreateRecord : [No Record]
+            if_rec --> CheckAvail : [Valid Record]
+            CreateRecord --> CheckAvail
+            
+            state if_avail &lt;&lt;choice&gt;&gt;
+            CheckAvail --> if_avail
+            if_avail --> SelectAnother : [No Slots]
+            if_avail --> AssignSlot : [Slot Available]
+            
+            state if_another &lt;&lt;choice&gt;&gt;
+            SelectAnother --> if_another
+            if_another --> SelectDoc : [Yes]
+            if_another --> [*] : [No/Cancel]
+            
+            AssignSlot --> ReqPaymentSys
+            ReqPaymentSys --> MakePayment
+            MakePayment --> ProcessPay
+            
+            state if_pay &lt;&lt;choice&gt;&gt;
+            ProcessPay --> if_pay
+            if_pay --> ConfirmBook : [Success]
+            if_pay --> RetryPayment : [Fail]
+            
+            state if_retry &lt;&lt;choice&gt;&gt;
+            RetryPayment --> if_retry
+            if_retry --> MakePayment : [Yes]
+            if_retry --> [*] : [No/Cancel]
+            
+            ConfirmBook --> UpdateSched
+            UpdateSched --> RecordAppt
+            
+            state fork_postpay &lt;&lt;fork&gt;&gt;
+            RecordAppt --> fork_postpay
+            fork_postpay --> GenReceipt
+            fork_postpay --> SendConf
+            
+            state join_end &lt;&lt;join&gt;&gt;
+            GenReceipt --> join_end
+            SendConf --> join_end
+            join_end --> [*]
+        </pre>
+    </div>
+
+    <h3>Exercise 3: Online Food Ordering System</h3>
+    <div class="question-box">
+        <strong>Question:</strong> An online food ordering system allows customers to order meals from registered restaurants. A customer browses the available restaurants and selects one. The customer chooses one or more food items and adds them to the shopping cart. After reviewing the order, the customer proceeds to checkout. The system calculates the total amount and prompts the customer to complete the payment. If the payment is unsuccessful, the customer may either try the payment again or cancel the order. If the customer chooses to retry, the payment process continues until the payment is successful or the order is cancelled. After a successful payment, the system creates the order then sends an order confirmation to the customer, and forwards the order details to the selected restaurant at the same time. The restaurant prepares the food. Once the food is ready, the restaurant informs the delivery service to assign a delivery rider. The assigned rider travels to the restaurant while the restaurant prepares the order for collection. After collecting the order, the rider delivers it to the customer. Once the customer confirms receipt of the order, the system updates the order status to Completed.
+    </div>
+    <div class="explanation">
+        <strong>Explanation:</strong> This workflow highlights complex cross-lane interactions. It uses a loop for payment retries, controlled by decision nodes. Upon order creation, a fork is used to simultaneously notify the customer and forward details to the restaurant. Another fork/join pair is used when the restaurant prepares the collection while the rider travels.
+    </div>
+    <div class="diagram-container">
+        <pre class="mermaid">
+        stateDiagram-v2
+            [*] --> BrowseRes
+            
+            state Customer {
+                BrowseRes : Browse restaurants
+                SelectRes : Select restaurant
+                AddFood : Choose food & add to cart
+                Checkout : Review & proceed to checkout
+                Pay : Complete payment
+                RetryPay : Retry payment?
+                ConfirmReceipt : Confirm receipt of order
+            }
+            
+            state FoodOrderingSystem {
+                CalcTotal : Calculate total
+                ProcPay : Process payment
+                CreateOrder : Create order
+                SendConfCus : Send order confirmation
+                FwdDetails : Forward details to restaurant
+                UpdateStatus : Update status to Completed
+            }
+            
+            state Restaurant {
+                PrepFood : Prepare food
+                InformDel : Inform delivery service
+                PrepColl : Prepare order for collection
+            }
+            
+            state DeliveryService {
+                AssignRider : Assign delivery rider
+                Travel : Rider travels to restaurant
+                Collect : Collect order
+                Deliver : Deliver order to customer
+            }
+            
+            BrowseRes --> SelectRes
+            SelectRes --> AddFood
+            AddFood --> Checkout
+            Checkout --> CalcTotal
+            CalcTotal --> Pay
+            Pay --> ProcPay
+            
+            state if_pay &lt;&lt;choice&gt;&gt;
+            ProcPay --> if_pay
+            if_pay --> CreateOrder : [Success]
+            if_pay --> RetryPay : [Fail]
+            
+            state if_retry &lt;&lt;choice&gt;&gt;
+            RetryPay --> if_retry
+            if_retry --> Pay : [Yes]
+            if_retry --> [*] : [No/Cancel]
+            
+            state fork_order &lt;&lt;fork&gt;&gt;
+            CreateOrder --> fork_order
+            fork_order --> SendConfCus
+            fork_order --> FwdDetails
+            
+            FwdDetails --> PrepFood
+            PrepFood --> InformDel
+            
+            state fork_del &lt;&lt;fork&gt;&gt;
+            InformDel --> fork_del
+            fork_del --> AssignRider
+            fork_del --> PrepColl
+            
+            AssignRider --> Travel
+            
+            state join_coll &lt;&lt;join&gt;&gt;
+            Travel --> join_coll
+            PrepColl --> join_coll
+            
+            join_coll --> Collect
+            Collect --> Deliver
+            Deliver --> ConfirmReceipt
+            ConfirmReceipt --> UpdateStatus
+            UpdateStatus --> [*]
+        </pre>
+    </div>
+
+    <!-- ================= LAB 04 - SEQUENCE ================= -->
+    <h2>3. Lab 04: Sequence Diagrams</h2>
+    
+    <div class="theory">
+        <strong>Complete UML Conventions & Symbols (Sequence Diagrams):</strong>
+        <ul class="theory-list">
+            <li>
+                <span class="symbol-logo">
+                    <svg width="40" height="30" viewBox="0 0 40 30"><rect x="10" y="2" width="20" height="10" stroke="black" fill="none" stroke-width="2"/><line x1="20" y1="12" x2="20" y2="28" stroke="black" stroke-dasharray="4" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Participant/Lifeline:</strong> Represents an object's existence over time (time flows downwards).</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg width="40" height="30" viewBox="0 0 40 30"><line x1="2" y1="15" x2="36" y2="15" stroke="black" stroke-width="2"/><polygon points="30,10 38,15 30,20" fill="black"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Synchronous Message:</strong> Solid line with filled arrowhead. Sender waits for a response.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg width="40" height="30" viewBox="0 0 40 30"><line x1="2" y1="15" x2="36" y2="15" stroke="black" stroke-width="2"/><polyline points="30,10 38,15 30,20" stroke="black" fill="none" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Asynchronous Message:</strong> Solid line with open arrowhead. Sender does not wait.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg width="40" height="30" viewBox="0 0 40 30"><line x1="2" y1="15" x2="36" y2="15" stroke="black" stroke-dasharray="4" stroke-width="2"/><polyline points="30,10 38,15 30,20" stroke="black" fill="none" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Return Message:</strong> Dashed line indicating a reply back to the sender.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg width="40" height="30" viewBox="0 0 40 30"><line x1="20" y1="2" x2="20" y2="30" stroke="black" stroke-dasharray="4" stroke-width="2"/><rect x="15" y="8" width="10" height="14" fill="#d5dbdb" stroke="black" stroke-width="1"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Activation Bar (Execution Spec):</strong> Thin rectangle on a lifeline showing when an object is actively executing a process.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg width="40" height="30" viewBox="0 0 40 30"><rect x="2" y="2" width="36" height="26" stroke="black" fill="none" stroke-width="1"/><polygon points="2,2 14,2 14,10 2,10" fill="#eaf2f8" stroke="black" stroke-width="1"/><text x="4" y="8" font-size="8" font-family="sans-serif">alt</text><line x1="2" y1="15" x2="38" y2="15" stroke="black" stroke-dasharray="2" stroke-width="1"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Combined Fragment (Alt/Opt/Loop):</strong> Frame used to group messages for conditional logic or loops.</div>
+            </li>
+        </ul>
+    </div>
+
+    <h3>Exercise 1: Online Movie Ticket Booking System</h3>
+    <div class="question-box">
+        <strong>Question:</strong> An Online Movie Ticket Booking System allows customers to book movie tickets. A customer searches for the movie "Spider-Man: Brand New Day." The system retrieves and displays the available showtimes for the selected movie. The customer selects a preferred showtime and specifies the number of tickets to purchase. The system checks whether the requested number of seats is available. If sufficient seats are unavailable, the system notifies the customer that the requested number of seats cannot be reserved, and the booking process ends. If the seats are available, the system calculates the total ticket price and requests payment from the customer. The payment is then processed. If the payment is unsuccessful, the system notifies the customer that the payment has failed, and the booking process ends. If the payment is successful, the system creates the movie ticket, sends a booking confirmation to the customer, and completes the ticket booking process.
+    </div>
+    <div class="explanation">
+        <strong>Explanation:</strong> This sequence diagram models synchronous interactions flowing from the Customer to the System. A nested <code>alt</code> fragment handles the seat availability logic and the subsequent payment success/failure logic.
+        <div class="alert-note">
+            <strong>Note:</strong> Activation bars (Execution Specifications) have been omitted from this diagram code to ensure strict rendering compatibility. When drawing your final assignment, please ensure you manually add the activation bars to the lifelines to show exactly when the System is actively processing requests.
+        </div>
+    </div>
+    <div class="diagram-container">
+        <pre class="mermaid">
+        sequenceDiagram
+            actor Customer
+            participant System
+            
+            Customer->>System: Search for movie "Spider-Man"
+            System-->>Customer: Display available showtimes
+            
+            Customer->>System: Select showtime & number of tickets
+            System->>System: Check seat availability
+            
+            alt Sufficient seats not available
+                System-->>Customer: Notify seats cannot be reserved
+            else Seats available
+                System->>System: Calculate total ticket price
+                System-->>Customer: Request payment
+                
+                Customer->>System: Process payment
+                
+                alt Payment unsuccessful
+                    System-->>Customer: Notify payment failed
+                else Payment successful
+                    System->>System: Create movie ticket
+                    System-->>Customer: Send booking confirmation
+                end
+            end
+        </pre>
+    </div>
+
+    <h3>Exercise 2: ATM Cash Withdrawal System</h3>
+    <div class="question-box">
+        <strong>Question:</strong> An ATM system allows customers to withdraw cash from their bank accounts. A customer inserts an ATM card into the machine. The ATM sends the card details to the bank server for verification. If the card is invalid, the ATM rejects the card and terminates the transaction. If the card is valid, the ATM prompts the customer to enter the PIN. The ATM forwards the entered PIN to the bank server for verification. If the PIN is incorrect, the ATM rejects the transaction and ejects the card. If the PIN is verified successfully, the ATM prompts the customer to enter the withdrawal amount. The ATM sends the withdrawal request to the bank server. The bank server checks the account balance. If sufficient funds are available, the bank server deducts the requested amount from the customer's bank account and notifies the ATM that the transaction is successful. The ATM dispenses the cash and ejects the card. If there are insufficient funds, the bank server notifies the ATM that the transaction has failed. The ATM displays an insufficient funds message and ejects the card.
+    </div>
+    <div class="explanation">
+        <strong>Explanation:</strong> This diagram is highly nested because of the multiple sequential validation steps (Card, PIN, Funds). Notice how the ATM acts as an intermediary between the Customer and the Bank Server.
+        <div class="alert-note">
+            <strong>Note:</strong> Activation bars (Execution Specifications) have been omitted from this diagram code to ensure strict rendering compatibility. When drawing your final assignment, please ensure you manually add the activation bars correctly to the ATM and BankServer lifelines to show when they are actively processing data.
+        </div>
+    </div>
+    <div class="diagram-container">
+        <pre class="mermaid">
+        sequenceDiagram
+            actor Customer
+            participant ATM
+            participant BankServer
+            
+            Customer->>ATM: Insert ATM Card
+            ATM->>BankServer: Verify Card Details
+            
+            alt Card Invalid
+                BankServer-->>ATM: Card Invalid
+                ATM-->>Customer: Reject Card & Terminate
+            else Card Valid
+                BankServer-->>ATM: Card Valid
+                ATM-->>Customer: Prompt for PIN
+                
+                Customer->>ATM: Enter PIN
+                ATM->>BankServer: Verify PIN
+                
+                alt PIN Incorrect
+                    BankServer-->>ATM: PIN Incorrect
+                    ATM-->>Customer: Reject Transaction & Eject Card
+                else PIN Correct
+                    BankServer-->>ATM: PIN Verified
+                    ATM-->>Customer: Prompt for Withdrawal Amount
+                    
+                    Customer->>ATM: Enter Amount
+                    ATM->>BankServer: Withdrawal Request
+                    BankServer->>BankServer: Check Account Balance
+                    
+                    alt Insufficient Funds
+                        BankServer-->>ATM: Transaction Failed
+                        ATM-->>Customer: Display Insufficient Funds & Eject Card
+                    else Sufficient Funds
+                        BankServer->>BankServer: Deduct Amount
+                        BankServer-->>ATM: Transaction Successful
+                        ATM-->>Customer: Dispense Cash & Eject Card
+                    end
+                end
+            end
+        </pre>
+    </div>
+
+    <!-- ================= LAB 04 - CLASS ================= -->
+    <h2>4. Lab 04: Class Diagrams</h2>
+    
+    <div class="theory">
+        <strong>Complete UML Conventions & Symbols (Class Diagrams):</strong>
+        <ul class="theory-list">
+            <li>
+                <span class="symbol-logo">
+                    <svg width="40" height="30" viewBox="0 0 40 30"><rect x="2" y="2" width="36" height="26" stroke="black" fill="none" stroke-width="2"/><line x1="2" y1="10" x2="38" y2="10" stroke="black" stroke-width="2"/><line x1="2" y1="20" x2="38" y2="20" stroke="black" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Class Box:</strong> Three compartments: Name (top), Attributes (middle), Operations (bottom). <code>+</code> Public, <code>-</code> Private.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg width="40" height="15" viewBox="0 0 40 15"><line x1="0" y1="7" x2="28" y2="7" stroke="black" stroke-width="2"/><polygon points="28,2 38,7 28,12" stroke="black" fill="none" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Inheritance/Generalization:</strong> Solid line with hollow triangle. Represents an "is-a" relationship.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg width="40" height="15" viewBox="0 0 40 15"><line x1="0" y1="7" x2="28" y2="7" stroke="black" stroke-dasharray="4" stroke-width="2"/><polygon points="28,2 38,7 28,12" stroke="black" fill="none" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Realization/Implementation:</strong> Dashed line with hollow triangle. Used for implementing interfaces.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg width="40" height="15" viewBox="0 0 40 15"><line x1="12" y1="7" x2="40" y2="7" stroke="black" stroke-width="2"/><polygon points="0,7 6,2 12,7 6,12" stroke="black" fill="none" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Aggregation:</strong> Solid line with a hollow diamond. Represents a "has-a" relationship where the child can exist independently.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg width="40" height="15" viewBox="0 0 40 15"><line x1="12" y1="7" x2="40" y2="7" stroke="black" stroke-width="2"/><polygon points="0,7 6,2 12,7 6,12" fill="black"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Composition:</strong> Solid line with a filled diamond. Represents a strict "owns-a" relationship (lifecycle dependency).</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg width="40" height="15" viewBox="0 0 40 15"><line x1="0" y1="7" x2="40" y2="7" stroke="black" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Association:</strong> Solid line connecting two classes indicating they communicate or are linked.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg width="40" height="15" viewBox="0 0 40 15"><line x1="0" y1="7" x2="36" y2="7" stroke="black" stroke-dasharray="4" stroke-width="2"/><polyline points="30,2 38,7 30,12" stroke="black" fill="none" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Dependency:</strong> Dashed line with open arrow. Changes in one element may affect the other.</div>
+            </li>
+        </ul>
+    </div>
+
+    <h3>Exercise 3: University Management System</h3>
+    <div class="question-box">
+        <strong>Question:</strong> A university manages students, lecturers, departments, courses, enrolments, assignments, submissions, and grades. Every Person has a name, address, email, and phone number. A Student and a Lecturer are specialized types of Person and have unique identifiers: studentID and lecturerID, respectively. Each department has a department ID, name, and office location. A department employs multiple lecturers and offers multiple courses. Each lecturer belongs to exactly one department. Each course has a course code, title, number of credits, and semester. A lecturer may teach multiple courses, while each course is taught by one lecturer. Students enroll in courses. The enrolment records the enrolment date and current status. Each course contains multiple assignments. Every assignment has a title, description, due date, and total marks. Students submit assignments. A submission stores the submission date, obtained marks, and feedback.
+    </div>
+    <div class="explanation">
+        <strong>Explanation:</strong> This diagram models static structures. `Student` and `Lecturer` inherit from a generalized `Person` class to reuse attributes. A `Department` aggregates `Lecturers` and `Courses` (because departments don't strictly "own" the lifecycle of a person, though course aggregation is debatable, composition is used here for standard academic modeling). `Enrolment` serves as an association class resolving the many-to-many relationship between `Student` and `Course` because it holds data (status, date) specific to the relationship.
+    </div>
+    <div class="assumption">
+        <strong>Assumptions:</strong> The relationship between Student and Course is many-to-many. Because "Enrolment" holds data (date, status) specifically about that many-to-many link, it is logically an Association Class.
+    </div>
+    <div class="diagram-container">
+        <pre class="mermaid">
+        classDiagram
+            class Person {
+              -String name
+              -String address
+              -String email
+              -String phone
+            }
+            
+            class Student {
+              -String studentID
+            }
+            
+            class Lecturer {
+              -String lecturerID
+            }
+            
+            class Department {
+              -String departmentID
+              -String name
+              -String officeLocation
+            }
+            
+            class Course {
+              -String courseCode
+              -String title
+              -int credits
+              -int semester
+            }
+            
+            class Enrolment {
+              -Date enrolmentDate
+              -String status
+            }
+            
+            class Assignment {
+              -String title
+              -String description
+              -Date dueDate
+              -float totalMarks
+            }
+            
+            class Submission {
+              -Date submissionDate
+              -float obtainedMarks
+              -String feedback
+            }
+            
+            Person &lt;|-- Student
+            Person &lt;|-- Lecturer
+            
+            Department "1" *-- "1..*" Lecturer : employs
+            Department "1" *-- "1..*" Course : offers
+            
+            Lecturer "1" -- "1..*" Course : teaches
+            
+            Student "1" -- "0..*" Enrolment
+            Course "1" -- "0..*" Enrolment 
+            
+            Course "1" *-- "1..*" Assignment : contains
+            Student "1" -- "0..*" Submission : makes
+            Assignment "1" -- "0..*" Submission : receives
+        </pre>
+    </div>
+
+    <h3>Exercise 4: Vehicle System</h3>
+    <div class="question-box">
+        <strong>Question:</strong> A vehicle management system keeps records of vehicles and their engines. Each vehicle has a unique vehicle number, model, and manufacturer. A vehicle can be powered by either a PetrolEngine or an Electric Engine. Every engine has an engine ID and is responsible for starting the vehicle. Although both engine types provide the ability to start a vehicle, the procedure for starting the engine differs depending on the engine type. The system stores information about the engine installed in each vehicle so that the appropriate engine can be used whenever the vehicle is started.
+    </div>
+    <div class="explanation">
+        <strong>Explanation:</strong> This demonstrates inheritance and polymorphism. The abstract `Engine` class defines the `start()` operation. `PetrolEngine` and `ElectricEngine` inherit from it to provide specific implementations. A `Vehicle` is composed of exactly one generic `Engine`, enabling it to start regardless of the underlying engine type. *(Note: The HTML-safe entity for the inheritance arrow `&lt;|--` is explicitly used to ensure strict syntax rendering).*
+    </div>
+    <div class="diagram-container">
+        <pre class="mermaid">
+        classDiagram
+            class Vehicle {
+              -String vehicleNumber
+              -String model
+              -String manufacturer
+              +startVehicle() void
+            }
+            
+            class Engine {
+              -String engineID
+              +start() void
+            }
+            
+            class PetrolEngine {
+              +start() void
+            }
+            
+            class ElectricEngine {
+              +start() void
+            }
+            
+            Vehicle "1" *-- "1" Engine : powered by
+            
+            Engine &lt;|-- PetrolEngine
+            Engine &lt;|-- ElectricEngine
+        </pre>
+    </div>
+
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true, theme: 'default' });
+    </script>
+</body>
+</html>
