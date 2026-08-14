@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Comprehensive React & Git Study Guide</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 40px 10%;
+            color: #2d3748;
+            line-height: 1.6;
+            font-size: 16px;
+            background-color: #fdfbf7;
+        }
+        h1, h2, h3 {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            color: #1a202c;
+        }
+        h1 {
+            font-size: 2.2rem;
+            border-bottom: 3px solid #2b6cb0;
+            padding-bottom: 8px;
+            text-align: center;
+            color: #2b6cb0;
+        }
+        .subtitle {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            text-align: center;
+            font-size: 1.2rem;
+            color: #4a5568;
+            margin-bottom: 40px;
+            font-weight: bold;
+        }
+        h2 {
+            font-size: 1.6rem;
+            border-left: 5px solid #2b6cb0;
+            padding-left: 12px;
+            margin-top: 40px;
+            background-color: #edf2f7;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        h3 {
+            font-size: 1.3rem;
+            margin-top: 25px;
+            color: #2c5282;
+            border-bottom: 1px solid #cbd5e0;
+            padding-bottom: 5px;
+        }
+        pre {
+            background-color: #1a202c;
+            color: #e2e8f0;
+            padding: 16px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #edf2f7;
+            padding: 3px 6px;
+            border-radius: 4px;
+            color: #c53030;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            color: inherit;
+        }
+        .callout {
+            background-color: #ebf8ff;
+            border: 1px solid #90cdf4;
+            border-left: 5px solid #3182ce;
+            border-radius: 6px;
+            padding: 16px 20px;
+            margin: 20px 0;
+        }
+        .callout-title {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: bold;
+            color: #2c5282;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Comprehensive React & Git Study Guide</h1>
+    <div class="subtitle">Advanced Architecture, API Integration, and Repository Management</div>
+
+    <h2>Part 1: Advanced React Theory & Architecture</h2>
+    <p>To succeed in a non-basic assessment, you must demonstrate an understanding of <em>why</em> you are using specific tools, not just <em>how</em>.</p>
+
+    <h3>1. Component Architecture & Custom Hooks</h3>
+    <p>In professional applications, data-fetching logic is abstracted away from UI components. We use custom hooks (like <code>useFetch</code>) to handle the fetch lifecycle, keeping the components strictly focused on rendering the UI.</p>
+
+    <h3>2. Complex State Management</h3>
+    <p>For simple toggles, <code>useState</code> is fine. If state involves multiple sub-values or the next state depends heavily on the previous state, <code>useReducer</code> is the standard. It centralizes state transition logic outside the component render cycle.</p>
+
+    <h3>3. Routing (React Router)</h3>
+    <p>Modern single-page applications (SPAs) use libraries like <code>react-router-dom</code> to intercept the URL change and dynamically swap out the React components being rendered, preserving the application's state without a full page reload.</p>
+
+    <h3>4. Backend Interaction & API Consumption (Required Focus)</h3>
+    <p>Even without building a backend, you must handle the realities of network requests in the frontend:</p>
+    <ul>
+        <li><strong>Asynchronous JavaScript:</strong> Use <code>async/await</code> and Promises to handle data fetching without freezing the UI.</li>
+        <li><strong>Tri-State UI Management:</strong> Every API call has three possible states: <em>Loading</em>, <em>Error</em>, and <em>Success</em>.</li>
+        <li><strong>Lifecycle and Cleanup:</strong> Use an <code>AbortController</code> in your <code>useEffect</code> cleanup function to cancel requests if the component unmounts prematurely, preventing memory leaks.</li>
+    </ul>
+
+    <div class="callout">
+        <div class="callout-title">Side Question: What is the "Dependency Array" in useEffect?</div>
+        <ul>
+            <li><strong>Omitted <code>useEffect(() =&gt; {...})</code>:</strong> Runs on every single render. Usually causes infinite loops.</li>
+            <li><strong>Empty <code>[]</code>:</strong> Runs exactly once when the component mounts.</li>
+            <li><strong>Populated <code>[url, id]</code>:</strong> Runs only when <code>url</code> or <code>id</code> changes between renders.</li>
+        </ul>
+    </div>
+
+    <div class="callout">
+        <div class="callout-title">Side Question: Explain "Prop Drilling" and its solution.</div>
+        <p><strong>Explanation:</strong> Passing data from a high-level component down through multiple intermediate components that don't need it, just to reach a deeply nested child.<br>
+        <strong>Solution:</strong> Use the Context API (<code>createContext</code> and <code>useContext</code>) to "teleport" data, or use a state manager like Redux.</p>
+    </div>
+
+    <h2>Part 2: Advanced Git Theory & Repository Management</h2>
+
+    <h3>1. Branching Strategy</h3>
+    <p>Never work directly on the <code>main</code> branch. <code>main</code> reflects production code. <code>develop</code> is the integration branch. <code>feature/*</code> branches are created for specific tasks and merged back into develop.</p>
+
+    <h3>2. Rebasing vs. Merging</h3>
+    <ul>
+        <li><strong>Merge:</strong> Ties two branches together with a "merge commit." Non-destructive but creates a web-like history.</li>
+        <li><strong>Rebase:</strong> Moves the feature branch to begin on the tip of the target branch. Rewrites history for a clean, linear commit history.</li>
+    </ul>
+
+    <div class="callout">
+        <div class="callout-title">Side Question: How do you resolve a Git Merge Conflict?</div>
+        <ol>
+            <li>Run <code>git status</code> to identify unmerged files.</li>
+            <li>Open the file and look for markers: <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code>, <code>=======</code>, and <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt; branch</code>.</li>
+            <li>Manually edit the code to the desired state and delete markers.</li>
+            <li>Stage the file: <code>git add &lt;filename&gt;</code> and complete: <code>git commit</code> or <code>git rebase --continue</code>.</li>
+        </ol>
+    </div>
+
+    <h2>Part 3: End-to-End Application Walkthrough</h2>
+    <p>Building a User Directory Application with routing, custom API hooks, and mixed CSS styling.</p>
+
+    <h3>Step 1: Initialization & Branching</h3>
+<pre><code>npm create vite@latest user-directory -- --template react
+cd user-directory
+npm install react-router-dom
+git init
+git add .
+git commit -m "chore: initial Vite setup"
+git switch -c feature/user-routing-styles</code></pre>
+
+    <h3>Step 2: The API Hook (Backend Interaction)</h3>
+    <p>Create <code>src/hooks/useFetch.js</code>. This handles async logic, tri-state UI management, and cleanup.</p>
+<pre><code>import { useState, useEffect } from 'react';
+
+export const useFetch = (url) => {
+    const [data, setData] = useState(null);       // State 1: Success
+    const [loading, setLoading] = useState(true); // State 2: Loading
+    const [error, setError] = useState(null);     // State 3: Error
+
+    useEffect(() => {
+        const abortController = new AbortController(); 
+
+        const fetchData = async () => {
+            setLoading(true);
+            try {
+                const response = await fetch(url, { signal: abortController.signal });
+                if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+                const json = await response.json();
+                setData(json);
+            } catch (err) {
+                if (err.name !== 'AbortError') setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+        return () => abortController.abort(); // Cleanup on unmount
+    }, [url]);
+
+    return { data, loading, error };
+};</code></pre>
+
+    <h3>Step 3: External Stylesheet</h3>
+    <p>Create <code>src/styles/main.css</code>.</p>
+<pre><code>.app-container { font-family: sans-serif; max-width: 800px; margin: 0 auto; }
+.directory-list { list-style-type: none; padding: 0; }
+.directory-item { background: #f9f9f9; border: 1px solid #eaeaea; padding: 15px; margin-bottom: 12px; display: flex; justify-content: space-between; }
+.profile-card { border: 1px solid #ccc; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+.btn-link { text-decoration: none; color: #007bff; font-weight: bold; }</code></pre>
+
+    <h3>Step 4: The Components (UI State Handling)</h3>
+    <p><strong>Home Page (<code>src/pages/Home.jsx</code>)</strong></p>
+<pre><code>import { Link } from 'react-router-dom';
+import { useFetch } from '../hooks/useFetch';
+
+export default function Home() {
+    const { data: users, loading, error } = useFetch('https://jsonplaceholder.typicode.com/users');
+
+    if (loading) return &lt;div&gt;Loading user database...&lt;/div&gt;;
+    if (error) return &lt;div style={{ color: 'red' }}&gt;Failed to load: {error}&lt;/div&gt;;
+
+    return (
+        &lt;div&gt;
+            &lt;h2&gt;Employee Directory&lt;/h2&gt;
+            &lt;ul className="directory-list"&gt;
+                {users.map((user) =&gt; (
+                    &lt;li key={user.id} className="directory-item" style={{ borderLeft: `5px solid ${user.id % 2 === 0 ? '#28a745' : '#007bff'}` }}&gt;
+                        &lt;strong&gt;{user.name}&lt;/strong&gt; 
+                        &lt;Link to={`/user/${user.id}`} className="btn-link"&gt;View Details&lt;/Link&gt;
+                    &lt;/li&gt;
+                ))}
+            &lt;/ul&gt;
+        &lt;/div&gt;
+    );
+}</code></pre>
+
+    <p><strong>Details Page (<code>src/pages/UserDetails.jsx</code>)</strong></p>
+<pre><code>import { useParams, Link } from 'react-router-dom';
+import { useFetch } from '../hooks/useFetch';
+
+export default function UserDetails() {
+    const { id } = useParams();
+    const { data: user, loading, error } = useFetch(`https://jsonplaceholder.typicode.com/users/${id}`);
+
+    if (loading) return &lt;div&gt;Fetching profile details...&lt;/div&gt;;
+    if (error) return &lt;div style={{ color: 'red' }}&gt;Error: {error}&lt;/div&gt;;
+
+    return (
+        &lt;div className="profile-card"&gt;
+            &lt;h2&gt;{user.name}'s Profile&lt;/h2&gt;
+            &lt;div style={{ margin: '20px 0', color: '#555' }}&gt;
+                &lt;p&gt;&lt;strong&gt;Email:&lt;/strong&gt; {user.email}&lt;/p&gt;
+                &lt;p&gt;&lt;strong&gt;Company:&lt;/strong&gt; {user.company.name}&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;Link to="/" className="btn-link"&gt;&amp;larr; Back to Directory&lt;/Link&gt;
+        &lt;/div&gt;
+    );
+}</code></pre>
+
+    <h3>Step 5: Routing & Merging</h3>
+    <p>Update <code>src/App.jsx</code> to import styles and establish routes.</p>
+<pre><code>import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import './styles/main.css'; 
+import Home from './pages/Home';
+import UserDetails from './pages/UserDetails';
+
+export default function App() {
+    return (
+        &lt;Router&gt;
+            &lt;main className="app-container" style={{ padding: '40px 20px' }}&gt;
+                &lt;h1 style={{ textAlign: 'center' }}&gt;Company Portal&lt;/h1&gt;
+                &lt;Routes&gt;
+                    &lt;Route path="/" element={&lt;Home /&gt;} /&gt;
+                    &lt;Route path="/user/:id" element={&lt;UserDetails /&gt;} /&gt;
+                &lt;/Routes&gt;
+            &lt;/main&gt;
+        &lt;/Router&gt;
+    );
+}</code></pre>
+
+    <p>Merge into main via terminal:</p>
+<pre><code>git switch main
+git merge --no-ff feature/user-routing-styles -m "Merge feature: routing, API integration"</code></pre>
+
+</body>
+</html>
