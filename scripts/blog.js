@@ -16,6 +16,7 @@ const BLOG_SLUGS = [
   'how-stairdoc-works',
   'dsa-in-the-real-world',
   'building-with-nextjs-prisma',
+  'zero-direct-access-recruitment',
 ];
 
 // In-memory cache: slug → { meta, body }

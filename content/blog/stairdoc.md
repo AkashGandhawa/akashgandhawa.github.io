@@ -2,7 +2,7 @@
 title: How StairDoc Climbs Stairs
 category: Robotics
 date: July 2026
-read: 2 min read
+read: 1 min read
 excerpt: The mechanical and software challenges behind building a robot that navigates staircases autonomously.
 ---
 

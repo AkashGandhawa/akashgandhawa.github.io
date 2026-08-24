@@ -38,6 +38,7 @@ const TERMINAL_COMMANDS = {
   ],
 
   projects: () => [
+    { t:'output', c:'<span class="tag">Volunteer System</span> MoraSpirit recruitment platform [TS/Next.js]' },
     { t:'output', c:'<span class="tag">Maze-Cypher</span>   autonomous micromouse robot [C/C++]' },
     { t:'output', c:'<span class="tag">StairDoc</span>      stair-climbing delivery robot [C++]' },
     { t:'output', c:'<span class="tag">TextileERP</span>    manufacturing ERP system [C]' },
