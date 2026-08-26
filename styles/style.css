@@ -452,6 +452,22 @@ img { display: block; max-width: 100%; }
   color: var(--text);
 }
 
+.project-card__linkedin {
+  color: var(--muted);
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.2s;
+  flex-shrink: 0;
+  background: none;
+  text-decoration: none;
+}
+.project-card__linkedin:hover { color: #0A66C2; background: none; }
+.project-card__meta a {
+  background: none;
+  text-decoration: none;
+  outline: none;
+}
+
 /* ── PROJECT CARDS ── */
 .projects-grid {
   display: grid;
@@ -827,20 +843,6 @@ img { display: block; max-width: 100%; }
 
 /* visual expand hint */
 .project-card__visual { position: relative; cursor: zoom-in; }
-.project-card__visual::after {
-  content: '⤢';
-  position: absolute;
-  bottom: 0.5rem; right: 0.6rem;
-  font-size: 0.75rem;
-  color: var(--teal);
-  background: rgba(7,21,21,0.7);
-  padding: 0.15rem 0.35rem;
-  border-radius: 3px;
-  opacity: 0;
-  transition: opacity 0.2s;
-  pointer-events: none;
-}
-.project-card:hover .project-card__visual::after { opacity: 1; }
 
 
 /* ── GITHUB STATS ── */
@@ -1077,10 +1079,10 @@ img { display: block; max-width: 100%; }
   color: transparent;
   user-select: none;
 }
-/* .blog-card--loaded,
-.blog-card--error { */
+.blog-card--loaded,
+.blog-card--error {
   /* content visible, no shimmer */
-/*} */
+}
 
 /* ── BLOG MODAL SPINNER ── */
 .blog-modal__loading {

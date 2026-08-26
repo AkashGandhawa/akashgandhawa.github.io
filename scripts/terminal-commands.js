@@ -40,10 +40,10 @@ const TERMINAL_COMMANDS = {
   projects: () => [
     { t:'output', c:'<span class="tag">Volunteer System</span> MoraSpirit recruitment platform [TS/Next.js]' },
     { t:'output', c:'<span class="tag">Maze-Cypher</span>   autonomous micromouse robot [C/C++]' },
-    { t:'output', c:'<span class="tag">StairDoc</span>      stair-climbing delivery robot [C++]' },
     { t:'output', c:'<span class="tag">TextileERP</span>    manufacturing ERP system [C]' },
     { t:'output', c:'<span class="tag">Thorana</span>       digital Vesak pandal [HTML/CSS]' },
-    { t:'output', c:'→ <a href="#projects">scroll down to see cards with previews</a>' },
+    { t:'output', c:'<span class="tag">StairDoc</span>      stair-climbing delivery robot [C++]' },
+    { t:'output', c:'→ visit the <a href="#projects">Projects section</a> to explore cards, screenshots &amp; live demos' },
   ],
 
   contact: () => [
