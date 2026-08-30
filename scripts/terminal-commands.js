@@ -1,13 +1,8 @@
 /* ============================================================
    AKASH GANDHAWA — PORTFOLIO
-   terminal-commands.js  —  All terminal command definitions
+   scripts/terminal-commands.js  —  All terminal command definitions
 
-   Each command returns an array of line objects:
-     { t: 'output', c: '<html string>' }
-   Or the special string '__clear__' for the clear command.
-
-   To add a new command: add a key here and it is automatically
-   available in the terminal — no changes to main.js needed.
+   To add a new command: add a key here — no changes to main.js needed.
    ============================================================ */
 
 const TERMINAL_COMMANDS = {
@@ -32,17 +27,18 @@ const TERMINAL_COMMANDS = {
 
   skills: () => [
     { t:'output', c:'<span class="tag">languages</span>  C · C++ · TypeScript · HTML/CSS' },
-    { t:'output', c:'<span class="tag">frameworks</span> Next.js · Node.js · Prisma ORM' },
-    { t:'output', c:'<span class="tag">domains</span>    AI/ML · Robotics · Embedded Systems' },
+    { t:'output', c:'<span class="tag">frameworks</span> Next.js · Node.js · Tailwind CSS · Zod' },
+    { t:'output', c:'<span class="tag">services</span>   Supabase · Upstash Redis · Cloudflare' },
+    { t:'output', c:'<span class="tag">domains</span>    Embedded Systems · Full-Stack Web · Robotics · AI/ML' },
     { t:'output', c:'<span class="tag">tools</span>      Git · Data Structures · Algorithms' },
   ],
 
   projects: () => [
     { t:'output', c:'<span class="tag">Volunteer System</span> MoraSpirit recruitment platform [TS/Next.js]' },
     { t:'output', c:'<span class="tag">Maze-Cypher</span>   autonomous micromouse robot [C/C++]' },
-    { t:'output', c:'<span class="tag">Textile-ERP</span>    manufacturing ERP system [C]' },
+    { t:'output', c:'<span class="tag">Textile-ERP</span>   manufacturing ERP system [C]' },
     { t:'output', c:'<span class="tag">Thorana</span>       digital Vesak pandal [HTML/CSS]' },
-    { t:'output', c:'→ visit the <a href="#projects">Projects section</a> to explore cards, screenshots &amp; live demos' },
+    { t:'output', c:'→ visit the <a href="#projects">Projects section</a>' },
   ],
 
   contact: () => [
@@ -53,8 +49,7 @@ const TERMINAL_COMMANDS = {
   ],
 
   status: () => [
-    { t:'output', c:'<span class="tag">status</span>    <span class="hi">Open to opportunities</span> 🟢' },
-    { t:'output', c:'<span class="tag">seeking</span>   internships · collaborations · interesting problems' },
+    { t:'output', c:'<span class="tag">status</span>    <span class="hi">Available for projects and collaborations with positive impact</span> 🟢' },
   ],
 
   version: () => [
