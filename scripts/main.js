@@ -3,6 +3,14 @@
    main.js  —  Terminal · Projects · GitHub · UI
    ============================================================ */
 
+// ── HIDE DRAFTS ──
+// Controlled by PORTFOLIO_CONFIG.SHOW_DRAFTS in scripts/config.js
+(function () {
+  if (!window.PORTFOLIO_CONFIG?.SHOW_DRAFTS) {
+    document.querySelectorAll('[data-draft="true"]').forEach(el => el.remove());
+  }
+})();
+
 // ── INTERACTIVE TERMINAL ──
 (function () {
   const termBody  = document.getElementById('terminal-body');

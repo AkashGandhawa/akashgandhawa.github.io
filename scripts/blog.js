@@ -13,10 +13,8 @@ const GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/AkashGandhawa/AkashGa
 
 // Add new slugs here to register new posts
 const BLOG_SLUGS = [
-  'how-stairdoc-works',
-  'dsa-in-the-real-world',
-  'building-with-nextjs-prisma',
   'zero-direct-access-recruitment',
+  'dsa-assignment-textile-erp',
 ];
 
 // In-memory cache: slug → { meta, body }
