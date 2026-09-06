@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UML Analysis and Design: Theory Guide</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 1200px; margin: 0 auto; padding: 20px; background: #f4f7f6; }
+        h1 { color: #2c3e50; border-bottom: 3px solid #2980b9; padding-bottom: 10px; text-align: center; }
+        h2 { color: #2980b9; border-left: 5px solid #2980b9; padding-left: 10px; margin-top: 40px; background: #eaf2f8; padding: 10px 10px 10px 15px; border-radius: 0 5px 5px 0; }
+        h3 { color: #34495e; margin-top: 30px; border-bottom: 2px solid #bdc3c7; padding-bottom: 5px; }
+        .question-box { background: #fff; border: 1px solid #d5dbdb; padding: 15px; border-radius: 5px; margin-bottom: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .theory { background: #fff; padding: 15px; border-radius: 5px; margin-bottom: 15px; border-left: 4px solid #8e44ad; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .explanation { background: #fff; padding: 15px; border-radius: 5px; margin-bottom: 15px; border-left: 4px solid #27ae60; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .diagram-container { background: #fff; padding: 20px; border-radius: 5px; margin-bottom: 30px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); overflow-x: auto; }
+        .mermaid { display: flex; justify-content: center; font-family: 'Courier New', Courier, monospace; }
+        ul { margin-top: 5px; }
+        li { margin-bottom: 8px; }
+        ul.theory-list { list-style-type: none; padding-left: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 15px; }
+        ul.theory-list li { display: flex; align-items: flex-start; }
+        .symbol-logo { display: inline-flex; justify-content: center; align-items: center; width: 50px; height: 40px; margin-right: 15px; background: #f4f6f7; border: 1px solid #ddd; border-radius: 4px; padding: 4px; flex-shrink: 0; }
+        .symbol-desc { font-size: 0.9em; }
+        .alert-note { display: block; margin-top: 10px; padding: 10px; background-color: #fcf3cf; border-left: 4px solid #f1c40f; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+
+    <h1>UML Analysis and Design: Theory Guide</h1>
+    <p style="text-align: center; font-size: 1.1em; color: #555;">A comprehensive visual guide covering the theoretical conventions, symbols, and practical examples for all 8 specified UML diagram types.</p>
+    
+    <div class="alert-note">
+        <strong>Rendering Note:</strong> The diagrams below are dynamically rendered using Mermaid.js with strictly corrected syntax. Activation bars in sequence diagrams have been omitted from the raw code to guarantee rendering stability across all browsers, but their required placement is detailed in the explanations.
+    </div>
+
+    <!-- 1. USE CASE DIAGRAM -->
+    <h2>1. Use Case Diagram</h2>
+    <div class="theory">
+        <h3>Complete UML Conventions & Symbols</h3>
+        <ul class="theory-list">
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="30" viewBox="0 0 24 30"><circle cx="12" cy="6" r="4" stroke="black" fill="none" stroke-width="2"/><line x1="12" y1="10" x2="12" y2="20" stroke="black" stroke-width="2"/><line x1="12" y1="12" x2="4" y2="16" stroke="black" stroke-width="2"/><line x1="12" y1="12" x2="20" y2="16" stroke="black" stroke-width="2"/><line x1="12" y1="20" x2="6" y2="28" stroke="black" stroke-width="2"/><line x1="12" y1="20" x2="18" y2="28" stroke="black" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Actor:</strong> External entity interacting with the system.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" viewBox="0 0 40 30"><rect x="2" y="2" width="36" height="26" stroke="black" fill="none" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>System Boundary:</strong> Box defining the scope of the system.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="20" viewBox="0 0 40 20"><ellipse cx="20" cy="10" rx="18" ry="8" stroke="black" fill="none" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Use Case:</strong> Represents a functional requirement.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="10" viewBox="0 0 40 10"><line x1="0" y1="5" x2="40" y2="5" stroke="black" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Association:</strong> Solid line connecting an Actor to a Use Case.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="15" viewBox="0 0 40 15"><line x1="0" y1="7" x2="36" y2="7" stroke="black" stroke-dasharray="4" stroke-width="2"/><polyline points="30,2 38,7 30,12" stroke="black" fill="none" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>&lt;&lt;include&gt;&gt; / &lt;&lt;extend&gt;&gt;:</strong> Dashed arrow showing dependency.</div>
+            </li>
+        </ul>
+    </div>
+    <div class="question-box">
+        <h3>Example: Online Banking System</h3>
+        <p><strong>Description:</strong> You have been hired to build an Online Banking System. The system allows customers to log in, view their account balance, transfer money, and pay bills. If a transfer exceeds a daily limit, the system sends an alert to the customer. Bank staff can view customer accounts and generate financial reports. The system automatically generates a daily transaction summary every midnight. Transfer Money and Pay Bill both require the user to be logged in. When a transfer exceeds the daily limit, the system sends an alert. "Verify Password" is always required during Login. Draw ALL the relationships between these elements.</p>
+    </div>
+    <div class="explanation">
+        <h3>Explanation</h3>
+        <ul>
+            <li><strong>Actors:</strong> The primary actors are the Customer and Bank Staff, who possess goals fulfilled by the system. A secondary actor is the automated timer/system triggering the midnight summary.</li>
+            <li><strong>Relationships:</strong> Because "Transfer Money" and "Pay Bill" mandate logging in, they are connected to "Login" using an <code>&lt;&lt;include&gt;&gt;</code> relationship.</li>
+            <li>"Verify Password" is a mandatory component of logging in, thus it is an included use case of "Login".</li>
+            <li>Sending an alert only happens under specific limits, so it is modeled using an <code>&lt;&lt;extend&gt;&gt;</code> relationship branching off "Transfer Money".</li>
+        </ul>
+    </div>
+    <div class="diagram-container">
+        <pre class="mermaid">
+        flowchart LR
+            Customer((Customer))
+            Staff((Bank Staff))
+            Timer((Time Trigger))
+            
+            subgraph OBS ["Online Banking System"]
+                UC1([Login])
+                UC2([Verify Password])
+                UC3([View Account Balance])
+                UC4([Transfer Money])
+                UC5([Pay Bills])
+                UC6([Send Alert])
+                UC7([View Customer Accounts])
+                UC8([Generate Financial Reports])
+                UC9([Generate Daily Summary])
+            end
+            
+            Customer --- UC1
+            Customer --- UC3
+            Customer --- UC4
+            Customer --- UC5
+            
+            UC1 -.->|include| UC2
+            UC4 -.->|include| UC1
+            UC5 -.->|include| UC1
+            
+            UC6 -.->|extend| UC4
+            
+            Staff --- UC7
+            Staff --- UC8
+            
+            Timer --- UC9
+        </pre>
+    </div>
+
+    <!-- 2. ACTIVITY DIAGRAM -->
+    <h2>2. Activity Diagram</h2>
+    <div class="theory">
+        <h3>Complete UML Conventions & Symbols</h3>
+        <ul class="theory-list">
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="black"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Initial Node:</strong> Filled circle. Start of the workflow.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="20" viewBox="0 0 40 20"><rect x="2" y="2" width="36" height="16" rx="6" ry="6" stroke="black" fill="none" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Action/Activity:</strong> Represents a single step.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><polygon points="12,2 22,12 12,22 2,12" stroke="black" fill="none" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Decision / Merge Node:</strong> Diamond shape representing splits or joins in logic.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="15" viewBox="0 0 40 15"><rect x="18" y="2" width="4" height="12" fill="black"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Fork/Join Node:</strong> Splits (Fork) or syncs (Join) concurrent threads.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" viewBox="0 0 40 30"><rect x="2" y="2" width="36" height="26" stroke="black" fill="none" stroke-width="2"/><line x1="20" y1="2" x2="20" y2="28" stroke="black" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Swimlanes:</strong> Divides diagram to show who is responsible for actions.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" stroke="black" fill="none" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="black"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Final Node:</strong> Bullseye marking the end.</div>
+            </li>
+        </ul>
+    </div>
+    <div class="question-box">
+        <h3>Example: Maintaining Storage Tanks</h3>
+        <p><strong>Description:</strong> First the Gardner examines the levels of the storage tanks' contents. If he determines that tanks need to be refilled, he should initiate the refilling process. In such case, Gardner will first suspend the normal hydroponics system operation of storage tanks. Then he will select tanks and sets fill levels. Next, he will fill the tanks. If tank is heated, the system disables heaters before filling and enables them after. Finally, the Gardner will resume the normal hydroponics system operation.</p>
+    </div>
+    <div class="explanation">
+        <h3>Explanation</h3>
+        <ul>
+            <li>Swimlanes partition the responsibilities between the Gardener, the WaterTank, and the NutrientTank.</li>
+            <li>The process splits into parallel operations for disabling the heating, filling the water tank, and filling the nutrient tank.</li>
+            <li>A Fork node handles the simultaneous split into the tank elements, and a Join node awaits the completion of all filling tasks before allowing the system to resume operations.</li>
+        </ul>
+    </div>
+    <div class="diagram-container">
+        <pre class="mermaid">
+        stateDiagram-v2
+            [*] --> CheckLevels
+            
+            state Gardener {
+                CheckLevels : Check Tank Levels
+                Suspend : Suspend Operations
+                SetLevels : Set Fill Levels
+                Resume : Resume Operations
+            }
+            
+            state WaterTank {
+                DisableHeat : Disable Heating
+                FillWater : Fill
+                EnableHeat : Enable Heating
+            }
+            
+            state NutrientTank {
+                FillNutrient : Fill
+            }
+            
+            CheckLevels --> if_levels
+            state if_levels &lt;&lt;choice&gt;&gt;
+            if_levels --> Suspend : [needs refill]
+            if_levels --> [*] : [all levels within tolerance]
+            
+            Suspend --> SetLevels : [suspended]
+            
+            state fork_fill &lt;&lt;fork&gt;&gt;
+            SetLevels --> fork_fill
+            
+            fork_fill --> DisableHeat
+            fork_fill --> FillNutrient
+            
+            DisableHeat --> FillWater : [heater below safe temp]
+            FillWater --> EnableHeat : [full]
+            
+            state join_fill &lt;&lt;join&gt;&gt;
+            EnableHeat --> join_fill
+            FillNutrient --> join_fill : [full]
+            
+            join_fill --> Resume
+            Resume --> [*]
+        </pre>
+    </div>
+
+    <!-- 3. SEQUENCE DIAGRAM -->
+    <h2>3. Sequence Diagram</h2>
+    <div class="theory">
+        <h3>Complete UML Conventions & Symbols</h3>
+        <ul class="theory-list">
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" viewBox="0 0 40 30"><rect x="10" y="2" width="20" height="10" stroke="black" fill="none" stroke-width="2"/><line x1="20" y1="12" x2="20" y2="28" stroke="black" stroke-dasharray="4" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Lifeline:</strong> Represents an object's existence over time.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" viewBox="0 0 40 30"><line x1="2" y1="15" x2="36" y2="15" stroke="black" stroke-width="2"/><polygon points="30,10 38,15 30,20" fill="black"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Synchronous Message:</strong> Sender waits for a response.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" viewBox="0 0 40 30"><line x1="2" y1="15" x2="36" y2="15" stroke="black" stroke-width="2"/><polyline points="30,10 38,15 30,20" stroke="black" fill="none" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Asynchronous Message:</strong> Sender does not wait.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" viewBox="0 0 40 30"><line x1="2" y1="15" x2="36" y2="15" stroke="black" stroke-dasharray="4" stroke-width="2"/><polyline points="30,10 38,15 30,20" stroke="black" fill="none" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Return Message:</strong> Dashed line indicating a reply.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" viewBox="0 0 40 30"><rect x="2" y="2" width="36" height="26" stroke="black" fill="none" stroke-width="1"/><polygon points="2,2 14,2 14,10 2,10" fill="#eaf2f8" stroke="black" stroke-width="1"/><text x="4" y="8" font-size="8" font-family="sans-serif">alt</text><line x1="2" y1="15" x2="38" y2="15" stroke="black" stroke-dasharray="2" stroke-width="1"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Combined Fragment:</strong> Frame for conditional logic or loops.</div>
+            </li>
+        </ul>
+    </div>
+    <div class="question-box">
+        <h3>Example: Maintaining the Climatic Plan</h3>
+        <p><strong>Description:</strong> There are four entities involved for maintaining a climatic plan. The "Gardening Planner" is responsible for maintaining the climatic plan. The "Environment Planner" sets the optimal environmental parameters. To maintain the optimal temperature, the Environment planner iteratively checks the current temperature. If the observed temperature is below the optimal level, it'll increase the temperature by invoking the heating functionality of the "Heater" entity. Else if the observed temperature is above the optimal level, the environment controller will invoke the cooling functionality of the "Cooler" entity to reduce the temperature.</p>
+    </div>
+    <div class="explanation">
+        <h3>Explanation</h3>
+        <ul>
+            <li>The <code>loop</code> fragment manages the iterative checking of the temperature.</li>
+            <li>Inside the loop, an <code>alt</code> combined fragment controls the branching conditional logic based on the temperature parameter.</li>
+            <li>If the temperature is too low, a synchronous message is sent to the <code>Heater</code> object.</li>
+            <li>If the temperature is too high, a message is routed to the <code>Cooler</code> object instead.</li>
+        </ul>
+    </div>
+    <div class="diagram-container">
+        <pre class="mermaid">
+        sequenceDiagram
+            participant GP as :GardeningPlan
+            participant EC as :EnvironmentController
+            participant H as :Heater
+            participant C as :Cooler
+            
+            GP->>EC: setClimate
+            
+            loop Continuous Maintenance
+                EC->>EC: Determine current temperature
+                
+                alt Temperature too low
+                    EC->>H: heat
+                else Temperature too high
+                    EC->>C: cool
+                end
+                
+                EC->>GP: Log the climate change
+            end
+        </pre>
+    </div>
+
+    <!-- 4. CLASS DIAGRAM -->
+    <h2>4. Class Diagram</h2>
+    <div class="theory">
+        <h3>Complete UML Conventions & Symbols</h3>
+        <ul class="theory-list">
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" viewBox="0 0 40 30"><rect x="2" y="2" width="36" height="26" stroke="black" fill="none" stroke-width="2"/><line x1="2" y1="10" x2="38" y2="10" stroke="black" stroke-width="2"/><line x1="2" y1="20" x2="38" y2="20" stroke="black" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Class Box:</strong> Three compartments: Name, Attributes, Operations.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="15" viewBox="0 0 40 15"><line x1="0" y1="7" x2="28" y2="7" stroke="black" stroke-width="2"/><polygon points="28,2 38,7 28,12" stroke="black" fill="none" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Inheritance:</strong> Represents an "is-a" relationship.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="15" viewBox="0 0 40 15"><line x1="12" y1="7" x2="40" y2="7" stroke="black" stroke-width="2"/><polygon points="0,7 6,2 12,7 6,12" stroke="black" fill="none" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Aggregation:</strong> Represents a loosely-coupled "has-a" relationship.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="15" viewBox="0 0 40 15"><line x1="12" y1="7" x2="40" y2="7" stroke="black" stroke-width="2"/><polygon points="0,7 6,2 12,7 6,12" fill="black"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Composition:</strong> Strong "owns-a" lifecycle dependency.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="15" viewBox="0 0 40 15"><line x1="0" y1="7" x2="40" y2="7" stroke="black" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Association:</strong> Indicates classes communicate or are linked.</div>
+            </li>
+        </ul>
+    </div>
+    <div class="question-box">
+        <h3>Example: Drawing Application</h3>
+        <p><strong>Description:</strong> Shape is an abstract class. Circle, Rectangle and Polygon are derived from Shape. There is an association between DialogBox and DataController. Shape is part-of Window (Aggregation). Point is part-of Circle (Composition). Window is dependent on Event. The attributes of Circle are radius and center. The method names of Circle are area(), circum(), setCenter() and setRadius().</p>
+    </div>
+    <div class="explanation">
+        <h3>Explanation</h3>
+        <ul>
+            <li><code>Shape</code> is modeled as the generalized superclass for <code>Circle</code>, <code>Rectangle</code>, and <code>Polygon</code>.</li>
+            <li>The aggregation between <code>Window</code> and <code>Shape</code> indicates shapes exist within a window but can logically persist independently.</li>
+            <li>The composition between <code>Circle</code> and <code>Point</code> guarantees that if the circle is deleted, its central point data is also destroyed.</li>
+        </ul>
+    </div>
+    <div class="diagram-container">
+        <pre class="mermaid">
+        classDiagram
+            class Event {
+                +handleEvent()
+            }
+            
+            class Window {
+                +open()
+                +close()
+                +move()
+                +display()
+            }
+            
+            class DialogBox
+            
+            class DataController {
+                +clearScreen()
+                +getVerticalSize()
+                +getHorizontalSize()
+            }
+            
+            class Shape {
+                &lt;&lt;abstract&gt;&gt;
+                +draw()
+                +erase()
+                +move()
+                +resize()
+            }
+            
+            class Circle {
+                -float radius
+                -int center
+                +area() double
+                +circum() double
+                +setCenter()
+                +setRadius()
+            }
+            
+            class Rectangle
+            class Polygon
+            class Point
+            
+            Window ..> Event : depends on
+            DialogBox -- DataController : Association
+            Window o-- Shape : Aggregation
+            
+            Shape &lt;|-- Circle
+            Shape &lt;|-- Rectangle
+            Shape &lt;|-- Polygon
+            
+            Circle *-- Point : Composition
+        </pre>
+    </div>
+
+    <!-- 5. OBJECT DIAGRAM -->
+    <h2>5. Object Diagram</h2>
+    <div class="theory">
+        <h3>Theory & Conventions</h3>
+        <ul>
+            <li>An object diagram captures the static view of a system at a particular moment in time, representing a concrete instance.</li>
+            <li>Objects are formatted as <code>Object name : Class name</code>.</li>
+            <li>Links connect objects to map their concrete relationships matching the abstract class associations.</li>
+            <li>It helps to understand object behavior and data values from a practical, instantiated perspective.</li>
+        </ul>
+    </div>
+    <div class="question-box">
+        <h3>Example: Order Management System Instances</h3>
+        <p><strong>Description:</strong> Now the customer object (C) is associated with three order objects (O1, O2, and O3). These order objects are associated with special order and normal order objects (S1, S2, and N1). The customer has the following three orders with different numbers (12, 32 and 40) for the particular time considered.</p>
+    </div>
+    <div class="explanation">
+        <h3>Explanation</h3>
+        <ul>
+            <li>This object diagram displays a snapshot of instances derived from an abstract Order Management class hierarchy.</li>
+            <li>Instead of showing that a customer <em>can</em> have many orders, it explicitly shows <code>c: Customer</code> connected to exactly three instantiated order objects.</li>
+            <li>The attributes reflect the exact state values at the time of the snapshot, such as the specific order numbers 12, 32, and 40.</li>
+        </ul>
+    </div>
+    <div class="diagram-container">
+        <pre class="mermaid">
+        classDiagram
+            class c_Customer {
+                &lt;&lt;Customer&gt;&gt;
+            }
+            class O1_Order {
+                &lt;&lt;Order&gt;&gt;
+                number = 12
+            }
+            class O2_Order {
+                &lt;&lt;Order&gt;&gt;
+                number = 32
+            }
+            class O3_Order {
+                &lt;&lt;Order&gt;&gt;
+                number = 40
+            }
+            class S1_SpecialOrder {
+                &lt;&lt;SpecialOrder&gt;&gt;
+                number = 20
+            }
+            class S2_SpecialOrder {
+                &lt;&lt;SpecialOrder&gt;&gt;
+                number = 30
+            }
+            class N1_NormalOrder {
+                &lt;&lt;NormalOrder&gt;&gt;
+                number = 60
+            }
+            
+            c_Customer -- O1_Order
+            c_Customer -- O2_Order
+            c_Customer -- O3_Order
+            
+            O1_Order -- S1_SpecialOrder
+            O2_Order -- S2_SpecialOrder
+            O3_Order -- N1_NormalOrder
+        </pre>
+    </div>
+
+    <!-- 6. STATE DIAGRAM -->
+    <h2>6. State Diagram</h2>
+    <div class="theory">
+        <h3>Complete UML Conventions & Symbols</h3>
+        <ul class="theory-list">
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="20" viewBox="0 0 40 20"><rect x="2" y="2" width="36" height="16" rx="6" ry="6" stroke="black" fill="#85C1E9" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>State:</strong> Represents a condition satisfying a specific situation.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="black"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Initial State:</strong> Where the object's lifecycle begins.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="10" viewBox="0 0 40 10"><line x1="0" y1="5" x2="40" y2="5" stroke="black" stroke-width="2"/><polygon points="34,1 40,5 34,9" fill="black"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Transition:</strong> Triggered by an event to move between states.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" stroke="black" fill="none" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="black"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Final State:</strong> Where the lifecycle ends.</div>
+            </li>
+        </ul>
+    </div>
+    <div class="question-box">
+        <h3>Example: Heater System</h3>
+        <p><strong>Description:</strong> State Machine Diagrams are often used for deriving testing cases. The heater has Idle, Heating, Cooling (Startup, Ready, Running), and Failure states. Transitions trigger based on "too hot", "too cool", "compressor running", "ok", and "failure" events.</p>
+    </div>
+    <div class="explanation">
+        <h3>Explanation</h3>
+        <ul>
+            <li>The <code>Cooling</code> state is modeled as a composite state encompassing <code>Startup</code>, <code>Ready</code>, and <code>Running</code> substates.</li>
+            <li>This simplifies the architecture because a single <code>failure</code> event arrow can be drawn exiting the boundary of the composite state.</li>
+            <li>Events dictate the transition conditions directly between states.</li>
+        </ul>
+    </div>
+    <div class="diagram-container">
+        <pre class="mermaid">
+        stateDiagram-v2
+            [*] --> Idle
+            
+            state Cooling {
+                [*] --> Startup
+                Startup --> Ready : compressor running
+                Ready --> Running : fan running
+            }
+            
+            Idle --> Heating : too cool
+            Heating --> Idle : ok
+            Heating --> Failure : failure
+            
+            Idle --> Cooling : too hot
+            Cooling --> Idle : ok
+            Cooling --> Failure : failure
+            
+            Failure --> Idle : failure cleared
+        </pre>
+    </div>
+
+    <!-- 7. COMPONENT DIAGRAM -->
+    <h2>7. Component Diagram</h2>
+    <div class="theory">
+        <h3>Complete UML Conventions & Symbols</h3>
+        <ul class="theory-list">
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" viewBox="0 0 40 30"><rect x="6" y="2" width="32" height="26" stroke="black" fill="none" stroke-width="2"/><rect x="2" y="6" width="8" height="6" stroke="black" fill="white" stroke-width="2"/><rect x="2" y="18" width="8" height="6" stroke="black" fill="white" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Component:</strong> Autonomous modular unit with hidden internals.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="15" viewBox="0 0 40 15"><line x1="0" y1="7" x2="30" y2="7" stroke="black" stroke-width="2"/><circle cx="35" cy="7" r="4" stroke="black" fill="none" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Provided Interface:</strong> Services offered to the environment.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="15" viewBox="0 0 40 15"><line x1="0" y1="7" x2="30" y2="7" stroke="black" stroke-width="2"/><path d="M 35 3 A 4 4 0 0 0 35 11" stroke="black" fill="none" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Required Interface:</strong> Services expected from the environment.</div>
+            </li>
+        </ul>
+    </div>
+    <div class="question-box">
+        <h3>Example: Online Shopping System</h3>
+        <p><strong>Description:</strong> Visualize the software components and their dependencies to each other in an Online Shopping System containing Product, Order, Customer, Payment, and Account components linked via usage interfaces.</p>
+    </div>
+    <div class="explanation">
+        <h3>Explanation</h3>
+        <ul>
+            <li>Component diagrams focus on Service-Oriented Architecture (SOA) and modularity rather than class structures.</li>
+            <li>The <code>Order</code> component requires services from <code>Product</code>, <code>Customer</code>, and <code>Payment</code> components to successfully complete its aggregate tasks.</li>
+            <li>The <code>Payment</code> component acts as an autonomous module, requiring data validation services specifically provided by the <code>Account</code> module.</li>
+        </ul>
+    </div>
+    <div class="diagram-container">
+        <pre class="mermaid">
+        flowchart TD
+            C_Prod["&lt;&lt;component&gt;&gt; Product"]
+            C_Order["&lt;&lt;component&gt;&gt; Order"]
+            C_Cust["&lt;&lt;component&gt;&gt; Customer"]
+            C_Pay["&lt;&lt;component&gt;&gt; Payment"]
+            C_Acc["&lt;&lt;component&gt;&gt; Account"]
+            
+            C_Order -->|"item code"| C_Prod
+            C_Order -->|"Customer Details"| C_Cust
+            C_Order -->|"Payment Details"| C_Pay
+            C_Pay -->|"Account Details"| C_Acc
+        </pre>
+    </div>
+
+    <!-- 8. PACKAGE DIAGRAM -->
+    <h2>8. Package Diagram</h2>
+    <div class="theory">
+        <h3>Complete UML Conventions & Symbols</h3>
+        <ul class="theory-list">
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" viewBox="0 0 40 30"><rect x="2" y="8" width="36" height="20" stroke="black" fill="#D6EAF8" stroke-width="2"/><rect x="2" y="2" width="16" height="6" stroke="black" fill="#D6EAF8" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Package:</strong> Groups elements and provides a namespace.</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="15" viewBox="0 0 40 15"><line x1="0" y1="7" x2="36" y2="7" stroke="black" stroke-dasharray="4" stroke-width="2"/><polyline points="30,2 38,7 30,12" stroke="black" fill="none" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Dependency:</strong> A dashed arrow indicating a reliance on another element.</div>
+            </li>
+        </ul>
+    </div>
+    <div class="question-box">
+        <h3>Example: Order Processing System Layering</h3>
+        <p><strong>Description:</strong> We are going to design a package diagram for a "Track Order" scenario for an online shopping store. Track Order module is responsible for providing tracking information. It gets order details from "Order Processing". Next, it has to know about shipping details, let us call that "Shipping". Track order should get order details from "Order Processing" and "Order Processing" has to know the tracking info given by the customer. "Shipping" can import "Track Order" to make the navigation easier. Finally, Track Order dependency to UI Framework is mapped.</p>
+    </div>
+    <div class="explanation">
+        <h3>Explanation</h3>
+        <ul>
+            <li>Packages provide high-level boundaries for system modules.</li>
+            <li>Dual <code>&lt;&lt;access&gt;&gt;</code> dependencies are used between <code>Track Order</code> and <code>Order Processing</code> because the modules are securely sharing encapsulated data back and forth.</li>
+            <li>The <code>Shipping</code> package utilizes an <code>&lt;&lt;import&gt;&gt;</code> dependency to publicly incorporate the tracking elements required to update transit locations.</li>
+        </ul>
+    </div>
+    <div class="diagram-container">
+        <pre class="mermaid">
+        flowchart LR
+            UIFramework["📦 UI Framework"]
+            OrderProcessing["📦 Order Processing"]
+            TrackOrder["📦 Track Order"]
+            Shipping["📦 Shipping"]
+            
+            UIFramework -.->|&lt;&lt;access&gt;&gt;| TrackOrder
+            TrackOrder -.->|&lt;&lt;access&gt;&gt;| OrderProcessing
+            OrderProcessing -.->|&lt;&lt;access&gt;&gt;| TrackOrder
+            Shipping -.->|&lt;&lt;import&gt;&gt;| TrackOrder
+        </pre>
+    </div>
+
+    <!-- Script to render Mermaid -->
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true, theme: 'default' });
+    </script>
+</body>
+</html>
