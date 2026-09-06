@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UML Analysis and Design: Assignment 2 Complete Guide</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 1200px; margin: 0 auto; padding: 20px; background: #f4f7f6; }
+        h1 { color: #2c3e50; border-bottom: 3px solid #2980b9; padding-bottom: 10px; text-align: center; }
+        h2 { color: #2980b9; border-left: 5px solid #2980b9; padding-left: 10px; margin-top: 40px; background: #eaf2f8; padding: 10px 10px 10px 15px; border-radius: 0 5px 5px 0; }
+        h3 { color: #34495e; margin-top: 30px; border-bottom: 2px solid #bdc3c7; padding-bottom: 5px; }
+        .question-box { background: #fff; border: 1px solid #d5dbdb; padding: 15px; border-radius: 5px; margin-bottom: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .theory { background: #fff; padding: 15px; border-radius: 5px; margin-bottom: 15px; border-left: 4px solid #8e44ad; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .explanation { background: #fff; padding: 15px; border-radius: 5px; margin-bottom: 15px; border-left: 4px solid #27ae60; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .diagram-container { background: #fff; padding: 20px; border-radius: 5px; margin-bottom: 30px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); overflow-x: auto; }
+        .mermaid { display: flex; justify-content: center; font-family: 'Courier New', Courier, monospace; }
+        ul { margin-top: 5px; }
+        li { margin-bottom: 8px; }
+        ul.theory-list { list-style-type: none; padding-left: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 15px; }
+        ul.theory-list li { display: flex; align-items: flex-start; }
+        .symbol-logo { display: inline-flex; justify-content: center; align-items: center; width: 50px; height: 40px; margin-right: 15px; background: #f4f6f7; border: 1px solid #ddd; border-radius: 4px; padding: 4px; flex-shrink: 0; }
+        .symbol-desc { font-size: 0.9em; }
+        .alert-note { display: block; margin-top: 10px; padding: 10px; background-color: #fcf3cf; border-left: 4px solid #f1c40f; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+
+    <h1>UML Analysis and Design: Lab Answer Guide</h1>
+    <p style="text-align: center; font-size: 1.1em; color: #555;">A complete answer guide covering verbatim scenarios, explanations, and drawn diagrams for all 8 specified UML diagram types.</p>
+    
+    <div class="alert-note">
+        <strong>Rendering Note:</strong> The diagrams below are dynamically rendered using Mermaid.js with strictly corrected syntax. Activation bars in sequence diagrams have been omitted from the raw code to guarantee rendering stability across all browsers, but their required placement is detailed in the explanations.
+    </div>
+
+    <h2>1. Use Case Diagram</h2>
+    <div class="theory">
+        <ul class="theory-list">
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="30" viewBox="0 0 24 30"><circle cx="12" cy="6" r="4" stroke="black" fill="none" stroke-width="2"/><line x1="12" y1="10" x2="12" y2="20" stroke="black" stroke-width="2"/><line x1="12" y1="12" x2="4" y2="16" stroke="black" stroke-width="2"/><line x1="12" y1="12" x2="20" y2="16" stroke="black" stroke-width="2"/><line x1="12" y1="20" x2="6" y2="28" stroke="black" stroke-width="2"/><line x1="12" y1="20" x2="18" y2="28" stroke="black" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Actor</strong></div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" viewBox="0 0 40 30"><rect x="2" y="2" width="36" height="26" stroke="black" fill="none" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>System Boundary</strong></div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="20" viewBox="0 0 40 20"><ellipse cx="20" cy="10" rx="18" ry="8" stroke="black" fill="none" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Use Case</strong></div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="15" viewBox="0 0 40 15"><line x1="0" y1="7" x2="36" y2="7" stroke="black" stroke-dasharray="4" stroke-width="2"/><polyline points="30,2 38,7 30,12" stroke="black" fill="none" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>&lt;&lt;include&gt;&gt; / &lt;&lt;extend&gt;&gt;</strong></div>
+            </li>
+        </ul>
+    </div>
+    <div class="question-box">
+        <h3>Scenario: A Ticket Vending System for Commuters</h3>
+        <p><strong>Question:</strong> The goal of this project is to provide a system for commuters to buy tickets. When a user arrives at the vending machine he or she can view the available bus routes with the destinations. The user can select one of the destinations. Then the vending machine calculates the price of the ticket based on the current location and shows it to the user. The user can input coins and currency bills into the machine. The machine can count the inserted amount and dispense the tickets and balance amount if there is any. The administrators of the system can view the available bus routes in order to add new destinations or delete or modify the existing destinations. If a new destination is added, the administrator should test the system by buying a mock ticket to the newly added destination. Buying a mock ticket is similar to the normal buying process but can skip the payment process if the administrator decides not to test the payment module.</p>
+    </div>
+    <div class="diagram-container">
+        <pre class="mermaid">
+        flowchart LR
+            Commuter((Commuter))
+            Admin((Administrator))
+            
+            subgraph TVS ["Ticket Vending System"]
+                UC1([View Bus Routes])
+                UC2([Select Destination])
+                UC3([Buy Ticket])
+                UC4([Input Money])
+                UC5([Dispense Ticket & Balance])
+                UC6([Add Destination])
+                UC7([Modify/Delete Destination])
+                UC8([Test System])
+            end
+            
+            Commuter --- UC1
+            Commuter --- UC2
+            Commuter --- UC3
+            
+            UC3 -.->|include| UC4
+            UC3 -.->|include| UC5
+            
+            Admin --- UC1
+            Admin --- UC6
+            Admin --- UC7
+            Admin --- UC8
+            
+            UC8 -.->|extend| UC3
+        </pre>
+    </div>
+
+    <h2>2. Activity Diagram</h2>
+    <div class="theory">
+        <ul class="theory-list">
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="black"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Initial Node</strong></div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="20" viewBox="0 0 40 20"><rect x="2" y="2" width="36" height="16" rx="6" ry="6" stroke="black" fill="none" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Action/Activity</strong></div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><polygon points="12,2 22,12 12,22 2,12" stroke="black" fill="none" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Decision / Merge Node</strong></div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="15" viewBox="0 0 40 15"><rect x="18" y="2" width="4" height="12" fill="black"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Fork/Join Node</strong></div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" viewBox="0 0 40 30"><rect x="2" y="2" width="36" height="26" stroke="black" fill="none" stroke-width="2"/><line x1="20" y1="2" x2="20" y2="28" stroke="black" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Swimlanes</strong></div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" stroke="black" fill="none" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="black"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Final Node</strong></div>
+            </li>
+        </ul>
+    </div>
+    <div class="question-box">
+        <h3>Scenario: Hospital Appointment Management System</h3>
+        <p><strong>Question:</strong> StarLab Hospital has implemented an online appointment management system that allows patients to book appointments with doctors. A patient logs into the system and searches for a doctor by specialty. After selecting a doctor, the patient requests an appointment. The system verifies whether the patient has a valid medical record. If the patient is new, the system creates a new medical record before continuing. Next, the system checks the doctor's availability. If no appointment slots are available, the patient may select another doctor or cancel the booking request. This process continues until an available doctor is selected or the patient cancels the request. Once an appointment slot is assigned, the system requests payment. If the payment is unsuccessful, the patient may retry the payment or cancel the appointment. After successful payment, the system confirms the booking, updates the doctor's appointment schedule and records the appointment in the patient's medical history. At the same time, the billing department generates a payment receipt while the notification service sends an appointment confirmation to the patient. The appointment booking process is completed once all these activities have finished.</p>
+    </div>
+    <div class="diagram-container">
+        <pre class="mermaid">
+        stateDiagram-v2
+            [*] --> LogIn
+            
+            state Patient {
+                LogIn : Log into system
+                SearchDoc : Search for doctor
+                SelectDoc : Select doctor
+                ReqAppt : Request appointment
+                SelectAnother : Select another doctor?
+                MakePayment : Make payment
+                RetryPayment : Retry payment?
+            }
+            
+            state System {
+                CheckRecord : Check valid medical record
+                CreateRecord : Create new record
+                CheckAvail : Check slot availability
+                AssignSlot : Assign appointment slot
+                ReqPaymentSys : Request payment
+                ProcessPay : Process payment
+                ConfirmBook : Confirm booking
+                UpdateSched : Update doctor schedule
+                RecordAppt : Record in medical history
+            }
+            
+            state BillingDept {
+                GenReceipt : Generate payment receipt
+            }
+            
+            state NotificationService {
+                SendConf : Send appointment confirmation
+            }
+            
+            LogIn --> SearchDoc
+            SearchDoc --> SelectDoc
+            SelectDoc --> ReqAppt
+            ReqAppt --> CheckRecord
+            
+            state if_rec &lt;&lt;choice&gt;&gt;
+            CheckRecord --> if_rec
+            if_rec --> CreateRecord : [No Record]
+            if_rec --> CheckAvail : [Valid Record]
+            CreateRecord --> CheckAvail
+            
+            state if_avail &lt;&lt;choice&gt;&gt;
+            CheckAvail --> if_avail
+            if_avail --> SelectAnother : [No Slots]
+            if_avail --> AssignSlot : [Slot Available]
+            
+            state if_another &lt;&lt;choice&gt;&gt;
+            SelectAnother --> if_another
+            if_another --> SelectDoc : [Yes]
+            if_another --> [*] : [No/Cancel]
+            
+            AssignSlot --> ReqPaymentSys
+            ReqPaymentSys --> MakePayment
+            MakePayment --> ProcessPay
+            
+            state if_pay &lt;&lt;choice&gt;&gt;
+            ProcessPay --> if_pay
+            if_pay --> ConfirmBook : [Success]
+            if_pay --> RetryPayment : [Fail]
+            
+            state if_retry &lt;&lt;choice&gt;&gt;
+            RetryPayment --> if_retry
+            if_retry --> MakePayment : [Yes]
+            if_retry --> [*] : [No/Cancel]
+            
+            ConfirmBook --> UpdateSched
+            UpdateSched --> RecordAppt
+            
+            state fork_postpay &lt;&lt;fork&gt;&gt;
+            RecordAppt --> fork_postpay
+            fork_postpay --> GenReceipt
+            fork_postpay --> SendConf
+            
+            state join_end &lt;&lt;join&gt;&gt;
+            GenReceipt --> join_end
+            SendConf --> join_end
+            join_end --> [*]
+        </pre>
+    </div>
+
+    <h2>3. Sequence Diagram</h2>
+    <div class="theory">
+        <ul class="theory-list">
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" viewBox="0 0 40 30"><rect x="10" y="2" width="20" height="10" stroke="black" fill="none" stroke-width="2"/><line x1="20" y1="12" x2="20" y2="28" stroke="black" stroke-dasharray="4" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Lifeline</strong></div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" viewBox="0 0 40 30"><line x1="2" y1="15" x2="36" y2="15" stroke="black" stroke-width="2"/><polygon points="30,10 38,15 30,20" fill="black"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Synchronous Message</strong></div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" viewBox="0 0 40 30"><line x1="2" y1="15" x2="36" y2="15" stroke="black" stroke-width="2"/><polyline points="30,10 38,15 30,20" stroke="black" fill="none" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Asynchronous Message</strong></div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" viewBox="0 0 40 30"><line x1="2" y1="15" x2="36" y2="15" stroke="black" stroke-dasharray="4" stroke-width="2"/><polyline points="30,10 38,15 30,20" stroke="black" fill="none" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Return Message</strong></div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" viewBox="0 0 40 30"><rect x="2" y="2" width="36" height="26" stroke="black" fill="none" stroke-width="1"/><polygon points="2,2 14,2 14,10 2,10" fill="#eaf2f8" stroke="black" stroke-width="1"/><text x="4" y="8" font-size="8" font-family="sans-serif">alt</text><line x1="2" y1="15" x2="38" y2="15" stroke="black" stroke-dasharray="2" stroke-width="1"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Combined Fragment</strong></div>
+            </li>
+        </ul>
+    </div>
+    <div class="question-box">
+        <h3>Scenario: ATM Cash Withdrawal System</h3>
+        <p><strong>Question:</strong> An ATM system allows customers to withdraw cash from their bank accounts. A customer inserts an ATM card into the machine. The ATM sends the card details to the bank server for verification. If the card is invalid, the ATM rejects the card and terminates the transaction. If the card is valid, the ATM prompts the customer to enter the PIN. The ATM forwards the entered PIN to the bank server for verification. If the PIN is incorrect, the ATM rejects the transaction and ejects the card. If the PIN is verified successfully, the ATM prompts the customer to enter the withdrawal amount. The ATM sends the withdrawal request to the bank server. The bank server checks the account balance. If sufficient funds are available, the bank server deducts the requested amount from the customer's bank account and notifies the ATM that the transaction is successful. The ATM dispenses the cash and ejects the card. If there are insufficient funds, the bank server notifies the ATM that the transaction has failed. The ATM displays an insufficient funds message and ejects the card.</p>
+    </div>
+    <div class="diagram-container">
+        <pre class="mermaid">
+        sequenceDiagram
+            actor Customer
+            participant ATM
+            participant BankServer
+            
+            Customer->>ATM: Insert ATM Card
+            ATM->>BankServer: Verify Card Details
+            
+            alt Card Invalid
+                BankServer-->>ATM: Card Invalid
+                ATM-->>Customer: Reject Card & Terminate
+            else Card Valid
+                BankServer-->>ATM: Card Valid
+                ATM-->>Customer: Prompt for PIN
+                
+                Customer->>ATM: Enter PIN
+                ATM->>BankServer: Verify PIN
+                
+                alt PIN Incorrect
+                    BankServer-->>ATM: PIN Incorrect
+                    ATM-->>Customer: Reject Transaction & Eject Card
+                else PIN Correct
+                    BankServer-->>ATM: PIN Verified
+                    ATM-->>Customer: Prompt for Withdrawal Amount
+                    
+                    Customer->>ATM: Enter Amount
+                    ATM->>BankServer: Withdrawal Request
+                    BankServer->>BankServer: Check Account Balance
+                    
+                    alt Insufficient Funds
+                        BankServer-->>ATM: Transaction Failed
+                        ATM-->>Customer: Display Insufficient Funds & Eject Card
+                    else Sufficient Funds
+                        BankServer->>BankServer: Deduct Amount
+                        BankServer-->>ATM: Transaction Successful
+                        ATM-->>Customer: Dispense Cash & Eject Card
+                    end
+                end
+            end
+        </pre>
+    </div>
+
+    <h2>4. Class Diagram</h2>
+    <div class="theory">
+        <ul class="theory-list">
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" viewBox="0 0 40 30"><rect x="2" y="2" width="36" height="26" stroke="black" fill="none" stroke-width="2"/><line x1="2" y1="10" x2="38" y2="10" stroke="black" stroke-width="2"/><line x1="2" y1="20" x2="38" y2="20" stroke="black" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Class Box</strong></div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="15" viewBox="0 0 40 15"><line x1="0" y1="7" x2="28" y2="7" stroke="black" stroke-width="2"/><polygon points="28,2 38,7 28,12" stroke="black" fill="none" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Inheritance</strong></div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="15" viewBox="0 0 40 15"><line x1="12" y1="7" x2="40" y2="7" stroke="black" stroke-width="2"/><polygon points="0,7 6,2 12,7 6,12" stroke="black" fill="none" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Aggregation</strong></div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="15" viewBox="0 0 40 15"><line x1="12" y1="7" x2="40" y2="7" stroke="black" stroke-width="2"/><polygon points="0,7 6,2 12,7 6,12" fill="black"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Composition</strong></div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="15" viewBox="0 0 40 15"><line x1="0" y1="7" x2="40" y2="7" stroke="black" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Association</strong></div>
+            </li>
+        </ul>
+    </div>
+    <div class="question-box">
+        <h3>Scenario: University Management System</h3>
+        <p><strong>Question:</strong> A university manages students, lecturers, departments, courses, enrolments, assignments, submissions, and grades. Every Person has a name, address, email, and phone number. A Student and a Lecturer are specialized types of Person and have unique identifiers: studentID and lecturerID, respectively. Each department has a department ID, name, and office location. A department employs multiple lecturers and offers multiple courses. Each lecturer belongs to exactly one department. Each course has a course code, title, number of credits, and semester. A lecturer may teach multiple courses, while each course is taught by one lecturer. Students enroll in courses. The enrolment records the enrolment date and current status. Each course contains multiple assignments. Every assignment has a title, description, due date, and total marks. Students submit assignments. A submission stores the submission date, obtained marks, and feedback.</p>
+    </div>
+    <div class="diagram-container">
+        <pre class="mermaid">
+        classDiagram
+            class Person {
+              -String name
+              -String address
+              -String email
+              -String phone
+            }
+            
+            class Student {
+              -String studentID
+            }
+            
+            class Lecturer {
+              -String lecturerID
+            }
+            
+            class Department {
+              -String departmentID
+              -String name
+              -String officeLocation
+            }
+            
+            class Course {
+              -String courseCode
+              -String title
+              -int credits
+              -int semester
+            }
+            
+            class Enrolment {
+              -Date enrolmentDate
+              -String status
+            }
+            
+            class Assignment {
+              -String title
+              -String description
+              -Date dueDate
+              -float totalMarks
+            }
+            
+            class Submission {
+              -Date submissionDate
+              -float obtainedMarks
+              -String feedback
+            }
+            
+            Person &lt;|-- Student
+            Person &lt;|-- Lecturer
+            
+            Department "1" *-- "1..*" Lecturer : employs
+            Department "1" *-- "1..*" Course : offers
+            
+            Lecturer "1" -- "1..*" Course : teaches
+            
+            Student "1" -- "0..*" Enrolment
+            Course "1" -- "0..*" Enrolment 
+            
+            Course "1" *-- "1..*" Assignment : contains
+            Student "1" -- "0..*" Submission : makes
+            Assignment "1" -- "0..*" Submission : receives
+        </pre>
+    </div>
+
+    <h2>5. Object Diagram</h2>
+    <div class="theory">
+        <ul class="theory-list">
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" viewBox="0 0 40 30"><rect x="2" y="2" width="36" height="26" stroke="black" fill="none" stroke-width="2"/><line x1="2" y1="10" x2="38" y2="10" stroke="black" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Object Node</strong> (<code>Instance : Class</code> format)</div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="15" viewBox="0 0 40 15"><line x1="0" y1="7" x2="40" y2="7" stroke="black" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Link</strong> connecting instances</div>
+            </li>
+        </ul>
+    </div>
+    <div class="question-box">
+        <h3>Scenario: University Course Registration</h3>
+        <p><strong>Question:</strong> At the beginning of the semester, StarLab Education Center had several students registered for courses. The student S001, Nimal Perera, lives in Colombo and uses the email address nimal@email.com. He is registered for the Programming Fundamentals course with course code IT101, which carries 3 credits and is taught by Dr. Ray Palmer. Another student, S002, Ayesha Fernando, lives in Kandy and uses the email address ayesha@email.com. She is registered for both IT101 Programming Fundamentals and IT202 Database Systems. The Database Systems course carries 4 credits and is taught by Ms. Smoke. The IT101 course belongs to the Department of Information Technology, while IT202 belongs to the Department of Computing. Dr. Ray Palmer works in the Department of Information Technology, while Ms. Smoke works in the Department of Computing.</p>
+    </div>
+    <div class="diagram-container">
+        <pre class="mermaid">
+        classDiagram
+            class `S001 : Student` {
+                studentID = "S001"
+                name = "Nimal Perera"
+                address = "Colombo"
+                email = "nimal@email.com"
+            }
+            class `S002 : Student` {
+                studentID = "S002"
+                name = "Ayesha Fernando"
+                address = "Kandy"
+                email = "ayesha@email.com"
+            }
+            class `IT101 : Course` {
+                courseCode = "IT101"
+                title = "Programming Fundamentals"
+                credits = 3
+            }
+            class `IT202 : Course` {
+                courseCode = "IT202"
+                title = "Database Systems"
+                credits = 4
+            }
+            class `DrPalmer : Lecturer` {
+                name = "Dr. Ray Palmer"
+            }
+            class `MsSmoke : Lecturer` {
+                name = "Ms. Smoke"
+            }
+            class `ITDept : Department` {
+                name = "Information Technology"
+            }
+            class `CompDept : Department` {
+                name = "Computing"
+            }
+            
+            `S001 : Student` -- `IT101 : Course` : enrolls in
+            `S002 : Student` -- `IT101 : Course` : enrolls in
+            `S002 : Student` -- `IT202 : Course` : enrolls in
+            
+            `DrPalmer : Lecturer` -- `IT101 : Course` : teaches
+            `MsSmoke : Lecturer` -- `IT202 : Course` : teaches
+            
+            `IT101 : Course` -- `ITDept : Department` : offered by
+            `IT202 : Course` -- `CompDept : Department` : offered by
+            
+            `DrPalmer : Lecturer` -- `ITDept : Department` : works in
+            `MsSmoke : Lecturer` -- `CompDept : Department` : works in
+        </pre>
+    </div>
+
+    <h2>6. State Diagram</h2>
+    <div class="theory">
+        <ul class="theory-list">
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="20" viewBox="0 0 40 20"><rect x="2" y="2" width="36" height="16" rx="6" ry="6" stroke="black" fill="#85C1E9" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>State</strong></div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="black"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Initial State</strong></div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="10" viewBox="0 0 40 10"><line x1="0" y1="5" x2="40" y2="5" stroke="black" stroke-width="2"/><polygon points="34,1 40,5 34,9" fill="black"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Transition</strong></div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" stroke="black" fill="none" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="black"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Final State</strong></div>
+            </li>
+        </ul>
+    </div>
+    <div class="question-box">
+        <h3>Scenario: University Library Book</h3>
+        <p><strong>Question:</strong> A library book in the StarLab University Library can exist in different states depending on its current condition and use. When a new book is added to the library catalogue, it is initially Available for borrowing. When a student borrows the book, its state changes to Borrowed. While borrowed, the student may return the book before or on the due date. If the book is returned on time, it becomes Available again. If the due date passes while the book is still borrowed, the book becomes Overdue. An overdue book remains unavailable for borrowing until it is returned. When an overdue book is returned, the library checks its condition. If the book is in good condition, it becomes Available. If the book is damaged, it is moved to Under Repair. After the repair is completed, the book becomes Available again. If a book is reported as lost while it is borrowed or overdue, its state changes to Lost. A lost book remains unavailable unless it is recovered. If the recovered book is in good condition, it becomes Available; otherwise, it is sent for repair. If a lost book is not recovered within 6 months of being reported lost, the library formally writes it off and removes it from the catalogue. This ends the book's lifecycle.</p>
+    </div>
+    <div class="diagram-container">
+        <pre class="mermaid">
+        stateDiagram-v2
+            [*] --> Available : book added to catalogue
+            
+            Available --> Borrowed : borrow
+            
+            Borrowed --> Available : return (on time)
+            Borrowed --> Overdue : due date passes
+            Borrowed --> Lost : reported lost
+            
+            Overdue --> Available : return (good condition)
+            Overdue --> UnderRepair : return (damaged)
+            Overdue --> Lost : reported lost
+            
+            Lost --> Available : recovered (good condition)
+            Lost --> UnderRepair : recovered (damaged)
+            Lost --> [*] : 6 months pass (written off)
+            
+            UnderRepair --> Available : repair completed
+        </pre>
+    </div>
+
+    <h2>7. Component Diagram</h2>
+    <div class="theory">
+        <ul class="theory-list">
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" viewBox="0 0 40 30"><rect x="6" y="2" width="32" height="26" stroke="black" fill="none" stroke-width="2"/><rect x="2" y="6" width="8" height="6" stroke="black" fill="white" stroke-width="2"/><rect x="2" y="18" width="8" height="6" stroke="black" fill="white" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Component</strong></div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="15" viewBox="0 0 40 15"><line x1="0" y1="7" x2="30" y2="7" stroke="black" stroke-width="2"/><circle cx="35" cy="7" r="4" stroke="black" fill="none" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Provided Interface</strong></div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="15" viewBox="0 0 40 15"><line x1="0" y1="7" x2="30" y2="7" stroke="black" stroke-width="2"/><path d="M 35 3 A 4 4 0 0 0 35 11" stroke="black" fill="none" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Required Interface</strong></div>
+            </li>
+        </ul>
+    </div>
+    <div class="question-box">
+        <h3>Scenario: Online Shopping System</h3>
+        <p><strong>Question:</strong> StarShop is an online shopping platform that allows customers to browse products and place orders. The system provides a Customer Web Application through which customers can search for products, view product details, manage their shopping cart, and place orders. The Product Catalogue component manages product information and provides product details to the Customer Web Application. The Order Management component handles the creation and management of customer orders. When an order is placed, the Order Management component communicates with the Payment Service to process the payment. The system also uses an Inventory Management component to check product availability and update stock quantities after an order is successfully placed. After the order is confirmed, the Notification Service sends an order confirmation to the customer by email. The Payment Service communicates with an external Bank Payment Gateway to process customer payments.</p>
+    </div>
+    <div class="diagram-container">
+        <pre class="mermaid">
+        flowchart TD
+            WebApp["&lt;&lt;component&gt;&gt; Customer Web Application"]
+            Product["&lt;&lt;component&gt;&gt; Product Catalogue"]
+            Order["&lt;&lt;component&gt;&gt; Order Management"]
+            Inventory["&lt;&lt;component&gt;&gt; Inventory Management"]
+            Payment["&lt;&lt;component&gt;&gt; Payment Service"]
+            Notif["&lt;&lt;component&gt;&gt; Notification Service"]
+            Bank["&lt;&lt;component&gt;&gt; Bank Payment Gateway"]
+            
+            WebApp -->|browse/details| Product
+            WebApp -->|place order| Order
+            
+            Order -->|check/update stock| Inventory
+            Order -->|process payment| Payment
+            Order -->|send confirmation| Notif
+            
+            Payment -->|authorize transaction| Bank
+        </pre>
+    </div>
+
+    <h2>8. Package Diagram</h2>
+    <div class="theory">
+        <ul class="theory-list">
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" viewBox="0 0 40 30"><rect x="2" y="8" width="36" height="20" stroke="black" fill="#D6EAF8" stroke-width="2"/><rect x="2" y="2" width="16" height="6" stroke="black" fill="#D6EAF8" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Package</strong></div>
+            </li>
+            <li>
+                <span class="symbol-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="15" viewBox="0 0 40 15"><line x1="0" y1="7" x2="36" y2="7" stroke="black" stroke-dasharray="4" stroke-width="2"/><polyline points="30,2 38,7 30,12" stroke="black" fill="none" stroke-width="2"/></svg>
+                </span>
+                <div class="symbol-desc"><strong>Dependency</strong></div>
+            </li>
+        </ul>
+    </div>
+    <div class="question-box">
+        <h3>Scenario: University Management System</h3>
+        <p><strong>Question:</strong> Queen's University is developing an integrated University Management System (UMS). The system is divided into several major functional areas. The Academic Management area manages faculties, departments, courses, subjects, and academic staff. Because the university has multiple faculties, the Academic Management area contains separate packages for Faculty Management and Course Management. The Student Management area maintains student profiles, student registration, and student academic records. Student registration requires information about available courses from the Academic Management area. Therefore, Student Management uses the public course information provided by Academic Management. The Examination Management area manages examinations, examination registrations, results, and grading. It uses student information from Student Management and course information from Academic Management. The Finance Management area is responsible for student financial activities, including calculating student fees, generating invoices, recording payments, and processing online transactions. The university keeps fee management separate from payment-processing for organizational purposes. The Payment Processing package uses an external Payment Gateway to process online payments. The university defines a standard Payment Service Interface, while different payment-processing implementations provide the actual implementation of this interface. The Library Management area manages books, borrowing, returning, and fines. It needs to use student information from Student Management, but student information remains owned by Student Management. The university later introduces a Postgraduate Student Model that extends the existing Student Model used by Student Management. The definitions of these two models need to be combined so that the postgraduate-specific information becomes part of the overall student model. The university also has a Common University Services package containing reusable services such as notification and authentication. Other packages can import these common services when required.</p>
+    </div>
+    <div class="diagram-container">
+        <pre class="mermaid">
+        flowchart TD
+            subgraph UMS ["University Management System"]
+                subgraph AcademicMgt ["Academic Management"]
+                    FacMgt["📦 Faculty Management"]
+                    CourseMgt["📦 Course Management"]
+                end
+                
+                subgraph StudentMgt ["Student Management"]
+                    StudentModel["📦 Student Model"]
+                    PGModel["📦 Postgraduate Student Model"]
+                    Registration["📦 Registration"]
+                end
+                
+                subgraph ExamMgt ["Examination Management"]
+                    Exams["📦 Exams & Grading"]
+                end
+                
+                subgraph FinanceMgt ["Finance Management"]
+                    FeeMgt["📦 Fee Management"]
+                    PaymentProc["📦 Payment Processing"]
+                end
+                
+                subgraph LibraryMgt ["Library Management"]
+                    Books["📦 Books & Borrowing"]
+                end
+                
+                Common["📦 Common University Services"]
+                BankGateway["📦 External Payment Gateway"]
+            end
+            
+            PGModel -.->|&lt;&lt;merge&gt;&gt;| StudentModel
+            
+            Registration -.->|&lt;&lt;import&gt;&gt;| CourseMgt
+            
+            Exams -.->|&lt;&lt;access&gt;&gt;| StudentModel
+            Exams -.->|&lt;&lt;access&gt;&gt;| CourseMgt
+            
+            FeeMgt -.->|&lt;&lt;access&gt;&gt;| PaymentProc
+            PaymentProc -.->|&lt;&lt;import&gt;&gt;| BankGateway
+            
+            Books -.->|&lt;&lt;access&gt;&gt;| StudentModel
+            
+            AcademicMgt -.->|&lt;&lt;import&gt;&gt;| Common
+            StudentMgt -.->|&lt;&lt;import&gt;&gt;| Common
+            ExamMgt -.->|&lt;&lt;import&gt;&gt;| Common
+            FinanceMgt -.->|&lt;&lt;import&gt;&gt;| Common
+            LibraryMgt -.->|&lt;&lt;import&gt;&gt;| Common
+        </pre>
+    </div>
+
+    <!-- Script to render Mermaid -->
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true, theme: 'default' });
+    </script>
+</body>
+</html>
