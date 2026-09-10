@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OS Lab: Complete Study Guide & Solved Exercises</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+        h1 { color: #2c3e50; text-align: center; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #2980b9; margin-top: 40px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        h3 { color: #34495e; margin-top: 25px; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; font-size: 0.95em; }
+        th { background-color: #f8f9fa; font-weight: bold; color: #2c3e50; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        code { background-color: #f1f3f5; padding: 2px 6px; border-radius: 4px; font-family: Consolas, monospace; color: #d63384; font-size: 0.95em; }
+        pre { background-color: #272822; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto; font-family: Consolas, monospace; }
+        pre code { background-color: transparent; color: inherit; padding: 0; }
+        .solution-box { background-color: #f8f9fa; border-left: 4px solid #3498db; padding: 15px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+
+    <h1>OS Lab: Complete Study Guide & Solved Exercises</h1>
+    <p><em>Instructions: Save this file as <code>.html</code>, open in your browser, and print to PDF.</em></p>
+
+    <h2>1. Exhaustive Command Reference</h2>
+    
+    <h3>File System & Navigation[cite: 2]</h3>
+    <table>
+        <tr><th>Command</th><th>Flags / Options</th><th>Description</th></tr>
+        <tr><td><code>pwd</code></td><td></td><td>Displays the full pathname of the current working directory[cite: 2].</td></tr>
+        <tr><td><code>cd</code></td><td><code>..</code>, <code>/</code></td><td>Changes directory. <code>..</code> goes to parent, <code>/</code> goes to root[cite: 2].</td></tr>
+        <tr><td><code>mkdir</code></td><td></td><td>Creates directories[cite: 2].</td></tr>
+        <tr><td><code>rmdir</code></td><td></td><td>Removes empty directories[cite: 2].</td></tr>
+        <tr><td><code>ls</code></td><td>
+            <code>-a</code> (All files)<br>
+            <code>-b</code> (Nonprinting characters in octal)<br>
+            <code>-c</code> (Sort by timestamp)<br>
+            <code>-C</code> (Columnar format)<br>
+            <code>-d</code> (Only directories)<br>
+            <code>-l</code> (Long format listing)<br>
+            <code>-L</code> (Symbolic link reference)<br>
+            <code>-m</code> (Comma-separated list)<br>
+            <code>-n</code> (Long format with GID/UID)<br>
+            <code>-o</code> (Long format excluding group name)<br>
+            <code>-p</code> (Directories with /)<br>
+            <code>-q</code> (Nonprinting chars as ?)<br>
+            <code>-r</code> (Reverse order)<br>
+            <code>-R</code> (Include subdirectories)<br>
+            <code>-t</code> (Newest files first)<br>
+            <code>-u</code> (By file access time)<br>
+            <code>-x</code> (Rows across screen)<br>
+            <code>-1</code> (Each entry on a line)
+        </td><td>Shows hidden files and directory information[cite: 2].</td></tr>
+    </table>
+
+    <h3>File Operations, Text & Metrics[cite: 1, 2]</h3>
+    <table>
+        <tr><th>Command</th><th>Flags / Examples</th><th>Description</th></tr>
+        <tr><td><code>touch</code></td><td><code>touch file.txt</code></td><td>Creates an empty text file[cite: 2].</td></tr>
+        <tr><td><code>vi</code> / <code>nano</code></td><td><code>i</code> (insert), <code>:wq</code> (save & quit), <code>:q!</code> (quit without save)</td><td>Command line text editors[cite: 2].</td></tr>
+        <tr><td><code>cp</code></td><td><code>cp file1 file2</code></td><td>Copies files[cite: 2].</td></tr>
+        <tr><td><code>mv</code></td><td><code>mv file1 dir/</code></td><td>Moves or renames files[cite: 2].</td></tr>
+        <tr><td><code>rm</code></td><td><code>rm -R dir</code></td><td>Removes files. <code>-R</code> removes a directory and its files[cite: 2].</td></tr>
+        <tr><td><code>cat</code></td><td><code>cat &gt; file.txt</code></td><td>Outputs file content. <code>&gt;</code> inserts terminal input into a file[cite: 1, 2].</td></tr>
+        <tr><td><code>more</code> / <code>less</code></td><td></td><td>Outputs file content page by page; press <code>q</code> to quit in less[cite: 2].</td></tr>
+        <tr><td><code>wc</code></td><td><code>-l</code> (lines), <code>-c</code> (bytes), <code>-m</code> (chars), <code>-L</code> (longest line length), <code>-w</code> (words)</td><td>Gives the number of lines, words, and characters in a file[cite: 2].</td></tr>
+        <tr><td><code>cut</code></td><td><code>cut -d "|" -f 5</code></td><td>Filters and displays specific columns of data[cite: 1].</td></tr>
+    </table>
+
+    <h3>Sorting & Databases (Lab 5)[cite: 7]</h3>
+    <table>
+        <tr><th>Command</th><th>Flags / Options</th><th>Description</th></tr>
+        <tr><td><code>sort</code></td><td>
+            <code>-b</code> (Ignores leading spaces/tabs)<br>
+            <code>-c</code> (Checks if already sorted)<br>
+            <code>-d</code> (Dictionary order, ignores punctuation)<br>
+            <code>-f</code> (Ignores case)<br>
+            <code>-m</code> (Merges already sorted files)<br>
+            <code>-n</code> (Sorts in numeric order)<br>
+            <code>-o</code> (Stores output in a specified file)<br>
+            <code>-r</code> (Reverses sort)<br>
+            <code>-t</code> (Separates fields with a character)<br>
+            <code>-k</code> (Sorts by a specific column number - <em>implied via usage</em>)
+        </td><td>Sorts file contents according to the ASCII collating sequence[cite: 7].</td></tr>
+    </table>
+
+    <h3>System & Network[cite: 2]</h3>
+    <table>
+        <tr><th>Command</th><th>Description</th></tr>
+        <tr><td><code>who</code></td><td>Finds out who is working on the system and their terminals[cite: 2].</td></tr>
+        <tr><td><code>whoami</code></td><td>Tells you your specific user name[cite: 2].</td></tr>
+        <tr><td><code>ps</code></td><td>Gives a list of the processes running on the system for your user[cite: 2].</td></tr>
+        <tr><td><code>chmod</code></td><td>Changes access modes using <code>u,g,o,a</code> and <code>+,-,=</code> for <code>r,w,x</code> permissions[cite: 2].</td></tr>
+        <tr><td><code>uname -a</code></td><td>Provides a summary about the system[cite: 2].</td></tr>
+        <tr><td><code>history</code></td><td>Shows all previously executed commands[cite: 2].</td></tr>
+        <tr><td><code>ifconfig</code></td><td>Checks the machine's IP address[cite: 2].</td></tr>
+        <tr><td><code>ping</code></td><td>Try out ping to a domain like google.com; stop with Ctrl+c[cite: 2].</td></tr>
+    </table>
+
+    <h2>2. Shell Scripting (Labs 3 & 4)</h2>
+    <ul>
+        <li><strong>Variables:</strong> Do not put spaces on either side of the equal sign (e.g., <code>number=10</code>)[cite: 3]. System variables are uppercase (e.g., <code>$HOME</code>, <code>$BASH</code>)[cite: 3]. Define null variables as <code>var1=""</code>[cite: 3].</li>
+        <li><strong>Quotes:</strong> Double Quotes <code>" "</code> remove meaning of characters except <code>\</code> and <code>$</code>[cite: 3]. Single quotes <code>' '</code> remain completely unchanged[cite: 3]. Back quotes execute commands[cite: 3].</li>
+        <li><strong>Input:</strong> <code>read variable</code> takes terminal input[cite: 3]. <code>read -p "Prompt" var</code> adds text[cite: 3]. <code>read -a names</code> extracts multiple items into an array[cite: 3].</li>
+        <li><strong>Arithmetic:</strong> Use <code>expr 10 \* 3</code> or <code>$((10+5))</code>[cite: 3]. Operators: <code>+</code>, <code>-</code>, <code>/</code>, <code>*</code>, <code>%</code>, <code>++</code>, <code>--</code>, <code>**</code>[cite: 3, 4].</li>
+        <li><strong>Test Conditions (<code>test</code> or <code>[ ]</code>):</strong>
+            <ul>
+                <li>Numeric: <code>-eq</code> (==), <code>-ne</code> (!=), <code>-lt</code> (&lt;), <code>-le</code> (&lt;=), <code>-gt</code> (&gt;), <code>-ge</code> (&gt;=)[cite: 4].</li>
+                <li>Strings: <code>=</code>, <code>!=</code>, <code>-n</code> (not null), <code>-z</code> (is null)[cite: 4].</li>
+                <li>Files: <code>-s</code> (non-empty), <code>-f</code> (normal file), <code>-d</code> (directory), <code>-w</code> (writable), <code>-r</code> (read-only), <code>-x</code> (executable)[cite: 4].</li>
+                <li>Logical: <code>!</code> (NOT), <code>-a</code> (AND), <code>-o</code> (OR)[cite: 4].</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>3. AWK Programming (Lab 7)</h2>
+    <ul>
+        <li><strong>Syntax:</strong> <code>awk '/search pattern/ {Actions}' file_name</code>[cite: 5]. Each statement in Actions is delimited by a semicolon[cite: 5].</li>
+        <li><strong>Built-in Variables:</strong> <code>NR</code> (current line count), <code>NF</code> (number of fields in current record), <code>FS</code> (field separator), <code>RS</code> (record separator), <code>OFS</code> (output field separator), <code>ORS</code> (output record separator)[cite: 5]. <code>$0</code> is the whole line, <code>$1</code> is the first field[cite: 5].</li>
+        <li><strong>Operators:</strong> Standard math (<code>+ - * / %</code>), conditionals (<code>&gt; &gt;= &lt; &lt;= == !=</code>), logic (<code>&amp;&amp; ||</code>), and regex match (<code>~</code> matches, <code>!~</code> no match)[cite: 5].</li>
+        <li><strong>Blocks:</strong> <code>BEGIN { ... }</code> executes once at startup (initializes variables). <code>END { ... }</code> executes once at the end (prints totals)[cite: 5].</li>
+        <li><strong>Functions:</strong> <code>length()</code> (returns string length), <code>match()</code> (returns first position matched by regex), <code>index()</code> (searches string for first occurrence of a substring)[cite: 5].</li>
+    </ul>
+
+    <h2>4. Solved Exercises</h2>
+
+    <h3>Assignment 1: Student Database[cite: 1]</h3>
+    <div class="solution-box">
+        <strong>a) Insert the above list into the Students.txt file. (Hint: Use the cat > command and separate the column values using "|")[cite: 1].</strong>
+<pre><code>cat > Students.txt
+1001|Amal|IT|0712345678|Colombo
+1002|Nimal|SE|0773456789|Kandy
+1003|Kamal|CS|0754567890|Galle
+1004|Saman|IT|0765678901|Matara
+1005|Dilani|DS|0786789012|Kurunegala
+(Press Ctrl+D to save)</code></pre>
+        
+        <strong>b) Sort the database records using the student names[cite: 1].</strong>
+<pre><code>sort -t "|" -k 2 Students.txt</code></pre>
+        
+        <strong>c) Sort the database records using the Telephone numbers (consider ASCII character values)[cite: 1].</strong>
+<pre><code>sort -t "|" -k 4 Students.txt</code></pre>
+        
+        <strong>d) Filter and display the city names of all students. (Hint: Use the cut command)[cite: 1].</strong>
+<pre><code>cut -d "|" -f 5 Students.txt</code></pre>
+    </div>
+
+    <h3>Assignment 1: Tourist Places[cite: 1]</h3>
+    <div class="solution-box">
+        <strong>a) Insert the above list into the Places.txt file using terminal commands. (Hint: Use the cat > command and separate the column values using " ")[cite: 1].</strong>
+<pre><code>cat > Places.txt
+Sigiriya
+Yala
+Mirissa
+Ella
+Kandy
+(Press Ctrl+D to save)</code></pre>
+
+        <strong>b) Sort the list into alphabetical order[cite: 1].</strong>
+<pre><code>sort Places.txt</code></pre>
+
+        <strong>c) Assign a rating from 1-5 to each places according to your choice and add the rating in front of the place. (Hint: Use the nano command)[cite: 1].</strong>
+<pre><code>nano Places.txt
+# Manually edit the file to look like this:
+5 Sigiriya
+4 Yala
+3 Mirissa
+1 Ella
+2 Kandy
+# Press Ctrl+O, Enter, Ctrl+X to save and exit.</code></pre>
+
+        <strong>d) Sort the rated places in numerical order[cite: 1].</strong>
+<pre><code>sort -n Places.txt</code></pre>
+
+        <strong>e) Sort the rated places in reverse numerical order[cite: 1].</strong>
+<pre><code>sort -nr Places.txt</code></pre>
+    </div>
+
+    <h3>Lab 6: Nature / Flowers Exercise[cite: 6]</h3>
+    <p><em>Note: The lab sheets provide AWK as the primary pattern scanning tool, though standard `grep` commands are also typically accepted for these operations. Both are provided.</em></p>
+    <div class="solution-box">
+        <strong>1. Create the empty text file as nature.txt[cite: 6].</strong>
+<pre><code>touch nature.txt</code></pre>
+        
+        <strong>2. Using the above paragraph search for the word flowers and display the lines containing the word[cite: 6].</strong>
+<pre><code># Using grep:
+grep "flowers" nature.txt
+
+# Using AWK:
+awk '/flowers/' nature.txt</code></pre>
+
+        <strong>3. Search for the word flowers while ignoring case sensitivity[cite: 6].</strong>
+<pre><code># Using grep:
+grep -i "flowers" nature.txt
+
+# Using AWK:
+awk 'tolower($0) ~ /flowers/' nature.txt</code></pre>
+
+        <strong>4. Display the line numbers of the lines containing the word pleasant[cite: 6].</strong>
+<pre><code># Using grep:
+grep -n "pleasant" nature.txt
+
+# Using AWK:
+awk '/pleasant/ {print NR, $0}' nature.txt</code></pre>
+
+        <strong>5. Count the number of lines containing the word Flowers[cite: 6].</strong>
+<pre><code># Using grep:
+grep -c "Flowers" nature.txt
+
+# Using AWK:
+awk '/Flowers/ {count++} END {print count}' nature.txt</code></pre>
+
+        <strong>6. Display all lines that do not contain the word Flowers[cite: 6].</strong>
+<pre><code># Using grep:
+grep -v "Flowers" nature.txt
+
+# Using AWK:
+awk '!/Flowers/' nature.txt</code></pre>
+    </div>
+
+</body>
+</html>
