@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Targeted Java OOP Study Guide: Full Coverage</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    h1 {
+        color: #2c3e50;
+        text-align: center;
+        border-bottom: 2px solid #3498db;
+        padding-bottom: 10px;
+    }
+    h2 {
+        color: #2980b9;
+        margin-top: 30px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 5px;
+    }
+    h3 {
+        color: #16a085;
+        margin-top: 25px;
+    }
+    p, li {
+        font-size: 11pt;
+    }
+    pre {
+        background-color: #f4f4f4;
+        border: 1px solid #ddd;
+        border-left: 4px solid #3498db;
+        padding: 15px;
+        overflow-x: auto;
+        border-radius: 4px;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 10pt;
+    }
+    code {
+        font-family: 'Courier New', Courier, monospace;
+        background-color: #f4f4f4;
+        padding: 2px 4px;
+        border-radius: 3px;
+    }
+    .output-box {
+        background-color: #e8f8f5;
+        border-left: 4px solid #1abc9c;
+        padding: 10px;
+        margin: 10px 0;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 10pt;
+    }
+    .explanation-box {
+        background-color: #fff9c4;
+        border-left: 4px solid #fbc02d;
+        padding: 10px;
+        margin: 10px 0;
+        font-style: italic;
+    }
+    @media print {
+        body { margin: 0; padding: 10mm; max-width: 100%; }
+        pre, .output-box, .explanation-box { page-break-inside: avoid; }
+        h2, h3 { page-break-after: avoid; }
+    }
+</style>
+</head>
+<body>
+
+    <h1>Targeted Java OOP Study Guide</h1>
+    <p style="text-align: center;"><strong>Full Coverage: Strings, Exceptions, Threads, and File Handling</strong></p>
+
+    <h2>I. Java Strings & Builders</h2>
+    <p>Strings are immutable objects; once a value is assigned, that specific object in memory cannot be changed. Modifying a string actually creates a brand new String object.</p>
+
+    <h3>Code Example: <code>==</code> vs <code>.equals()</code></h3>
+<pre><code>public class Main {
+    public static void main(String[] args) {
+        String a = "Sri Lanka"; 
+        String b = "Sri Lanka";
+        if (a == b) { System.out.println("Yes"); } else { System.out.println("No"); } 
+
+        String c = new String("Sri Lanka"); 
+        String d = new String("Sri Lanka");
+        if (c == d) { System.out.println("Yes"); } else { System.out.println("No"); } 
+        if (c.equals(d)) { System.out.println("Yes"); } else { System.out.println("No"); } 
+    }
+}</code></pre>
+    <div class="output-box">
+        <strong>Output:</strong><br>
+        Yes<br>
+        No<br>
+        Yes
+    </div>
+    <div class="explanation-box">
+        <strong>Explanation:</strong> The <code>==</code> operator checks whether the references point to the exact same memory location (which is true for literal strings <code>a</code> and <code>b</code> in the String Pool, but false for <code>c</code> and <code>d</code> which are forced onto the heap via <code>new</code>). The <code>.equals()</code> method strictly evaluates the actual character content, returning true for <code>c</code> and <code>d</code>.
+    </div>
+
+    <h3>Code Example: String Methods</h3>
+<pre><code>String a = "Sri Lanka";
+System.out.println(a.length()); // Output: 9
+System.out.println(a.charAt(1)); // Output: r
+System.out.println(a.toLowerCase()); // Output: sri lanka
+System.out.println(a.concat(" Travel")); // Output: Sri Lanka Travel
+System.out.println(a.toUpperCase()); // Output: SRI LANKA
+System.out.println(a.equals("Sri Lanka")); // Output: true
+System.out.println(a.equalsIgnoreCase("sRi Lanka")); // Output: true
+
+String c = new String("Batch IT at");
+System.out.println(c.substring(2)); // Output: tch IT at
+System.out.println(c.substring(1, 4)); // Output: atc (end index is exclusive)
+System.out.println(c.replace('a', 'B')); // Output: BBtch IT Bt
+System.out.println(c.replaceFirst("a", "B")); // Output: BBtch IT at
+System.out.println(c.replace("at", "B")); // Output: BBch IT B
+System.out.println(c.replaceFirst("at", "B")); // Output: BBch IT at</code></pre>
+
+    <h3>Code Example: StringBuilder & StringBuffer</h3>
+    <p>StringBuilder and StringBuffer are used for mutable strings and are similar; however, StringBuilder is not thread-safe.</p>
+<pre><code>StringBuilder sb1 = new StringBuilder("Java");
+System.out.println(sb1.capacity()); 
+System.out.println(sb1.length()); // Output: 4
+
+sb1.append(" Python"); // Value is now "Java Python"
+sb1.setCharAt(2, 'B'); // Value is now "JaBa Python"
+
+System.out.println(sb1.reverse()); // Output: nohtyP aBaJ
+System.out.println(sb1.insert(1, "xyz")); // Output: nxyzohtyP aBaJ
+
+sb1.deleteCharAt(1); 
+sb1.delete(1, 3);
+sb1.setLength(6);
+
+StringBuilder a = new StringBuilder("Hello");
+System.out.println(a.append(" World").reverse().replace(1, 2, "Earth"));
+// Hello -> Hello World -> dlroW olleH -> dEarthroW olleH</code></pre>
+
+    <h3>Self-Study Questions</h3>
+    <ul>
+        <li><em>The use of <code>compareTo</code> method in Java String:</em> It lexicographically compares two strings, returning 0 if equal, a negative integer if the calling string is smaller, and a positive integer if larger.</li>
+    </ul>
+
+    <h2>II. Exception Handling</h2>
+    <p>An exception is an indication of a problem that occurs during a program's execution. Use only classes that extend <code>Throwable</code> directly or indirectly for exception handling.</p>
+    <ul>
+        <li><strong>Checked Exceptions:</strong> Enforced by the compiler (the catch-or-declare rule). A method must either handle the exception OR specify the exception using <code>throws</code>. Examples: <code>IOException</code>, <code>FileNotFoundException</code>.</li>
+        <li><strong>Unchecked Exceptions:</strong> All exceptions that are direct or indirect subclasses of <code>RuntimeException</code>. These usually happen due to the defects of your code and are not checked at compile time. Examples: <code>ArithmeticException</code>, <code>ArrayIndexOutOfBoundsException</code>.</li>
+    </ul>
+
+    <h3>Understanding the Stack Trace</h3>
+    <p>When an exception occurs and is not handled, the program terminates and outputs a Stack Trace. The Stack Trace includes:</p>
+    <ul>
+        <li>The Name of the exception.</li>
+        <li>The Method-call stack at the time the exception happens.</li>
+        <li>The Throw point (the initial point at which the exception occurs).</li>
+    </ul>
+
+    <h3>Code Example: Unhandled Exceptions</h3>
+<pre><code>import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n1 = sc.nextInt(); // User enters 34
+        int n2 = sc.nextInt(); // User enters 0
+        divide(n1, n2);
+    }
+    public static void divide(int n1, int n2) {
+        System.out.println(n1 / n2); 
+    }
+}</code></pre>
+    <div class="output-box">
+        <strong>Output:</strong><br>
+        Exception in thread "main" java.lang.ArithmeticException: / by zero<br>
+        at Main.divide(Main.java:17)<br>
+        at Main.main(Main.java:13)
+    </div>
+
+    <h3>Code Example: NullPointerException</h3>
+<pre><code>public class Main {
+    public static void main(String[] args) {
+        String a = null;
+        System.out.println(a.concat("Java"));
+    }
+}</code></pre>
+    <div class="output-box">
+        <strong>Output:</strong><br>
+        Exception in thread "main" java.lang.NullPointerException: Cannot invoke "String.concat(String)" because "a" is null<br>
+        at Main.main(Main.java:6)
+    </div>
+
+    <h3>Code Example: Multiple Catch Blocks & Checked Exceptions</h3>
+<pre><code>import java.io.*;
+public class Main {
+    public static void main(String[] args) {
+        try {
+            FileReader fileReader = new FileReader("C:\\myfile.txt");
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            System.out.println(bufferedReader.readLine());
+            bufferedReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("File Not Found");
+        } catch (IOException e) {
+            System.out.println("IO Issue");
+        } finally {
+            System.out.println("Finally block executed");
+        }
+    }
+}</code></pre>
+    <div class="explanation-box">
+        <strong>Explanation:</strong> The <code>try</code> block encloses the critical code. If there are multiple catch blocks, only the first matching block is executed. You cannot put a catch subclass exception type after its superclass type (e.g., <code>FileNotFoundException</code> must be caught before <code>IOException</code>). The <code>finally</code> block avoids resource leaks and executes whether the exception is thrown from the try block or not.
+    </div>
+
+    <h3>Code Example: Custom Exceptions & The <code>throw</code> Statement</h3>
+    <p>The programmer can throw exceptions explicitly using any class derived from the <code>Throwable</code> class.</p>
+<pre><code>class InvalidXValException extends Exception {
+    String message;
+    InvalidXValException() { 
+        message = "Need an integer greater than 30"; 
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        int x = 21;
+        try {
+            if (x < 31) { 
+                throw new InvalidXValException(); 
+            }
+        } catch (InvalidXValException e) {
+            System.out.println(e.message); 
+        }
+    }
+}</code></pre>
+
+    <h3>Code Example: Propagating Uncaught Exceptions & Overriding</h3>
+    <p>If an exception is not caught by the method, it is passed to the previous method in the call stack until reaching the main method.</p>
+    <p>When overriding methods with exceptions:</p>
+    <ul>
+        <li>If the superclass method <strong>does not</strong> declare an exception, the subclass overridden method <em>cannot</em> declare a checked exception, but can declare unchecked exceptions.</li>
+        <li>If the superclass method <strong>declares</strong> an exception, the subclass overridden method can declare the same, subclass, or no exception.</li>
+    </ul>
+<pre><code>class Dog {
+    void show() throws Exception { 
+        System.out.println("Dog Class"); 
+    }
+}
+class GermanShepherd extends Dog {
+    // ArithmeticException is a subclass of Exception, so this is valid.
+    void show() throws ArithmeticException { 
+        System.out.println("Dog Class"); 
+    }
+}</code></pre>
+
+    <h3>Self-Study Question</h3>
+    <ul>
+        <li><em>Is it possible to handle more than one type of exception? After SE7:</em> Yes. Since Java 7, multi-catch blocks allow you to handle multiple exceptions in a single <code>catch</code> block using the <code>|</code> operator.</li>
+    </ul>
+
+    <h2>III. Threads</h2>
+    <p>Multithreading utilizes multiple threads of control within a single program. A thread is a single sequential flow of control (a light-weight process) within a program. Each thread has its own call stack, but threads use/share the memory of the process.</p>
+
+    <h3>Code Example: Thread Creation</h3>
+    <p>Threads can be created by extending the <code>java.lang.Thread</code> class or implementing the <code>Runnable</code> interface. Every thread begins as an instance of the Thread class.</p>
+<pre><code>// Method 1: Extend Thread
+class MyThread extends Thread {
+    public void run() {
+        for(int i=0; i<5; i++) { System.out.println("My Thread"); }
+    }
+}
+
+// Method 2: Implement Runnable
+class MyRunnable implements Runnable {
+    public void run() {
+        for(int i=0; i<5; i++) { System.out.println("Runnable Thread"); }
+    }
+}
+
+public class ThreadTester {
+    public static void main(String[] args) {
+        MyThread myThread = new MyThread();
+        myThread.start(); // Triggers the thread and calls run()
+        
+        MyRunnable myRunnable = new MyRunnable();
+        Thread thread = new Thread(myRunnable);
+        thread.start();
+    }
+}</code></pre>
+    <div class="explanation-box">
+        <strong>Explanation:</strong> The <code>start()</code> method must be invoked to start a new thread (a new call stack). The Thread Life Cycle consists of New, Runnable, Running, and Dead (or Waiting/blocking) states. Once a thread is dead, it can never be brought back to life.
+    </div>
+
+    <h3>Code Example: <code>sleep()</code></h3>
+    <p><code>sleep()</code> slows down the execution. When a thread sleeps, it goes to the Wait State, and needs to wake up to return to the Runnable State.</p>
+<pre><code>public class ThreadTester implements Runnable {
+    public static void main(String[] args) throws InterruptedException {
+        Thread thread1 = new Thread(new ThreadTester());
+        thread1.start();
+        Thread thread2 = new Thread(new ThreadTester());
+        thread2.start();
+    }
+    public void run() {
+        for (int i=0; i<5; i++) {
+            System.out.println(Thread.currentThread().getName() + " " + i);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                System.out.println(e);
+            }
+        }
+    }
+}</code></pre>
+
+    <h3>Code Example: <code>yield()</code> and <code>join()</code></h3>
+<pre><code>class MyRunnable implements Runnable {
+    public void run() {
+        System.out.println(Thread.currentThread());
+        Thread.yield(); // Stops currently executing thread to allow other threads to run
+        System.out.println(Thread.currentThread());
+    }
+}
+
+public class ThreadTester {
+    public static void main(String[] args) throws InterruptedException {
+        Thread t1 = new Thread(new MyRunnable());
+        t1.start();
+        
+        t1.join(); // One thread will "join onto the end" of another thread.
+        
+        System.out.println(t1.isAlive()); // Output: false
+    }
+}</code></pre>
+
+    <h3>Code Example: Synchronization & Inter-Thread Communication</h3>
+    <p>The <code>synchronized</code> keyword ensures that only one thread can execute a block of code or method at a time on the same object, preventing data corruption. Methods like <code>wait()</code>, <code>notify()</code>, and <code>notifyAll()</code> are used to coordinate threads.</p>
+<pre><code>class SharedResource {
+    private int count = 0;
+    private boolean available = false;
+
+    // 1. Synchronized Method (Prevents thread interference)
+    public synchronized void increment() {
+        count++;
+    }
+
+    // 2. Inter-Thread Communication (Wait & Notify)
+    public synchronized void produce() throws InterruptedException {
+        while (available) {
+            wait(); // Pauses execution until resource is consumed
+        }
+        System.out.println("Produced new resource.");
+        available = true;
+        notify(); // Wakes up the waiting consumer thread
+    }
+
+    public synchronized void consume() throws InterruptedException {
+        while (!available) {
+            wait(); // Pauses execution until resource is produced
+        }
+        System.out.println("Consumed the resource.");
+        available = false;
+        notify(); // Wakes up the waiting producer thread
+    }
+}</code></pre>
+
+    <h3>Thread Priorities & Advanced Concepts</h3>
+    <ul>
+        <li><strong>Thread Priorities:</strong> Threads are run with priority values [1-10]. Time-slicing schedulers allocate time for executing threads. A thread entering the Runnable state with the highest priority among the pool gets the chance to execute (equal priority is uncertain).</li>
+        <li><strong>Deadlocks & Daemon Threads:</strong> Additional advanced thread management concepts discussed theoretically in Java Multithreading.</li>
+    </ul>
+
+    <h3>Self-Study Questions</h3>
+    <ul>
+        <li><em>What are the overloaded constructors in the Thread class?</em> Constructors include passing string names to identify the thread and passing Runnable target instances.</li>
+        <li><em>What is the use of the keyword 'volatile'?</em> It prevents a thread from caching variables locally, ensuring that any read/write directly accesses main memory so updates are visible to all concurrent threads.</li>
+    </ul>
+
+    <h2>IV. Input/Output (I/O) File Handling</h2>
+    <p>Streams read and write information from and to external sources/destinations (like a file on a disk or a network connection). Incoming streams read data, while outgoing streams write data. The usual steps are to open the stream, use the stream, and close the stream.</p>
+
+    <h3>Code Example: Appending and Writing Data</h3>
+<pre><code>import java.io.*;
+public class Main {
+    public static void main(String[] args) throws IOException {
+        // 'true' parameter avoids erasing an existing file
+        FileWriter fileWriter = new FileWriter("src/test.txt", true);
+        PrintWriter printWriter = new PrintWriter(fileWriter);
+        printWriter.println("Java");
+        printWriter.close();
+        
+        // Writing fresh data
+        PrintWriter pw = new PrintWriter("src/test.txt");
+        pw.println("Moratuwa");
+        pw.println("Batch 22");
+        pw.flush();
+        pw.close();
+    }
+}</code></pre>
+
+    <h3>Code Example: Reading Data (Single Character vs Lines)</h3>
+    <p>To read characters from a file, a connection is established: <code>FileReader fileReader = new FileReader(fileName);</code>. The <code>public int read() throws IOException</code> method reads a single character, and returns <code>-1</code> if there are no more characters to read.</p>
+<pre><code>import java.io.*;
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) throws IOException {
+        // Approach 1: BufferedReader (Buffered IO)
+        FileReader fr = new FileReader("src/test.txt");
+        BufferedReader br = new BufferedReader(fr);
+        String line = br.readLine();
+        while(line != null){
+            System.out.println(line);
+            line = br.readLine();
+        }
+        br.close();
+
+        // Approach 2: Scanner
+        File file = new File("src/test.txt");
+        Scanner sc = new Scanner(file);
+        while(sc.hasNext()) {
+            System.out.println(sc.nextLine());
+        }
+        sc.close();
+    }
+}</code></pre>
+
+</body>
+</html>

@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Java OOP: Complete Lab Guide (Assignment 2)</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fcfcfc;
+    }
+    h1 {
+        color: #2c3e50;
+        text-align: center;
+        border-bottom: 3px solid #3498db;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+    }
+    h2 {
+        color: #2980b9;
+        margin-top: 40px;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 5px;
+    }
+    h3 {
+        color: #16a085;
+        margin-top: 25px;
+        background-color: #eef2f5;
+        padding: 8px 12px;
+        border-radius: 4px;
+        border-left: 4px solid #16a085;
+    }
+    p, li {
+        font-size: 11pt;
+    }
+    pre {
+        background-color: #f8f9fa;
+        border: 1px solid #dae1e7;
+        border-left: 4px solid #3498db;
+        padding: 15px;
+        overflow-x: auto;
+        border-radius: 4px;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 10pt;
+    }
+    code {
+        font-family: 'Courier New', Courier, monospace;
+    }
+    .question-box {
+        background-color: #fdfefe;
+        border: 1px solid #d5dbdb;
+        padding: 12px;
+        margin: 15px 0;
+        border-left: 4px solid #34495e;
+    }
+    .output-box {
+        background-color: #e8f8f5;
+        border-left: 4px solid #1abc9c;
+        padding: 12px;
+        margin: 15px 0;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 10pt;
+        color: #1b4f43;
+    }
+    .explanation-box {
+        background-color: #fff9c4;
+        border-left: 4px solid #fbc02d;
+        padding: 12px;
+        margin: 15px 0;
+        font-size: 10.5pt;
+        color: #5a4a00;
+    }
+    @media print {
+        body { margin: 0; padding: 10mm; max-width: 100%; background-color: white; }
+        pre, .output-box, .explanation-box, .question-box { page-break-inside: avoid; }
+        h2, h3 { page-break-after: avoid; }
+    }
+</style>
+</head>
+<body>
+
+    <h1>Java OOP: Complete Lab Guide for Assignment 2</h1>
+
+    <h2>I. Java Exceptions & Exception Handling</h2>
+
+    <h3>1. Checked Exceptions / Compile-time Exceptions</h3>
+    <div class="question-box">
+        <strong>Question:</strong> Create a class called checkedExceptions. Check if a specific file exists. If not, handle FileNotFoundException. If it exists, read the file using a while loop. If it is not readable, handle IOException.
+    </div>
+<pre><code>import java.io.*;
+
+public class CheckedExceptions {
+    public static void main(String[] args) {
+        File file = new File("D:\\myfile.txt");
+        
+        try {
+            if (!file.exists()) {
+                throw new FileNotFoundException("File not found at D:\\myfile.txt");
+            }
+            if (!file.canRead()) {
+                throw new IOException("File exists but is not readable.");
+            }
+            
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line;
+            System.out.println("File Content:");
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+            }
+            br.close();
+            
+        } catch (FileNotFoundException e) {
+            System.out.println("FileNotFoundException Handled: " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("IOException Handled: " + e.getMessage());
+        }
+    }
+}</code></pre>
+    <div class="explanation-box">
+        <strong>Explanation:</strong> Checked exceptions like <code>FileNotFoundException</code> and <code>IOException</code> must be explicitly caught or declared using <code>throws</code>. The <code>try</code> block monitors the file operations, and the respective <code>catch</code> blocks handle the errors if the file is missing or unreadable.
+    </div>
+
+    <h3>2. Unchecked Exceptions / Runtime Exceptions</h3>
+    <div class="question-box">
+        <strong>Question:</strong> Create a class called uncheckedExceptions. Divide num1 (12) by num2 (keyboard input). Handle ArithmeticException (divide by zero) and InputMismatchException (invalid types like double or strings).
+    </div>
+<pre><code>import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class UncheckedExceptions {
+    public static void main(String[] args) {
+        int num1 = 12;
+        Scanner sc = new Scanner(System.in);
+        
+        try {
+            System.out.print("Enter num2: ");
+            int num2 = sc.nextInt(); 
+            
+            int result = num1 / num2;
+            System.out.println("The result after dividing 12 by " + num2 + " is " + result + ". No exception occurred.");
+            
+        } catch (ArithmeticException e) {
+            System.out.println("java.lang.ArithmeticException: / by zero exception occurred. You cannot divide a number by zero.");
+        } catch (InputMismatchException e) {
+            System.out.println("java.util.InputMismatchException exception occurred. You cannot enter invalid input types. Please enter an integer value.");
+        }
+    }
+}</code></pre>
+    <div class="explanation-box">
+        <strong>Explanation:</strong> Runtime exceptions do not need to be declared in the method signature. If <code>num2</code> is 0, the JVM throws an <code>ArithmeticException</code>. If the user types a string or decimal instead of an integer, <code>Scanner.nextInt()</code> throws an <code>InputMismatchException</code>.
+    </div>
+
+    <h3>3. Explicitly Throwing Exceptions</h3>
+    <div class="question-box">
+        <strong>Question:</strong> Take student attendance and mid-semester marks as input. Create a method checkEligibility(). If attendance < 80 or mid-marks < 40, explicitly throw an exception.
+    </div>
+<pre><code>import java.util.Scanner;
+
+class Student {
+    public void checkEligibility(int attendance, int midMarks) throws Exception {
+        if (attendance < 80 || midMarks < 40) {
+            throw new Exception("You are not eligible for the final examination.");
+        } else {
+            System.out.println("Congratulations. You are eligible for final examination");
+        }
+    }
+}
+
+public class ThrowKeywordDemo {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter attendance: ");
+        int att = sc.nextInt();
+        System.out.print("Enter mid-semester mark: ");
+        int mid = sc.nextInt();
+        
+        Student student = new Student();
+        try {
+            student.checkEligibility(att, mid);
+        } catch (Exception e) {
+            System.out.println("Exception: " + e.getMessage());
+        }
+    }
+}</code></pre>
+    <div class="explanation-box">
+        <strong>Explanation:</strong> The <code>throw</code> keyword is used to manually instantiate and trigger an exception based on custom business logic (e.g., failing eligibility criteria). The calling method must then catch it.
+    </div>
+
+    <h3>4. Throws Clause</h3>
+    <div class="question-box">
+        <strong>Question:</strong> Create a calculate() method that takes two inputs and uses them to access an array at index <code>i = input1/input2</code>. Use the throws clause for ArithmeticException and ArrayIndexOutOfBoundsException, and handle them in main.
+    </div>
+<pre><code>import java.util.Scanner;
+
+public class ExceptionThrowsDemo {
+    public static void calculate(int input1, int input2) throws ArithmeticException, ArrayIndexOutOfBoundsException {
+        int[] arr = {1, 2, 3, 4, 5};
+        int i = input1 / input2;
+        System.out.println("Array element at index " + i + " is: " + arr[i]);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        try {
+            System.out.print("Enter input1: ");
+            int in1 = sc.nextInt();
+            System.out.print("Enter input2: ");
+            int in2 = sc.nextInt();
+            
+            calculate(in1, in2);
+        } catch (ArithmeticException e) {
+            System.out.println("ArithmeticException: Division by zero.");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("ArrayIndexOutOfBoundsException: Index is out of the array's bounds.");
+        }
+    }
+}</code></pre>
+    <div class="explanation-box">
+        <strong>Explanation:</strong> The <code>throws</code> keyword in the method signature warns the caller that this method might throw specific exceptions. The caller (the <code>main</code> method) takes responsibility for providing the <code>try-catch</code> block.
+    </div>
+
+    <h3>5. User-Defined Exceptions</h3>
+    <div class="question-box">
+        <strong>Question:</strong> Create an InvalidWeightException class. Create a weightCheck() method that throws this if weight < 50. Handle the custom exception in main.
+    </div>
+<pre><code>class InvalidWeightException extends Exception {
+    public InvalidWeightException(String str) {
+        super(str);
+    }
+}
+
+public class Demo {
+    public void weightCheck(double weight) throws InvalidWeightException {
+        if (weight < 50) {
+            throw new InvalidWeightException("Your weight is less than 50. You cannot donate blood.");
+        } else {
+            System.out.println("You can donate blood.");
+        }
+    }
+
+    public static void main(String[] args) {
+        java.util.Scanner sc = new java.util.Scanner(System.in);
+        System.out.print("Enter weight: ");
+        double w = sc.nextDouble();
+        
+        Demo demoObj = new Demo();
+        try {
+            demoObj.weightCheck(w);
+        } catch (InvalidWeightException e) {
+            System.out.println("Caught Custom Exception: " + e.getMessage());
+        }
+    }
+}</code></pre>
+    <div class="explanation-box">
+        <strong>Explanation:</strong> User-defined exceptions are created by extending the <code>Exception</code> class. Calling <code>super(str)</code> passes the custom error message to the parent class so it can be retrieved later using <code>getMessage()</code>.
+    </div>
+
+    <h2>II. Threads & Thread Synchronization</h2>
+
+    <h3>1. Extending the Thread Class</h3>
+    <div class="question-box">
+        <strong>Question:</strong> Create SubjectThread extending Thread. Use a loop to take 5 subjects as input, sleeping for 1 second each iteration. Check for InterruptedException.
+    </div>
+<pre><code>import java.util.Scanner;
+
+class SubjectThread extends Thread {
+    @Override
+    public void run() {
+        Scanner sc = new Scanner(System.in);
+        for (int i = 1; i <= 5; i++) {
+            System.out.print("Enter subject " + i + ": ");
+            String subject = sc.nextLine();
+            System.out.println("Subject entered: " + subject);
+            
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                System.out.println("The thread is Interrupted");
+                return;
+            }
+        }
+        System.out.println("Thread successfully terminated");
+    }
+}
+
+public class SubjectDemo {
+    public static void main(String[] args) {
+        SubjectThread st = new SubjectThread();
+        st.start();
+    }
+}</code></pre>
+    <div class="explanation-box">
+        <strong>Explanation:</strong> Extending <code>Thread</code> allows the class to behave as a thread. <code>Thread.sleep(1000)</code> pauses execution for 1000 milliseconds. <code>st.start()</code> creates a new call stack and executes the <code>run()</code> method.
+    </div>
+
+    <h3>2. Multi-threads</h3>
+    <div class="question-box">
+        <strong>Question:</strong> Create MultiThread with a parameterized constructor for threadName. Display the name 5 times, sleeping 3000ms each time. Run two instances concurrently.
+    </div>
+<pre><code>class MultiThread extends Thread {
+    String threadName;
+    
+    public MultiThread(String name) {
+        this.threadName = name;
+        System.out.println("Creating Thread = " + threadName);
+    }
+    
+    @Override
+    public void run() {
+        System.out.println("Running Thread = " + threadName);
+        try {
+            for (int i = 1; i <= 5; i++) {
+                System.out.println("Thread name = " + threadName + "-" + i);
+                Thread.sleep(3000);
+            }
+            System.out.println("Thread name " + threadName + " Terminated");
+        } catch (InterruptedException e) {
+            System.out.println("Thread " + threadName + " interrupted.");
+        }
+    }
+}
+
+public class DemoThread {
+    public static void main(String[] args) {
+        MultiThread t1 = new MultiThread("Thread number one");
+        MultiThread t2 = new MultiThread("Thread number two");
+        
+        t1.start();
+        t2.start();
+    }
+}</code></pre>
+    <div class="explanation-box">
+        <strong>Explanation:</strong> By creating and starting two separate thread instances, both loops run concurrently. The JVM thread scheduler switches between them, which is why their console outputs will interleave.
+    </div>
+
+    <h3>3. Java Runnable Interface</h3>
+    <div class="question-box">
+        <strong>Question:</strong> Create RunnableDemo implementing Runnable. Loop continuously while not interrupted. In main, start the thread, sleep 1000ms, then interrupt it.
+    </div>
+<pre><code>class RunnableDemo implements Runnable {
+    @Override
+    public void run() {
+        while (!Thread.currentThread().isInterrupted()) {
+            System.out.println("Thread is Running now");
+        }
+        System.out.println("Thread is terminated.");
+    }
+}
+
+public class MainDemo {
+    public static void main(String[] args) {
+        Thread t1 = new Thread(new RunnableDemo());
+        t1.start();
+        
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        
+        t1.interrupt(); // Interrupts and stops the thread
+    }
+}</code></pre>
+    <div class="explanation-box">
+        <strong>Explanation:</strong> Implementing <code>Runnable</code> is often preferred because Java only allows single inheritance. The <code>isInterrupted()</code> flag safely controls the loop, and the main thread cleanly stops the worker thread by calling <code>t1.interrupt()</code>.
+    </div>
+
+    <h3>4. Thread Synchronization</h3>
+    <div class="question-box">
+        <strong>Question:</strong> Create a shared Count class with a synchronized printCount() method. Pass the same Count object to two different threads and execute them.
+    </div>
+<pre><code>class Count {
+    public synchronized void printCount(int n) {
+        System.out.println("Starting the Thread");
+        try {
+            for (int i = 0; i <= 5; i++) {
+                System.out.println("Count Value = " + (n * i));
+                Thread.sleep(100);
+            }
+        } catch (InterruptedException e) {
+            System.out.println("Thread interrupted.");
+        }
+        System.out.println("Thread Terminated\n");
+    }
+}
+
+class ThreadDemo1 extends Thread {
+    Count c;
+    public ThreadDemo1(Count c) { this.c = c; }
+    @Override
+    public void run() { c.printCount(100); }
+}
+
+class ThreadDemo2 extends Thread {
+    Count c;
+    public ThreadDemo2(Count c) { this.c = c; }
+    @Override
+    public void run() { c.printCount(10); }
+}
+
+public class DemoThreadSync {
+    public static void main(String[] args) {
+        Count sharedObj = new Count();
+        ThreadDemo1 t1 = new ThreadDemo1(sharedObj);
+        ThreadDemo2 t2 = new ThreadDemo2(sharedObj);
+        
+        t1.start();
+        t2.start();
+    }
+}</code></pre>
+    <div class="explanation-box">
+        <strong>Explanation:</strong> The <code>synchronized</code> keyword ensures that once a thread enters <code>printCount()</code>, it acquires a lock on the <code>sharedObj</code>. The second thread must wait until the first finishes before it can start executing the method, preventing mixed output.
+    </div>
+
+
+    <h2>III. Java Strings, StringBuilder & StringBuffer</h2>
+
+    <h3>1. String Basics and Immutability</h3>
+    <div class="question-box">
+        <strong>Question:</strong> Read customerName, concatenate "Mr. " to the beginning, store in formalName. Print both to demonstrate immutability.
+    </div>
+<pre><code>import java.util.Scanner;
+
+public class StringBasics {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter full name: ");
+        String customerName = sc.nextLine();
+        
+        String formalName = "Mr. ".concat(customerName);
+        
+        System.out.println("Original Name: " + customerName);
+        System.out.println("Formal Name: " + formalName);
+        
+        System.out.println("Length of original name: " + customerName.length());
+        System.out.println("First character: " + customerName.charAt(0));
+    }
+}</code></pre>
+    <div class="explanation-box">
+        <strong>Explanation:</strong> Strings in Java are immutable. Calling <code>concat()</code> does not alter <code>customerName</code>. Instead, it generates a completely new String object which is then assigned to <code>formalName</code>.
+    </div>
+
+    <h3>2. Email Formatter (String Methods)</h3>
+    <div class="question-box">
+        <strong>Question:</strong> Clean up an email address using trim() and toLowerCase(). Check if it contains "@". Extract the username and domain using indexOf() and substring().
+    </div>
+<pre><code>import java.util.Scanner;
+
+public class EmailFormatter {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter email address: ");
+        String rawEmail = sc.nextLine();
+        
+        String cleanEmail = rawEmail.trim().toLowerCase();
+        
+        if (!cleanEmail.contains("@")) {
+            System.out.println("Invalid email format.");
+            return;
+        }
+        
+        int atIndex = cleanEmail.indexOf("@");
+        String username = cleanEmail.substring(0, atIndex);
+        String domain = cleanEmail.substring(atIndex + 1);
+        
+        System.out.println("Username: " + username);
+        System.out.println("Domain: " + domain);
+    }
+}</code></pre>
+    <div class="explanation-box">
+        <strong>Explanation:</strong> <code>trim()</code> removes whitespace padding. <code>substring(start, end)</code> extracts characters from the start index up to (but not including) the end index. If only the start index is provided, it extracts to the end of the string.
+    </div>
+
+    <h3>3. <code>==</code> vs <code>equals()</code></h3>
+    <div class="question-box">
+        <strong>Question:</strong> Compare entered username with stored username using both <code>==</code> and <code>equals()</code> when the input is created using the <code>new String()</code> constructor.
+    </div>
+<pre><code>import java.util.Scanner;
+
+public class LoginSystem {
+    public static void main(String[] args) {
+        String storedUsername = "admin";
+        String storedPassword = "pass123";
+        
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter username: ");
+        String inputUsername = new String(sc.nextLine());
+        System.out.print("Enter password: ");
+        String inputPassword = new String(sc.nextLine());
+        
+        System.out.println("== Comparison result: " + (storedUsername == inputUsername));
+        System.out.println("equals() Comparison result: " + storedUsername.equals(inputUsername));
+        
+        if (storedUsername.equalsIgnoreCase(inputUsername) && storedPassword.equals(inputPassword)) {
+            System.out.println("Login successful");
+        } else {
+            System.out.println("Login failed. Invalid username or password.");
+        }
+    }
+}</code></pre>
+    <div class="explanation-box">
+        <strong>Explanation:</strong> The <code>==</code> operator compares object references (memory locations). Since <code>new String()</code> forces the creation of a new object on the heap, <code>storedUsername == inputUsername</code> evaluates to false. The <code>.equals()</code> method evaluates the actual string contents, returning true.
+    </div>
+
+    <h3>4. StringBuilder (Palindrome Checker)</h3>
+    <div class="question-box">
+        <strong>Question:</strong> Use StringBuilder to reverse a phrase and check for palindromes. Then demonstrate append(), insert(), and delete().
+    </div>
+<pre><code>import java.util.Scanner;
+
+public class PalindromeChecker {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter a phrase: ");
+        String text = sc.nextLine();
+        
+        String processedText = text.replace(" ", "").toLowerCase();
+        StringBuilder sb = new StringBuilder(processedText);
+        String reversedText = sb.reverse().toString();
+        
+        if (processedText.equals(reversedText)) {
+            System.out.println("This is a palindrome.");
+        } else {
+            System.out.println("This is not a palindrome.");
+        }
+        
+        sb.reverse(); // Face forward again
+        
+        sb.append(" - Verified");
+        System.out.println("After Append: " + sb.toString() + " | Capacity: " + sb.capacity());
+        
+        sb.insert(0, "[CODE] ");
+        System.out.println("After Insert: " + sb.toString() + " | Capacity: " + sb.capacity());
+        
+        sb.delete(sb.length() - 9, sb.length());
+        System.out.println("After Delete: " + sb.toString() + " | Capacity: " + sb.capacity());
+    }
+}</code></pre>
+    <div class="explanation-box">
+        <strong>Explanation:</strong> <code>StringBuilder</code> operates directly on the same object in memory, making modifications (like reversing or appending) much more memory-efficient than performing standard String concatenations inside loops.
+    </div>
+
+    <h3>5. Combined String Operation (Bank Statement)</h3>
+    <div class="question-box">
+        <strong>Question:</strong> Build a multi-line statement using StringBuilder. Mask an account number replacing the middle 6 digits with "*".
+    </div>
+<pre><code>import java.util.Scanner;
+
+public class BankStatementFormatter {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Enter Account Holder Name: ");
+        String name = sc.nextLine();
+        System.out.print("Enter 10-digit Account Number: ");
+        String accNum = sc.nextLine();
+        System.out.print("Enter Current Balance: ");
+        String balance = sc.nextLine();
+        
+        StringBuilder statement = new StringBuilder();
+        statement.append("--- MINI STATEMENT ---\n");
+        statement.append("Name: ").append(name).append("\n");
+        statement.append("Balance: Rs. ").append(balance).append("\n\n");
+        statement.append("Transactions:\n");
+        
+        for (int i = 1; i <= 3; i++) {
+            System.out.print("Enter description for transaction " + i + ": ");
+            statement.append(sc.nextLine()).append("\n");
+        }
+        
+        String maskedAcc = accNum.substring(0, 2).concat("******").concat(accNum.substring(8));
+        
+        System.out.println("\n" + statement.toString());
+        System.out.println("Masked Account Number: " + maskedAcc);
+    }
+}</code></pre>
+    <div class="explanation-box">
+        <strong>Explanation:</strong> Uses chained <code>append()</code> methods to build the statement efficiently. The account number is masked by combining substrings of the first two characters, the literal asterisks, and the remainder of the string starting from index 8.
+    </div>
+
+    <h2>IV. Input/Output (I/O) File Handling</h2>
+
+    <h3>Q1. List all file/directory names from a given path</h3>
+    <div class="question-box">
+        <strong>Question:</strong> Create a java program to get a list of all file names or directory names when a file path is given.
+    </div>
+<pre><code>import java.io.File;
+
+public class FileLister {
+    public static void main(String[] args) {
+        String path = "D:\\Documents"; // Example path
+        File directory = new File(path);
+        
+        if (directory.exists() && directory.isDirectory()) {
+            String[] files = directory.list();
+            System.out.println("Files in " + path + ":");
+            for (String file : files) {
+                System.out.println(file);
+            }
+        } else {
+            System.out.println("Invalid directory path.");
+        }
+    }
+}</code></pre>
+    <div class="explanation-box">
+        <strong>Explanation:</strong> The <code>File.list()</code> method returns an array of strings naming the files and directories in the directory denoted by the abstract pathname.
+    </div>
+
+    <h3>Q2. Find specific file names by extension</h3>
+    <div class="question-box">
+        <strong>Question:</strong> Create a java program to find a specific file name by extension (ex: python file, java file) from a specific folder.
+    </div>
+<pre><code>import java.io.File;
+
+public class ExtensionFilter {
+    public static void main(String[] args) {
+        File dir = new File("D:\\Projects");
+        String extension = ".java";
+        
+        if (dir.exists() && dir.isDirectory()) {
+            // Using a lambda expression to filter file names
+            File[] files = dir.listFiles((d, name) -> name.endsWith(extension));
+            System.out.println("Files with " + extension + " extension:");
+            if (files != null) {
+                for (File f : files) {
+                    System.out.println(f.getName());
+                }
+            }
+        }
+    }
+}</code></pre>
+    <div class="explanation-box">
+        <strong>Explanation:</strong> Uses <code>listFiles()</code> combined with a <code>FilenameFilter</code> (implemented here concisely with a lambda expression) to only return files ending with the specified extension.
+    </div>
+
+    <h3>Q3. Check if a specific file exists</h3>
+    <div class="question-box">
+        <strong>Question:</strong> Create a java program to find if a specific file exists or not in a given file path.
+    </div>
+<pre><code>import java.io.File;
+
+public class FileChecker {
+    public static void main(String[] args) {
+        File file = new File("D:\\myfile.txt");
+        if (file.exists()) {
+            System.out.println("The file exists.");
+        } else {
+            System.out.println("The file does not exist.");
+        }
+    }
+}</code></pre>
+    <div class="explanation-box">
+        <strong>Explanation:</strong> <code>file.exists()</code> evaluates to true if and only if the file or directory denoted by the abstract pathname exists on the actual file system.
+    </div>
+
+    <h3>Q4. Read and display file contents with validation</h3>
+    <div class="question-box">
+        <strong>Question:</strong> Create a java program that reads a file and displays the contents on the screen. Handle whether the specified file exists and whether it is readable.
+    </div>
+<pre><code>import java.io.*;
+
+public class FileReaderDemo {
+    public static void main(String[] args) {
+        File file = new File("D:\\myfile.txt");
+        
+        if (!file.exists()) {
+            System.out.println("Error: File does not exist.");
+            return;
+        }
+        
+        if (!file.canRead()) {
+            System.out.println("Error: File is not readable.");
+            return;
+        }
+        
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String line;
+            System.out.println("--- File Contents ---");
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+            }
+        } catch (IOException e) {
+            System.out.println("An I/O error occurred: " + e.getMessage());
+        }
+    }
+}</code></pre>
+    <div class="explanation-box">
+        <strong>Explanation:</strong> Uses <code>canRead()</code> to verify permissions before attempting to read. A <code>try-with-resources</code> block (the parentheses after <code>try</code>) automatically closes the <code>BufferedReader</code> after execution, preventing resource leaks.
+    </div>
+
+    <h3>Q5. Read text file into ArrayList</h3>
+    <div class="question-box">
+        <strong>Question:</strong> Create a Java program that reads a text file, stores its contents in an ArrayList, and then displays the ArrayList's contents.
+    </div>
+<pre><code>import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ArrayListFileRead {
+    public static void main(String[] args) {
+        File file = new File("D:\\myfile.txt");
+        List&lt;String&gt; list = new ArrayList&lt;String&gt;();
+        
+        if (file.exists() && file.canRead()) {
+            try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    list.add(line);
+                }
+            } catch (IOException e) {
+                System.out.println("I/O Error: " + e.getMessage());
+            }
+        }
+        
+        System.out.println("Contents stored in ArrayList:");
+        for (String str : list) {
+            System.out.println(str);
+        }
+    }
+}</code></pre>
+    <div class="explanation-box">
+        <strong>Explanation:</strong> Iterates through the file using <code>br.readLine()</code>. Instead of printing immediately, each line is pushed into the <code>list</code> collection using <code>list.add()</code>. A subsequent enhanced for-loop is then used to iterate through and display the collection.
+    </div>
+
+</body>
+</html>
