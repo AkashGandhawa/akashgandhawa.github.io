@@ -13,6 +13,7 @@ const GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/AkashGandhawa/AkashGa
 
 // Add new slugs here to register new posts
 const BLOG_SLUGS = [
+  'aethercode-serverless-ai',
   'zero-direct-access-recruitment',
   'dsa-assignment-textile-erp',
 ];

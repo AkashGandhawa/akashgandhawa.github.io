@@ -164,14 +164,16 @@
         <div class="project-card__name">Thorana</div>
         <div class="project-card__desc">A digital Pandal celebrating the Vesak Festival — a creative front-end piece merging cultural heritage with modern web design.</div>
         <a href="https://akashgandhawa.github.io/thorana" target="_blank" rel="noopener" class="project-card__live">Live site</a>
-        <div class="project-card__stats">
-          <span class="project-card__stat">${STAR_ICON}<span class="js-star-count">1</span> stars</span>
-          <span class="project-card__stat">${FORK_ICON}<span class="js-fork-count">0</span> forks</span>
-        </div>
-        <div class="project-card__tags">
-          <span class="lang-tag">${CODE_ICON}HTML</span>
-          <span class="lang-tag">${CODE_ICON}CSS</span>
-          <span class="tag--solo">Solo project</span>
+        <div class="project-card__footer">
+          <div class="project-card__stats">
+            <span class="project-card__stat">${STAR_ICON}<span class="js-star-count">1</span> stars</span>
+            <span class="project-card__stat">${FORK_ICON}<span class="js-fork-count">0</span> forks</span>
+          </div>
+          <div class="project-card__tags">
+            <span class="lang-tag">${CODE_ICON}HTML</span>
+            <span class="lang-tag">${CODE_ICON}CSS</span>
+            <span class="tag--solo">Solo project</span>
+          </div>
         </div>
       </div>
     </div>`;
