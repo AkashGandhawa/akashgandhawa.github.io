@@ -2,7 +2,7 @@
 title: Building AetherCode — Serverless AI Without the Lock-In
 category: AI Systems
 date: October 2026
-read: 6 min read
+read: 5 min read
 excerpt: How AetherCode routes across four AI providers from one Netlify function, using browser-only keys, quota-aware failover, and context guardrails.
 ---
 
@@ -66,5 +66,3 @@ None of these require a server. They are all client-side state and presentation,
 Vendor lock-in is usually an architectural choice, not a vendor problem. Once the request and response shapes are normalized, swapping providers becomes a routing decision instead of a rewrite.
 
 Third-party limits also deserve first-class design. Quotas, rate limits, and context windows are not edge cases that can be handled with a generic error toast. They are part of the system's operating conditions, and the interface should reflect them honestly.
-
-AetherCode is live at [aethercode-ai-coding-agent.netlify.app](https://aethercode-ai-coding-agent.netlify.app/), and the source is on [GitHub](https://github.com/AkashGandhawa/aethercode).

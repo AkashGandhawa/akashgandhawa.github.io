@@ -2,7 +2,7 @@
 title: Building a Zero-Direct-Access Volunteer Recruitment System
 category: Production Full-Stack
 date: August 2026
-read: 3 min read
+read: 2 min read
 excerpt: How we built a production-grade recruitment platform for MoraSpirit with strict security, anti-abuse measures, and 40+ real submissions.
 ---
 
