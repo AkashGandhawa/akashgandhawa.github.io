@@ -3,5 +3,4 @@
 Personal portfolio site currently under construction.
 
 Future steps:
-Replacing placeholders with updated and accurate information
-Implementing a full website (the portfolio just being a landing page)
+Implementing a full website (such that this portfolio becomes a mere landing page)
